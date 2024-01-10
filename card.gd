@@ -2,10 +2,8 @@ extends Node2D
 
 signal card_clicked
 
-enum EffectTypes { DAMAGE }
-
 @export
-var effect: EffectTypes
+var effect: Global.EffectTypes
 
 @export
 var damage: int
@@ -24,4 +22,5 @@ func _on_area_2d_mouse_exited():
 	position.y = position.y + 30
 
 func _ready():
-	$RichTextLabel.text = str(damage)
+	$DamageAmount.text = "[center]%[/center]" % str(damage)
+	$CardName.text = "[center]%[/center]" % cardName

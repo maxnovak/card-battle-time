@@ -9,6 +9,7 @@ size = Vector2(82, 103)
 [node name="Card" type="Node2D"]
 position = Vector2(200, 200)
 script = ExtResource("1_l743w")
+cardName = "Foobar"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -20,13 +21,26 @@ texture = ExtResource("2_tvyjl")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_e81o0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 2.0
-offset_top = -47.0
-offset_right = 33.0
-offset_bottom = -19.0
+[node name="CardName" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = -38.0
+offset_top = -50.0
+offset_right = 38.0
+offset_bottom = -17.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+
+[node name="DamageAmount" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = -23.0
+offset_top = -25.0
+offset_right = 20.0
+offset_bottom = 16.0
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

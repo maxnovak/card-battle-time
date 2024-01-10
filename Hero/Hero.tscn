@@ -1,10 +1,15 @@
-[gd_scene load_steps=31 format=3 uid="uid://vb70ep72ce87"]
+[gd_scene load_steps=36 format=3 uid="uid://vb70ep72ce87"]
 
-[ext_resource type="Script" path="res://Player/Hero.gd" id="1_b5ksb"]
+[ext_resource type="Script" path="res://Hero/Hero.gd" id="1_b5ksb"]
 [ext_resource type="Texture2D" uid="uid://kwhp2x6a3ocg" path="res://assets/hero/Attack1.png" id="1_q6wdh"]
 [ext_resource type="Texture2D" uid="uid://cbn50krsxv745" path="res://assets/hero/Death.png" id="2_evn6n"]
 [ext_resource type="Texture2D" uid="uid://d2bmc6s77ja08" path="res://assets/hero/Idle.png" id="3_7ob7y"]
 [ext_resource type="Texture2D" uid="uid://b3jfanofjpmq4" path="res://assets/hero/Take hit.png" id="4_vi041"]
+[ext_resource type="Script" path="res://Hero/state_machine.gd" id="6_pdh1x"]
+[ext_resource type="Script" path="res://Hero/idle.gd" id="7_nfoyv"]
+[ext_resource type="Script" path="res://Hero/attack.gd" id="8_2mvtm"]
+[ext_resource type="Script" path="res://Hero/hit.gd" id="9_7dre1"]
+[ext_resource type="Script" path="res://Hero/death.gd" id="10_se3kh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tddy"]
 atlas = ExtResource("1_q6wdh")
@@ -58,6 +63,18 @@ region = Rect2(900, 0, 150, 150)
 atlas = ExtResource("2_evn6n")
 region = Rect2(1050, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yb37"]
+atlas = ExtResource("4_vi041")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxpeo"]
+atlas = ExtResource("4_vi041")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw7ks"]
+atlas = ExtResource("4_vi041")
+region = Rect2(300, 0, 150, 150)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5yo5"]
 atlas = ExtResource("3_7ob7y")
 region = Rect2(150, 0, 150, 150)
@@ -89,18 +106,6 @@ region = Rect2(900, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_d02f1"]
 atlas = ExtResource("3_7ob7y")
 region = Rect2(1050, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6yb37"]
-atlas = ExtResource("4_vi041")
-region = Rect2(0, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xxpeo"]
-atlas = ExtResource("4_vi041")
-region = Rect2(150, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jw7ks"]
-atlas = ExtResource("4_vi041")
-region = Rect2(300, 0, 150, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x12yw"]
 animations = [{
@@ -155,6 +160,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6yb37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxpeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw7ks")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_i5yo5")
 }, {
 "duration": 1.0,
@@ -181,20 +200,6 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6yb37")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xxpeo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jw7ks")
-}],
-"loop": false,
-"name": &"take hit",
-"speed": 5.0
 }]
 
 [node name="Hero" type="Node2D"]
@@ -202,4 +207,22 @@ script = ExtResource("1_b5ksb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x12yw")
-animation = &"idle"
+animation = &"hit"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("6_pdh1x")
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("7_nfoyv")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("8_2mvtm")
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("9_7dre1")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("10_se3kh")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine" method="_on_animation_finished"]

@@ -1,15 +1,15 @@
 [gd_scene load_steps=37 format=3 uid="uid://cmvw1gkyaj1ku"]
 
-[ext_resource type="Script" path="res://Enemies/EvilWizard/evil_wizard.gd" id="1_vdyxb"]
+[ext_resource type="Script" path="res://Enemies/Enemy/enemy.gd" id="1_vdyxb"]
 [ext_resource type="Texture2D" uid="uid://de4tne3ubgmyr" path="res://assets/evilwizard/Attack.png" id="2_gvhby"]
 [ext_resource type="Texture2D" uid="uid://050hpgo7d47t" path="res://assets/evilwizard/Death.png" id="3_v3i0a"]
 [ext_resource type="Texture2D" uid="uid://bmaf1s3bb66kx" path="res://assets/evilwizard/Take Hit.png" id="4_pfvln"]
 [ext_resource type="Texture2D" uid="uid://cl4cam6mlhqns" path="res://assets/evilwizard/Idle.png" id="5_dkh54"]
-[ext_resource type="Script" path="res://Enemies/EvilWizard/enemy_state_machine.gd" id="6_e36d3"]
-[ext_resource type="Script" path="res://Enemies/EvilWizard/idle.gd" id="7_0ira3"]
-[ext_resource type="Script" path="res://Enemies/EvilWizard/attack.gd" id="8_5yfpk"]
-[ext_resource type="Script" path="res://Enemies/EvilWizard/hit.gd" id="9_rfm78"]
-[ext_resource type="Script" path="res://Enemies/EvilWizard/death.gd" id="10_helqy"]
+[ext_resource type="Script" path="res://Enemies/Enemy/enemy_state_machine.gd" id="6_e36d3"]
+[ext_resource type="Script" path="res://Enemies/Enemy/idle.gd" id="7_0ira3"]
+[ext_resource type="Script" path="res://Enemies/Enemy/attack.gd" id="8_5yfpk"]
+[ext_resource type="Script" path="res://Enemies/Enemy/hit.gd" id="9_rfm78"]
+[ext_resource type="Script" path="res://Enemies/Enemy/death.gd" id="10_helqy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akc1p"]
 atlas = ExtResource("2_gvhby")
@@ -209,7 +209,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EvilWizard" type="Node2D"]
+[node name="Enemy" type="Node2D"]
 position = Vector2(200, 200)
 scale = Vector2(-2, 2)
 script = ExtResource("1_vdyxb")
@@ -217,7 +217,7 @@ health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hgm3u")
-animation = &"death"
+animation = &"attack"
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("6_e36d3")

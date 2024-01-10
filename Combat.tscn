@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://combat.gd" id="1_sabey"]
 [ext_resource type="Texture2D" uid="uid://cac3db4rwbws5" path="res://assets/Reference-Image.png" id="2_j3jnb"]
-[ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Player/Hero.tscn" id="3_k2pbf"]
-[ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Enemies/EvilWizard/EvilWizard.tscn" id="4_ib54q"]
+[ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Hero/Hero.tscn" id="3_k2pbf"]
+[ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Enemies/Enemy/Enemy.tscn" id="4_ib54q"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_sabey")
@@ -18,11 +18,19 @@ position = Vector2(290, 450)
 scale = Vector2(3, 3)
 health = 20
 
-[node name="EvilWizard" parent="." instance=ExtResource("4_ib54q")]
+[node name="Enemy" parent="." instance=ExtResource("4_ib54q")]
 position = Vector2(823, 461)
 scale = Vector2(-3, 3)
-health = 20
+health = 1000
 damage = 3
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(467, 598)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="CurrentAction" from="." to="Enemy" method="_on_combat_current_action"]
+[connection signal="Attack" from="Enemy" to="." method="_on_enemy_attack"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
