@@ -9,6 +9,7 @@ size = Vector2(82, 103)
 [node name="Card" type="Node2D"]
 position = Vector2(200, 200)
 script = ExtResource("1_l743w")
+damage = 100
 cardName = "Foobar"
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -21,26 +22,52 @@ texture = ExtResource("2_tvyjl")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_e81o0")
 
-[node name="CardName" type="RichTextLabel" parent="."]
-clip_contents = false
-offset_left = -38.0
-offset_top = -50.0
-offset_right = 38.0
-offset_bottom = -17.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
+[node name="DamageContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -27.0
+offset_right = 32.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="DamageAmount" type="RichTextLabel" parent="."]
+[node name="DamageAmount" type="RichTextLabel" parent="DamageContainer"]
 clip_contents = false
-offset_left = -23.0
-offset_top = -25.0
-offset_right = 20.0
-offset_bottom = 16.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 16
-bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="NameContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -52.0
+offset_right = 38.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardName" type="RichTextLabel" parent="NameContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

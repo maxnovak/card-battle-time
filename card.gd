@@ -22,5 +22,5 @@ func _on_area_2d_mouse_exited():
 	position.y = position.y + 30
 
 func _ready():
-	$DamageAmount.text = "[center]%[/center]" % str(damage)
-	$CardName.text = "[center]%[/center]" % cardName
+	$DamageContainer/DamageAmount.text = str(damage)
+	$NameContainer/CardName.text = cardName
