@@ -4,6 +4,42 @@ var cardScene = preload("res://Card.tscn")
 
 signal CurrentAction(actor: Global.Actor)
 
+@export
+var hero_position = 1 #0-2 for allowed locations
+
+const hero_positions = [
+	{
+		x = 150,
+		y = 415,
+	},
+	{
+		x = 300,
+		y = 415,
+	},
+	{
+		x = 450,
+		y = 415,
+	},
+]
+
+@export
+var enemy_position = 1 #0-2 for allowed locations
+
+const enemy_positions = [
+	{
+		x = 600,
+		y = 415,
+	},
+	{
+		x = 750,
+		y = 415,
+	},
+	{
+		x = 900,
+		y = 415,
+	},
+]
+
 var deckCards = []
 var discard = []
 var handCards = []
@@ -20,6 +56,9 @@ func _ready():
 		deckCards.append(card)
 	deckCards.shuffle()
 	dealCards()
+
+	$Hero.position = Vector2(hero_positions[hero_position].x, hero_positions[hero_position].y)
+	$Enemy.position = Vector2(enemy_positions[enemy_position].x, enemy_positions[enemy_position].y)
 
 func _on_card_clicked(card):
 	if whosAction == Global.Actor.PLAYER:

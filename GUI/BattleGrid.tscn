@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cncc8a5j6c6vh"]
+
+[ext_resource type="Texture2D" uid="uid://dfyvomeg4ksu3" path="res://assets/movement-space.png" id="1_hpnag"]
+
+[node name="Battle Grid" type="Node2D"]
+position = Vector2(150, -50)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 555.5)
+scale = Vector2(1.18, 0.31)
+texture = ExtResource("1_hpnag")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(150, 555.5)
+scale = Vector2(1.18, 0.31)
+texture = ExtResource("1_hpnag")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(300, 555.5)
+scale = Vector2(1.18, 0.31)
+texture = ExtResource("1_hpnag")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(450, 555.5)
+scale = Vector2(1.18, 0.31)
+texture = ExtResource("1_hpnag")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(600, 555.5)
+scale = Vector2(1.18, 0.31)
+texture = ExtResource("1_hpnag")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(750, 555.5)
+scale = Vector2(1.18, 0.31)
+texture = ExtResource("1_hpnag")

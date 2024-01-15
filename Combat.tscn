@@ -1,25 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjp0x2360ywfq"]
+[gd_scene load_steps=6 format=3 uid="uid://cjp0x2360ywfq"]
 
 [ext_resource type="Script" path="res://combat.gd" id="1_sabey"]
 [ext_resource type="Texture2D" uid="uid://cac3db4rwbws5" path="res://assets/Reference-Image.png" id="2_j3jnb"]
 [ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Hero/Hero.tscn" id="3_k2pbf"]
+[ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://GUI/BattleGrid.tscn" id="3_uvy4p"]
 [ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Enemies/Enemy/Enemy.tscn" id="4_ib54q"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_sabey")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(577, 327)
-scale = Vector2(0.584848, 0.602778)
+position = Vector2(511.5, 301.75)
+scale = Vector2(0.518687, 0.556019)
 texture = ExtResource("2_j3jnb")
 
+[node name="Battle Grid" parent="." instance=ExtResource("3_uvy4p")]
+
 [node name="Hero" parent="." instance=ExtResource("3_k2pbf")]
-position = Vector2(290, 450)
+position = Vector2(292, 413)
 scale = Vector2(3, 3)
 health = 20
 
 [node name="Enemy" parent="." instance=ExtResource("4_ib54q")]
-position = Vector2(823, 461)
+position = Vector2(757, 404)
 scale = Vector2(3, 3)
 health = 50
 damage = 5
