@@ -9,7 +9,7 @@
 script = ExtResource("1_sabey")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(581, 326)
+position = Vector2(577, 327)
 scale = Vector2(0.584848, 0.602778)
 texture = ExtResource("2_j3jnb")
 
@@ -20,15 +20,14 @@ health = 20
 
 [node name="Enemy" parent="." instance=ExtResource("4_ib54q")]
 position = Vector2(823, 461)
-scale = Vector2(-3, 3)
-health = 1000
-damage = 3
+scale = Vector2(3, 3)
+health = 50
+damage = 5
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(467, 598)
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
 [connection signal="CurrentAction" from="." to="Enemy" method="_on_combat_current_action"]

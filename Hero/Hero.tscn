@@ -1,15 +1,17 @@
-[gd_scene load_steps=36 format=3 uid="uid://vb70ep72ce87"]
+[gd_scene load_steps=45 format=3 uid="uid://vb70ep72ce87"]
 
 [ext_resource type="Script" path="res://Hero/Hero.gd" id="1_b5ksb"]
 [ext_resource type="Texture2D" uid="uid://kwhp2x6a3ocg" path="res://assets/hero/Attack1.png" id="1_q6wdh"]
 [ext_resource type="Texture2D" uid="uid://cbn50krsxv745" path="res://assets/hero/Death.png" id="2_evn6n"]
 [ext_resource type="Texture2D" uid="uid://d2bmc6s77ja08" path="res://assets/hero/Idle.png" id="3_7ob7y"]
 [ext_resource type="Texture2D" uid="uid://b3jfanofjpmq4" path="res://assets/hero/Take hit.png" id="4_vi041"]
+[ext_resource type="Texture2D" uid="uid://cuq555fsqnh2j" path="res://assets/hero/Attack3.png" id="6_0kfnc"]
 [ext_resource type="Script" path="res://Hero/state_machine.gd" id="6_pdh1x"]
 [ext_resource type="Script" path="res://Hero/idle.gd" id="7_nfoyv"]
 [ext_resource type="Script" path="res://Hero/attack.gd" id="8_2mvtm"]
 [ext_resource type="Script" path="res://Hero/hit.gd" id="9_7dre1"]
 [ext_resource type="Script" path="res://Hero/death.gd" id="10_se3kh"]
+[ext_resource type="Script" path="res://Hero/poison.gd" id="12_yhjdw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tddy"]
 atlas = ExtResource("1_q6wdh")
@@ -107,6 +109,34 @@ region = Rect2(900, 0, 150, 150)
 atlas = ExtResource("3_7ob7y")
 region = Rect2(1050, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee8id"]
+atlas = ExtResource("6_0kfnc")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v05y7"]
+atlas = ExtResource("6_0kfnc")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq8tt"]
+atlas = ExtResource("6_0kfnc")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clcyg"]
+atlas = ExtResource("6_0kfnc")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3726"]
+atlas = ExtResource("6_0kfnc")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ge5q"]
+atlas = ExtResource("6_0kfnc")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8udon"]
+atlas = ExtResource("6_0kfnc")
+region = Rect2(900, 0, 150, 150)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x12yw"]
 animations = [{
 "frames": [{
@@ -200,6 +230,32 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee8id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v05y7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq8tt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clcyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3726")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ge5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8udon")
+}],
+"loop": true,
+"name": &"poison",
+"speed": 5.0
 }]
 
 [node name="Hero" type="Node2D"]
@@ -207,7 +263,7 @@ script = ExtResource("1_b5ksb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x12yw")
-animation = &"hit"
+animation = &"poison"
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("6_pdh1x")
@@ -224,5 +280,29 @@ script = ExtResource("9_7dre1")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("10_se3kh")
+
+[node name="Poison" type="Node" parent="StateMachine"]
+script = ExtResource("12_yhjdw")
+
+[node name="HealthTracker" type="Label" parent="."]
+offset_left = -21.0
+offset_top = 28.0
+offset_right = 295.0
+offset_bottom = 165.0
+scale = Vector2(0.07, 0.07)
+theme_override_font_sizes/font_size = 100
+text = "health"
+horizontal_alignment = 1
+
+[node name="BlockTracker" type="Label" parent="."]
+offset_top = 28.0
+offset_right = 316.0
+offset_bottom = 165.0
+scale = Vector2(0.07, 0.07)
+theme_override_colors/font_color = Color(0.639216, 0.756863, 0.901961, 1)
+theme_override_font_sizes/font_size = 100
+text = "block
+"
+horizontal_alignment = 1
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine" method="_on_animation_finished"]

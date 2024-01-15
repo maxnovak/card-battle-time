@@ -25,18 +25,24 @@ func _on_card_clicked(card):
 	if whosAction == Global.Actor.PLAYER:
 		$AttackTimer.start()
 		$Hand.remove_child(card)
-		$Hero.changeState("attack")
-		applyEnemyDamage(card.damage)
+		applyCardEffect(card)
 		discard.append(card)
 		whosAction = Global.Actor.ENEMY
 
-func applyEnemyDamage(damageAmount):
-	$Enemy.health -= damageAmount
-	if $Enemy.health <= 0:
-		$Enemy.changeState("hit")
-		$Enemy.changeState("death")
-	else:
-		$Enemy.changeState("hit")
+func applyCardEffect(card):
+	if card.effect == Global.EffectTypes.DAMAGE:
+		$Hero.changeState("attack")
+		dealDamage($Enemy, card.damage)
+		if $Enemy.health <= 0:
+			$Enemy.changeState("hit")
+			$Enemy.changeState("death")
+		else:
+			$Enemy.changeState("hit")
+	if card.effect == Global.EffectTypes.BLOCK:
+		$Hero.block += card.damage
+	if card.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
+		$Hero.changeState("poison")
+		$Enemy.damage_over_time = card.damage
 
 func dealCards():
 	if deckCards.size() >= 3:
@@ -59,9 +65,24 @@ func _on_enemy_attack():
 	$AttackTimer.start()
 	$Enemy.changeState("attack")
 	$Hero.changeState("hit")
+	dealDamage($Hero, $Enemy.damage)
+	if $Enemy.damage_over_time > 0:
+		$Enemy.changeState("hit")
+		$Enemy.health -= $Enemy.damage_over_time
+		$Enemy.damage_over_time -= 1
 	whosAction = Global.Actor.PLAYER
 	if $Hand.get_child_count() == 0:
 		dealCards()
+
+func dealDamage(target, amount):
+	if target.block >= amount:
+		target.block -= amount
+	elif target.block > 0:
+		amount -= target.block
+		target.block = 0
+		target.health -= amount
+	else:
+		target.health -= amount
 
 func _on_attack_timer_timeout():
 	CurrentAction.emit(whosAction)

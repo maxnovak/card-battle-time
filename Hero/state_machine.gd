@@ -1,16 +1,18 @@
 extends "res://state_machine/state_machine.gd"
 
-@onready var idle = $Idle
 @onready var attack = $Attack
-@onready var hit = $Hit
 @onready var death = $Death
+@onready var hit = $Hit
+@onready var idle = $Idle
+@onready var poison = $Poison
 
 func _ready():
 	states_map = {
-		"idle": idle,
 		"attack": attack,
-		"hit": hit,
 		"death": death,
+		"hit": hit,
+		"idle": idle,
+		"poison": poison,
 	}
 
 func _change_state(state_name):
@@ -18,8 +20,3 @@ func _change_state(state_name):
 	if not _active:
 		return
 	super._change_state(state_name)
-
-func _unhandled_input(event):
-	# Here we only handle input that can interrupt states, attacking in this case,
-	# otherwise we let the state node handle it.
-	current_state.handle_input(event)
