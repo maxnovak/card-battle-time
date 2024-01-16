@@ -7,7 +7,6 @@
 size = Vector2(82, 103)
 
 [node name="Card" type="Node2D"]
-position = Vector2(200, 200)
 script = ExtResource("1_l743w")
 cardName = "Foobar"
 

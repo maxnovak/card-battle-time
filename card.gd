@@ -1,4 +1,5 @@
 extends Node2D
+class_name Card
 
 signal card_clicked(MouseButton)
 

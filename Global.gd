@@ -29,7 +29,7 @@ enum Phases {
 	ENEMY_ACTION, #Enemy chooses action and does it
 	ENEMY_CHOOSES_NEXT_ACTION, #Enemy action is chosen and displayed to player
 	ENEMY_CLEANUP, #Apply Enemy DoTs and things
-	PHASEFOO
+	COMBAT_END,
 }
 
 const TurnOrder = [
