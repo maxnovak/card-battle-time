@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjp0x2360ywfq"]
+[gd_scene load_steps=9 format=3 uid="uid://cjp0x2360ywfq"]
 
 [ext_resource type="Script" path="res://combat.gd" id="1_sabey"]
 [ext_resource type="Texture2D" uid="uid://cac3db4rwbws5" path="res://assets/Reference-Image.png" id="2_j3jnb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Hero/Hero.tscn" id="3_k2pbf"]
 [ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://GUI/BattleGrid.tscn" id="3_uvy4p"]
 [ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Enemies/Enemy/Enemy.tscn" id="4_ib54q"]
+[ext_resource type="Script" path="res://button.gd" id="5_r8tme"]
 [ext_resource type="Script" path="res://hand.gd" id="6_n4xav"]
 
 [node name="Combat" type="Node2D"]
@@ -27,6 +28,14 @@ offset_top = 189.0
 offset_right = 549.0
 offset_bottom = 228.0
 
+[node name="Button" type="Button" parent="GUI"]
+offset_left = 915.0
+offset_top = 556.0
+offset_right = 1009.0
+offset_bottom = 587.0
+text = "Cycle Hand"
+script = ExtResource("5_r8tme")
+
 [node name="Hero" parent="." instance=ExtResource("3_k2pbf")]
 position = Vector2(292, 413)
 scale = Vector2(3, 3)
@@ -46,5 +55,7 @@ script = ExtResource("6_n4xav")
 one_shot = true
 
 [connection signal="PhaseChange" from="." to="." method="_on_phase_change"]
+[connection signal="pressed" from="GUI/Button" to="Hand" method="_on_button_pressed"]
+[connection signal="pressed" from="GUI/Button" to="GUI/Button" method="_on_pressed"]
 [connection signal="DisplayError" from="Hand" to="GUI" method="_on_hand_display_error"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

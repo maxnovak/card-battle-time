@@ -58,3 +58,13 @@ func is_unplayable(card):
 		&& get_parent().hero_position == 0:
 		return "Cannot move back anymore"
 	return null
+
+func _on_button_pressed():
+	if !get_parent().currentPhase == Global.Phases.PLAY_CARD:
+		return
+
+	var cards = get_children()
+	for card in cards:
+		remove_child(card)
+		get_parent().discard.append(card)
+	get_parent().dealCards()

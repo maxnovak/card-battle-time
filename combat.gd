@@ -91,7 +91,7 @@ func applyCardEffect(card):
 
 func dealCards():
 	if deckCards.size() >= 3:
-		for i in range(5):
+		for i in range(3):
 			var card = deckCards.pop_front()
 			card.position = Vector2(80*i, 0)
 			$Hand.add_child(card, true)
@@ -142,6 +142,7 @@ func _on_phase_change(phase):
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.PLAY_CARD:
+		$GUI/Button.disabled = false
 		pass
 
 	if phase == Global.Phases.PLAYER_COMBAT:
