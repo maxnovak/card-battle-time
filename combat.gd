@@ -2,7 +2,7 @@ extends Node2D
 
 var cardScene = preload("res://Card.tscn")
 
-signal CurrentAction(actor: Global.Actor)
+signal PhaseChange(phase: Global.Phases)
 
 @export
 var hero_position = 1 #0-2 for allowed locations
@@ -24,6 +24,7 @@ const hero_positions = [
 
 @export
 var enemy_position = 1 #0-2 for allowed locations
+var playedCard
 
 const enemy_positions = [
 	{
@@ -45,6 +46,7 @@ var discard = []
 var handCards = []
 
 var whosAction = Global.Actor.PLAYER
+var currentPhase: Global.Phases: set = set_phase
 
 func _ready():
 	for huntressCard in Global.HuntressDeck:
@@ -59,8 +61,7 @@ func _ready():
 	deckCards.shuffle()
 	dealCards()
 
-	$Hero.position = Vector2(hero_positions[hero_position].x, hero_positions[hero_position].y)
-	$Enemy.position = Vector2(enemy_positions[enemy_position].x, enemy_positions[enemy_position].y)
+	currentPhase = Global.TurnOrder[0]
 
 func _process(_delta):
 	$Hero.position = Vector2(hero_positions[hero_position].x, hero_positions[hero_position].y)
@@ -68,7 +69,7 @@ func _process(_delta):
 
 func _on_card_clicked(mouseButton, card):
 	$GUI/Error.text = ""
-	if whosAction != Global.Actor.PLAYER:
+	if currentPhase != Global.Phases.PLAY_CARD:
 		return
 
 	if card.flippedCard == null && mouseButton == MOUSE_BUTTON_RIGHT:
@@ -98,12 +99,13 @@ func _on_card_clicked(mouseButton, card):
 	if reason != null:
 		$GUI/Error.text = reason
 		return
+	playedCard = card
+	currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
-	$AttackTimer.start()
-	$Hand.remove_child(card)
-	applyCardEffect(card)
-	discard.append(card)
-	whosAction = Global.Actor.ENEMY
+func set_phase(value):
+	if currentPhase != value:
+		currentPhase = value
+		PhaseChange.emit(value)
 
 func is_unplayable(card):
 	if card.effect == Global.EffectTypes.MOVEMENT \
@@ -153,18 +155,11 @@ func dealCards():
 		card.position = Vector2(80*i, 0)
 		$Hand.add_child(card, true)
 
-func _on_enemy_attack():
+func enemyAttack():
 	$AttackTimer.start()
 	$Enemy.changeState("attack")
 	$Hero.changeState("hit")
 	dealDamage($Hero, $Enemy.damage)
-	if $Enemy.damage_over_time > 0:
-		$Enemy.changeState("hit")
-		$Enemy.health -= $Enemy.damage_over_time
-		$Enemy.damage_over_time -= 1
-	whosAction = Global.Actor.PLAYER
-	if $Hand.get_child_count() == 0:
-		dealCards()
 
 func dealDamage(target, amount):
 	if target.block >= amount:
@@ -176,5 +171,41 @@ func dealDamage(target, amount):
 	else:
 		target.health -= amount
 
-func _on_attack_timer_timeout():
-	CurrentAction.emit(whosAction)
+func _on_phase_change(phase):
+	if !$AttackTimer.is_stopped():
+		await $AttackTimer.timeout
+
+	if phase == Global.Phases.DRAW:
+		var card = deckCards.pop_front()
+		card.position = Vector2(80*$Hand.get_child_count(), 0)
+		$Hand.add_child(card, true)
+		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
+
+	if phase == Global.Phases.PLAY_CARD:
+		pass
+
+	if phase == Global.Phases.PLAYER_COMBAT:
+		$AttackTimer.start()
+		$Hand.remove_child(playedCard)
+		applyCardEffect(playedCard)
+		discard.append(playedCard)
+		playedCard = null
+		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
+
+	if phase == Global.Phases.PLAYER_CLEANUP:
+		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
+
+	if phase == Global.Phases.ENEMY_ACTION:
+		enemyAttack()
+		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
+
+	if phase == Global.Phases.ENEMY_CHOOSES_NEXT_ACTION:
+		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
+		pass
+
+	if phase == Global.Phases.ENEMY_CLEANUP:
+		if $Enemy.damage_over_time > 0:
+			$Enemy.changeState("hit")
+			$Enemy.health -= $Enemy.damage_over_time
+			$Enemy.damage_over_time -= 1
+		currentPhase = Global.TurnOrder[0]

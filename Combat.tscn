@@ -41,6 +41,5 @@ position = Vector2(467, 598)
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="CurrentAction" from="." to="Enemy" method="_on_combat_current_action"]
-[connection signal="Attack" from="Enemy" to="." method="_on_enemy_attack"]
+[connection signal="PhaseChange" from="." to="." method="_on_phase_change"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
