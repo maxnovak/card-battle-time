@@ -99,6 +99,9 @@ func _on_card_clicked(mouseButton, card):
 	if reason != null:
 		$GUI/Error.text = reason
 		return
+
+	$Hand.remove_child(card)
+	discard.append(card)
 	playedCard = card
 	currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
@@ -186,13 +189,13 @@ func _on_phase_change(phase):
 
 	if phase == Global.Phases.PLAYER_COMBAT:
 		$AttackTimer.start()
-		$Hand.remove_child(playedCard)
-		applyCardEffect(playedCard)
-		discard.append(playedCard)
 		playedCard = null
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.PLAYER_CLEANUP:
+		for card in $Hand.get_children():
+			card.position = Vector2(80*card.get_index(), 0)
+			$Hand.add_child(card, true)
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.ENEMY_ACTION:
