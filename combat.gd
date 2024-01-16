@@ -50,8 +50,10 @@ func _ready():
 	for huntressCard in Global.HuntressDeck:
 		var card = cardScene.instantiate()
 		card.effect = huntressCard.effect
-		card.damage = huntressCard.damage
+		card.amount = huntressCard.amount
 		card.cardName = huntressCard.cardName
+		card.direction = huntressCard.direction
+		card.flippedCard = huntressCard.flippedCard
 		card.card_clicked.connect(_on_card_clicked.bind(card))
 		deckCards.append(card)
 	deckCards.shuffle()
@@ -60,28 +62,79 @@ func _ready():
 	$Hero.position = Vector2(hero_positions[hero_position].x, hero_positions[hero_position].y)
 	$Enemy.position = Vector2(enemy_positions[enemy_position].x, enemy_positions[enemy_position].y)
 
-func _on_card_clicked(card):
-	if whosAction == Global.Actor.PLAYER:
-		$AttackTimer.start()
-		$Hand.remove_child(card)
-		applyCardEffect(card)
-		discard.append(card)
-		whosAction = Global.Actor.ENEMY
+func _process(_delta):
+	$Hero.position = Vector2(hero_positions[hero_position].x, hero_positions[hero_position].y)
+	$Enemy.position = Vector2(enemy_positions[enemy_position].x, enemy_positions[enemy_position].y)
+
+func _on_card_clicked(mouseButton, card):
+	$GUI/Error.text = ""
+	if whosAction != Global.Actor.PLAYER:
+		return
+
+	if card.flippedCard == null && mouseButton == MOUSE_BUTTON_RIGHT:
+		return
+
+	if card.flippedCard != null && mouseButton == MOUSE_BUTTON_RIGHT:
+		var newFlip = CardClass.new({
+			cardName = card.flippedCard.cardName,
+			amount = card.flippedCard.amount,
+			effect = card.flippedCard.effect,
+			direction = card.flippedCard.direction,
+			flippedCard = CardClass.new({
+				cardName = card.cardName,
+				amount = card.amount,
+				effect = card.effect,
+				direction = card.direction,
+			}),
+		})
+		card.effect = newFlip.effect
+		card.amount = newFlip.amount
+		card.cardName = newFlip.cardName
+		card.direction = newFlip.direction
+		card.flippedCard = newFlip.flippedCard
+		return
+
+	var reason = is_unplayable(card)
+	if reason != null:
+		$GUI/Error.text = reason
+		return
+
+	$AttackTimer.start()
+	$Hand.remove_child(card)
+	applyCardEffect(card)
+	discard.append(card)
+	whosAction = Global.Actor.ENEMY
+
+func is_unplayable(card):
+	if card.effect == Global.EffectTypes.MOVEMENT \
+		&& card.direction == Global.Direction.FORWARD \
+		&& hero_position == 2:
+		return "Cannot move forward anymore"
+	if card.effect == Global.EffectTypes.MOVEMENT \
+		&& card.direction == Global.Direction.BACKWARDS \
+		&& hero_position == 0:
+		return "Cannot move back anymore"
+	return null
 
 func applyCardEffect(card):
 	if card.effect == Global.EffectTypes.DAMAGE:
 		$Hero.changeState("attack")
-		dealDamage($Enemy, card.damage)
+		dealDamage($Enemy, card.amount)
 		if $Enemy.health <= 0:
 			$Enemy.changeState("hit")
 			$Enemy.changeState("death")
 		else:
 			$Enemy.changeState("hit")
 	if card.effect == Global.EffectTypes.BLOCK:
-		$Hero.block += card.damage
+		$Hero.block += card.amount
 	if card.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
 		$Hero.changeState("poison")
-		$Enemy.damage_over_time = card.damage
+		$Enemy.damage_over_time = card.amount
+	if card.effect == Global.EffectTypes.MOVEMENT:
+		if card.direction == Global.Direction.FORWARD:
+			hero_position += 1
+		if card.direction == Global.Direction.BACKWARDS:
+			hero_position -= 1
 
 func dealCards():
 	if deckCards.size() >= 3:

@@ -14,7 +14,15 @@ position = Vector2(511.5, 301.75)
 scale = Vector2(0.518687, 0.556019)
 texture = ExtResource("2_j3jnb")
 
-[node name="Battle Grid" parent="." instance=ExtResource("3_uvy4p")]
+[node name="GUI" type="Node2D" parent="."]
+
+[node name="Battle Grid" parent="GUI" instance=ExtResource("3_uvy4p")]
+
+[node name="Error" type="Label" parent="GUI"]
+offset_left = 439.0
+offset_top = 189.0
+offset_right = 549.0
+offset_bottom = 228.0
 
 [node name="Hero" parent="." instance=ExtResource("3_k2pbf")]
 position = Vector2(292, 413)
