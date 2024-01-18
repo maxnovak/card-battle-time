@@ -10,15 +10,12 @@ var hero_position = 1 #0-2 for allowed locations
 const hero_positions = [
 	{
 		x = 150,
-		y = 415,
 	},
 	{
 		x = 300,
-		y = 415,
 	},
 	{
 		x = 450,
-		y = 415,
 	},
 ]
 
@@ -28,15 +25,12 @@ var enemy_position = 1 #0-2 for allowed locations
 const enemy_positions = [
 	{
 		x = 600,
-		y = 415,
 	},
 	{
 		x = 750,
-		y = 415,
 	},
 	{
 		x = 900,
-		y = 415,
 	},
 ]
 
@@ -70,8 +64,8 @@ func _ready():
 	currentPhase = Global.TurnOrder[0] as Global.Phases
 
 func _process(_delta):
-	$Hero.position = Vector2(hero_positions[hero_position].x, hero_positions[hero_position].y)
-	$Enemy.position = Vector2(enemy_positions[enemy_position].x, enemy_positions[enemy_position].y)
+	$Hero.position = Vector2(hero_positions[hero_position].x, $Hero.position.y)
+	$Enemy.position = Vector2(enemy_positions[enemy_position].x, $Enemy.position.y)
 
 func set_phase(value):
 	if currentPhase != value:

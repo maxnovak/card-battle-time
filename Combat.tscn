@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjp0x2360ywfq"]
 
 [ext_resource type="Script" path="res://combat.gd" id="1_sabey"]
-[ext_resource type="Texture2D" uid="uid://cac3db4rwbws5" path="res://assets/Reference-Image.png" id="2_j3jnb"]
+[ext_resource type="Texture2D" uid="uid://b85uxjtquc3e6" path="res://assets/Image.png" id="2_gcxma"]
 [ext_resource type="Script" path="res://gui.gd" id="3_55fn4"]
 [ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Hero/Hero.tscn" id="3_k2pbf"]
 [ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://GUI/BattleGrid.tscn" id="3_uvy4p"]
@@ -13,11 +13,12 @@
 script = ExtResource("1_sabey")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(511.5, 301.75)
-scale = Vector2(0.518687, 0.556019)
-texture = ExtResource("2_j3jnb")
+position = Vector2(513, 297.5)
+scale = Vector2(1.64516, 1.68056)
+texture = ExtResource("2_gcxma")
 
 [node name="GUI" type="Node2D" parent="."]
+position = Vector2(0, -50)
 script = ExtResource("3_55fn4")
 
 [node name="Battle Grid" parent="GUI" instance=ExtResource("3_uvy4p")]
@@ -37,12 +38,12 @@ text = "Cycle Hand"
 script = ExtResource("5_r8tme")
 
 [node name="Hero" parent="." instance=ExtResource("3_k2pbf")]
-position = Vector2(292, 413)
+position = Vector2(292, 385)
 scale = Vector2(3, 3)
 health = 20
 
 [node name="Enemy" parent="." instance=ExtResource("4_ib54q")]
-position = Vector2(757, 404)
+position = Vector2(757, 380)
 scale = Vector2(3, 3)
 health = 50
 
