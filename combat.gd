@@ -175,6 +175,9 @@ func _on_phase_change(phase):
 
 	if phase == Global.Phases.ENEMY_CHOOSES_NEXT_ACTION:
 		$Enemy.chooseAction()
+		$"GUI/Battle Grid".clearTargets()
+		for target in $Enemy.chosenAction.abilityRange:
+			$"GUI/Battle Grid".targetSpace(target)
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 		pass
 
