@@ -35,7 +35,7 @@ func initialize(initial_state):
 	current_state = states_stack[0]
 	current_state.enter()
 
-func set_active(value):
+func set_active(_value):
 	if not _active:
 		states_stack = []
 		current_state = null

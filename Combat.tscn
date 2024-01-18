@@ -45,7 +45,6 @@ health = 20
 position = Vector2(757, 404)
 scale = Vector2(3, 3)
 health = 50
-damage = 5
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(512, 564)
@@ -55,7 +54,7 @@ script = ExtResource("6_n4xav")
 one_shot = true
 
 [connection signal="PhaseChange" from="." to="." method="_on_phase_change"]
-[connection signal="pressed" from="GUI/Button" to="Hand" method="_on_button_pressed"]
 [connection signal="pressed" from="GUI/Button" to="GUI/Button" method="_on_pressed"]
+[connection signal="pressed" from="GUI/Button" to="Hand" method="_on_button_pressed"]
 [connection signal="DisplayError" from="Hand" to="GUI" method="_on_hand_display_error"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

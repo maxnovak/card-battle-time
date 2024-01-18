@@ -59,7 +59,15 @@ func _ready():
 	deckCards.shuffle()
 	dealCards()
 
-	currentPhase = Global.TurnOrder[0]
+	$Enemy.init(EnemyClass.new({
+		name = "Evil Wizard",
+		sprite = "",
+		deck = EnemyDecks.new().EvilWizardDeck,
+		health = 50,
+		block = 0,
+	}))
+
+	currentPhase = Global.TurnOrder[0] as Global.Phases
 
 func _process(_delta):
 	$Hero.position = Vector2(hero_positions[hero_position].x, hero_positions[hero_position].y)
@@ -77,6 +85,7 @@ func applyCardEffect(card):
 			return
 		dealDamage($Enemy, card.amount)
 		if $Enemy.health <= 0:
+			## Fix these state changes later
 			$Enemy.changeState("hit")
 			$Enemy.changeState("death")
 		else:
@@ -115,10 +124,11 @@ func shuffleDeck():
 	discard.clear()
 
 func enemyAttack():
-	$AttackTimer.start()
 	$Enemy.changeState("attack")
+	if !hero_position in $Enemy.chosenAction.abilityRange:
+		return
 	$Hero.changeState("hit")
-	dealDamage($Hero, $Enemy.damage)
+	dealDamage($Hero, $Enemy.chosenAction.amount)
 
 func dealDamage(target, amount):
 	if target.block >= amount:
@@ -158,10 +168,13 @@ func _on_phase_change(phase):
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.ENEMY_ACTION:
+		$AttackTimer.start()
+		$Enemy.playCard()
 		enemyAttack()
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.ENEMY_CHOOSES_NEXT_ACTION:
+		$Enemy.chooseAction()
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 		pass
 
@@ -170,4 +183,4 @@ func _on_phase_change(phase):
 			$Enemy.changeState("hit")
 			$Enemy.health -= $Enemy.damage_over_time
 			$Enemy.damage_over_time -= 1
-		currentPhase = Global.TurnOrder[0]
+		currentPhase = Global.TurnOrder[0] as Global.Phases
