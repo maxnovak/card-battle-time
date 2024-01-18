@@ -50,6 +50,7 @@ func _ready():
 		var card = cardScene.instantiate()
 		card.effect = huntressCard.effect
 		card.amount = huntressCard.amount
+		card.abilityRange = huntressCard.abilityRange
 		card.cardName = huntressCard.cardName
 		card.direction = huntressCard.direction
 		card.flippedCard = huntressCard.flippedCard
@@ -72,6 +73,8 @@ func set_phase(value):
 func applyCardEffect(card):
 	if card.effect == Global.EffectTypes.DAMAGE:
 		$Hero.changeState("attack")
+		if !enemy_position in card.abilityRange:
+			return
 		dealDamage($Enemy, card.amount)
 		if $Enemy.health <= 0:
 			$Enemy.changeState("hit")

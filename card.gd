@@ -15,6 +15,7 @@ var direction: Global.Direction
 @export
 var cardName: String
 
+var abilityRange: Array
 var flippedCard: CardClass
 
 func _on_area_2d_input_event(_viewport, event, _shape_idx):

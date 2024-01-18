@@ -70,21 +70,25 @@ var HuntressDeck: Array[CardClass] = [
 	CardClass.new({
 		cardName = "Spear",
 		amount = 7,
+		abilityRange = [0,1],
 		effect = EffectTypes.DAMAGE,
 	}),
 	CardClass.new({
 		cardName = "Spear",
 		amount = 7,
+		abilityRange = [0,1],
 		effect = EffectTypes.DAMAGE,
 	}),
 	CardClass.new({
 		cardName = "Spear",
 		amount = 7,
+		abilityRange = [0,1],
 		effect = EffectTypes.DAMAGE,
 	}),
 	CardClass.new({
 		cardName = "Poison",
 		amount = 5,
+		abilityRange = [0,1,2],
 		effect = EffectTypes.DAMAGE_OVER_TIME,
 	}),
 	CardClass.new({
