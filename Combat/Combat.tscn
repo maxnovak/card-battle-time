@@ -1,27 +1,27 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjp0x2360ywfq"]
 
-[ext_resource type="Script" path="res://combat.gd" id="1_sabey"]
-[ext_resource type="Texture2D" uid="uid://b85uxjtquc3e6" path="res://assets/Image.png" id="2_gcxma"]
-[ext_resource type="Script" path="res://gui.gd" id="3_55fn4"]
-[ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Hero/Hero.tscn" id="3_k2pbf"]
-[ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://GUI/BattleGrid.tscn" id="3_uvy4p"]
-[ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Enemies/Enemy/Enemy.tscn" id="4_ib54q"]
-[ext_resource type="Script" path="res://button.gd" id="5_r8tme"]
-[ext_resource type="Script" path="res://hand.gd" id="6_n4xav"]
+[ext_resource type="Script" path="res://Combat/combat.gd" id="1_ybk62"]
+[ext_resource type="Texture2D" uid="uid://b85uxjtquc3e6" path="res://assets/Image.png" id="2_e8glv"]
+[ext_resource type="Script" path="res://Combat/GUI/gui.gd" id="3_vhbpe"]
+[ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://Combat/GUI/BattleGrid.tscn" id="4_kfi7k"]
+[ext_resource type="Script" path="res://Combat/button.gd" id="5_0oa4f"]
+[ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Hero/Hero.tscn" id="6_6yq6n"]
+[ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Enemies/Enemy/Enemy.tscn" id="7_sojmv"]
+[ext_resource type="Script" path="res://Combat/hand.gd" id="8_6x210"]
 
 [node name="Combat" type="Node2D"]
-script = ExtResource("1_sabey")
+script = ExtResource("1_ybk62")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(513, 297.5)
 scale = Vector2(1.64516, 1.68056)
-texture = ExtResource("2_gcxma")
+texture = ExtResource("2_e8glv")
 
 [node name="GUI" type="Node2D" parent="."]
 position = Vector2(0, -50)
-script = ExtResource("3_55fn4")
+script = ExtResource("3_vhbpe")
 
-[node name="Battle Grid" parent="GUI" instance=ExtResource("3_uvy4p")]
+[node name="Battle Grid" parent="GUI" instance=ExtResource("4_kfi7k")]
 
 [node name="Error" type="Label" parent="GUI"]
 offset_left = 439.0
@@ -35,21 +35,21 @@ offset_top = 556.0
 offset_right = 1009.0
 offset_bottom = 587.0
 text = "Cycle Hand"
-script = ExtResource("5_r8tme")
+script = ExtResource("5_0oa4f")
 
-[node name="Hero" parent="." instance=ExtResource("3_k2pbf")]
+[node name="Hero" parent="." instance=ExtResource("6_6yq6n")]
 position = Vector2(292, 385)
 scale = Vector2(3, 3)
 health = 20
 
-[node name="Enemy" parent="." instance=ExtResource("4_ib54q")]
+[node name="Enemy" parent="." instance=ExtResource("7_sojmv")]
 position = Vector2(757, 380)
 scale = Vector2(3, 3)
 health = 50
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(512, 564)
-script = ExtResource("6_n4xav")
+script = ExtResource("8_6x210")
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
