@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu8fywtevu02m"]
+
+[ext_resource type="Script" path="res://Map/map.gd" id="1_a6vfx"]
+[ext_resource type="Texture2D" uid="uid://drqlq3g7gs5dl" path="res://assets/map/background.png" id="2_i24gq"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_a6vfx")
+
+[node name="Background" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(512, 299)
+texture = ExtResource("2_i24gq")
