@@ -15,7 +15,9 @@ func _ready():
 func _on_area_2d_mouse_entered():
 	$Icon.scale = Vector2(2.0, 2.0)
 	$Area2D/CollisionShape2D.scale = Vector2(2.0, 2.0)
+	$Tooltip.text = LocationClass.TooltipMap.get(type, "")
 
 func _on_area_2d_mouse_exited():
 	$Icon.scale = Vector2(1.0, 1.0)
 	$Area2D/CollisionShape2D.scale = Vector2(1.0, 1.0)
+	$Tooltip.text = ""

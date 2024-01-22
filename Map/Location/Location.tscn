@@ -17,5 +17,13 @@ texture = ExtResource("2_t7c5d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_a8svm")
 
+[node name="Tooltip" type="Label" parent="."]
+offset_left = -67.0
+offset_top = 23.0
+offset_right = 67.0
+offset_bottom = 55.0
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
