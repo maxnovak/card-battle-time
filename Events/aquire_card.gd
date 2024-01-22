@@ -9,10 +9,12 @@ func _ready():
 	$Card3.card_clicked.connect(_on_card_clicked.bind($Card3))
 
 func _on_card_clicked(mouseButton, card):
-	Global.HuntressDeck.append(CardClass.new({
-		cardName = card.cardName,
-		amount = card.amount,
-		effect = card.effect,
-		direction = card.direction,
-	}))
-	event_end.emit()
+	if mouseButton == MOUSE_BUTTON_LEFT:
+		Global.HuntressDeck.append(CardClass.new({
+			cardName = card.cardName,
+			amount = card.amount,
+			effect = card.effect,
+			direction = card.direction,
+			abilityRange = card.abilityRange
+		}))
+		event_end.emit()

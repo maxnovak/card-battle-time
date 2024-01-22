@@ -33,7 +33,5 @@ func _draw():
 		if spot.parent != null:
 			draw_line(spot.parent.global_position, spot.global_position, Color.BLACK, 2.0)
 
-
 func _on_location_event(type):
-	print(LocationClass.Types.keys()[type])
 	change_scene.emit(type)
