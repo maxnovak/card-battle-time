@@ -253,7 +253,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8udon")
 }],
-"loop": true,
+"loop": false,
 "name": &"poison",
 "speed": 5.0
 }]
