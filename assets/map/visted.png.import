@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chfqoiflbr3gx"
-path="res://.godot/imported/unvisted-node-battle.png-2ff8d6987b814eee6c493784310160c2.ctex"
+uid="uid://cemfl2bx0rbby"
+path="res://.godot/imported/visted.png-3f8781b2a0bcd8dace04751bd00490f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/unvisted-node-battle.png"
-dest_files=["res://.godot/imported/unvisted-node-battle.png-2ff8d6987b814eee6c493784310160c2.ctex"]
+source_file="res://assets/map/visted.png"
+dest_files=["res://.godot/imported/visted.png-3f8781b2a0bcd8dace04751bd00490f5.ctex"]
 
 [params]
 

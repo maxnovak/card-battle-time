@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cemfl2bx0rbby"
-path="res://.godot/imported/visted-node.png-3c15b6ed13bcb5fea7f82fd91cacfd96.ctex"
+uid="uid://cddkj20imlokn"
+path="res://.godot/imported/unvisted-card.png-b6ec6eae3e56ec70cf3f6ac640d7a639.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/visted-node.png"
-dest_files=["res://.godot/imported/visted-node.png-3c15b6ed13bcb5fea7f82fd91cacfd96.ctex"]
+source_file="res://assets/map/unvisted-card.png"
+dest_files=["res://.godot/imported/unvisted-card.png-b6ec6eae3e56ec70cf3f6ac640d7a639.ctex"]
 
 [params]
 
