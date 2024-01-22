@@ -3,6 +3,7 @@ extends Node2D
 var cardScene = preload("res://Card.tscn")
 
 signal PhaseChange(phase: Global.Phases)
+signal combat_end
 
 @export
 var hero_position = 1 #0-2 for allowed locations
@@ -135,8 +136,12 @@ func dealDamage(target, amount):
 		target.health -= amount
 
 func _on_phase_change(phase):
-	if $Enemy.health == 0:
+	if phase == Global.Phases.COMBAT_END:
+		combat_end.emit()
+
+	if $Enemy.health <= 0:
 		currentPhase = Global.Phases.COMBAT_END
+		return
 	if !$AttackTimer.is_stopped():
 		await $AttackTimer.timeout
 

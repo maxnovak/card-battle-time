@@ -15,6 +15,7 @@ var direction: Global.Direction
 @export
 var cardName: String
 
+@export
 var abilityRange: Array
 var flippedCard: CardClass
 

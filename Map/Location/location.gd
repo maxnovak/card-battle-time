@@ -1,6 +1,8 @@
 extends Node2D
 class_name Location
 
+signal location_event(type: LocationClass.Types)
+
 @export
 var type: LocationClass.Types
 
@@ -21,3 +23,8 @@ func _on_area_2d_mouse_exited():
 	$Icon.scale = Vector2(1.0, 1.0)
 	$Area2D/CollisionShape2D.scale = Vector2(1.0, 1.0)
 	$Tooltip.text = ""
+
+
+func _on_area_2d_input_event(_viewport, event, _shape_idx):
+	if event.is_pressed():
+		location_event.emit(type)
