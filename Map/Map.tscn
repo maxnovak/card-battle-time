@@ -10,3 +10,5 @@ script = ExtResource("1_a6vfx")
 show_behind_parent = true
 position = Vector2(512, 299)
 texture = ExtResource("2_i24gq")
+
+[node name="Locations" type="Node" parent="."]

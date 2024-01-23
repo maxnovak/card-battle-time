@@ -24,6 +24,8 @@ const MountainTopMaxY = 200
 const MountainBottomMinY = 400
 const MountainBottomMaxY = 575
 
+var activeLocation = 0
+
 func _ready():
 	populateLandscape()
 	createLocations()
@@ -39,14 +41,16 @@ func createLocations():
 			rng.randi_range(LocationMinHeight, LocationMaxHeight)
 		)
 		spot.location_event.connect(_on_location_event)
-		add_child(spot, true)
+		$Locations.add_child(spot, true)
 		previousLocation = spot
-	var spot = location.instantiate()
-	spot.type = LocationClass.Types.BOSS
-	spot.parent = previousLocation
-	spot.position = Vector2(NumberOfLocations*LocationStepDistance+LocationStepDistance, 300)
-	spot.location_event.connect(_on_location_event)
-	add_child(spot, true)
+	#Final Location
+	var boss = location.instantiate()
+	boss.type = LocationClass.Types.BOSS
+	boss.parent = previousLocation
+	boss.position = Vector2(NumberOfLocations*LocationStepDistance+LocationStepDistance, 300)
+	boss.location_event.connect(_on_location_event)
+	boss.scale = Vector2(1.5, 1.5)
+	$Locations.add_child(boss, true)
 
 func populateLandscape():
 	#Top Range
@@ -57,8 +61,8 @@ func populateLandscape():
 			rng.randi_range(MountainMinX, MountainMaxX),
 			rng.randi_range(MountainTopMinY, MountainTopMaxY)
 		)
-		var scale = randf_range(MountainMinSize, MountainMaxSize)
-		mountain.scale = Vector2(scale, scale)
+		var mountainScale = randf_range(MountainMinSize, MountainMaxSize)
+		mountain.scale = Vector2(mountainScale, mountainScale)
 		add_child(mountain)
 
 	#Bottom Range
@@ -69,14 +73,18 @@ func populateLandscape():
 			rng.randi_range(MountainMinX, MountainMaxX),
 			rng.randi_range(MountainBottomMinY, MountainBottomMaxY)
 		)
-		var scale = randf_range(MountainMinSize, MountainMaxSize)
-		mountain.scale = Vector2(scale, scale)
+		var mountainScale = randf_range(MountainMinSize, MountainMaxSize)
+		mountain.scale = Vector2(mountainScale, mountainScale)
 		add_child(mountain)
 
+func _process(_delta):
+	$Locations.get_children()[activeLocation].active = true
+
 func _draw():
-	for spot in find_children("Location*", "Node2D", true, false):
+	for spot in $Locations.get_children():
 		if spot.parent != null:
 			draw_line(spot.parent.global_position, spot.global_position, Color.BLACK, 2.0)
 
 func _on_location_event(type):
 	change_scene.emit(type)
+	activeLocation += 1
