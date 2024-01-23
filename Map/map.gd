@@ -31,7 +31,7 @@ func _ready():
 	createLocations()
 
 func createLocations():
-	var previousLocation: Node2D
+	var previousLocation: Location
 	for i in range(NumberOfLocations):
 		var spot = location.instantiate()
 		spot.type = LocationTypes[rng.randi_range(0, LocationTypes.size()-1)]

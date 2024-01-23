@@ -8,7 +8,8 @@ script = ExtResource("1_a6vfx")
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(512, 299)
+position = Vector2(512, 300)
+scale = Vector2(1, 1)
 texture = ExtResource("2_i24gq")
 
 [node name="Locations" type="Node" parent="."]
