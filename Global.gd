@@ -33,11 +33,11 @@ enum Phases {
 }
 
 const TurnOrder = [
-	Phases.DRAW,
 	Phases.ENEMY_CHOOSES_NEXT_ACTION,
 	Phases.PLAY_CARD,
 	Phases.PLAYER_COMBAT,
 	Phases.PLAYER_CLEANUP,
+	Phases.DRAW,
 	Phases.ENEMY_ACTION,
 	Phases.ENEMY_CLEANUP,
 ]

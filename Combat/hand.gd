@@ -1,8 +1,16 @@
 extends Node2D
 
+var cardScene = preload("res://Card.tscn")
+
 signal DisplayError(message: String)
 
+@export
+var handSize = 5
+
 const cardWidthMove = 80
+
+var deckCards: Array[Card] = []
+var discard: Array[Card] = []
 
 # Called when the node enters the scene tree for the first time.
 func _notification(what):
@@ -44,9 +52,23 @@ func _on_card_clicked(mouseButton, card):
 		return
 
 	remove_child(card)
-	get_parent().discard.append(card)
+	discard.append(card)
 	get_parent().playedCard = card
 	get_parent().currentPhase = Global.TurnOrder[Global.TurnOrder.find(get_parent().currentPhase) + 1]
+
+func constructDeck(deck: Array[CardClass]):
+	for heroCard in deck:
+		var card = cardScene.instantiate()
+		card.effect = heroCard.effect
+		card.amount = heroCard.amount
+		card.abilityRange = heroCard.abilityRange
+		card.cardName = heroCard.cardName
+		card.direction = heroCard.direction
+		card.flippedCard = heroCard.flippedCard
+		card.card_clicked.connect(_on_card_clicked.bind(card))
+		deckCards.append(card)
+	deckCards.shuffle()
+	dealCards(handSize)
 
 func is_unplayable(card):
 	if card.effect == Global.EffectTypes.MOVEMENT \
@@ -59,6 +81,29 @@ func is_unplayable(card):
 		return "Cannot move back anymore"
 	return null
 
+func dealCards(numberOfCards: int):
+	if deckCards.size() < numberOfCards:
+		discard.shuffle()
+		deckCards.append_array(discard)
+		discard.clear()
+
+	for i in range(numberOfCards):
+		var card = deckCards.pop_front()
+		card.position = Vector2(80*i, 0)
+		add_child(card, true)
+
+func draw():
+	if deckCards.size() == 0:
+		shuffleDeck()
+	var card = deckCards.pop_front()
+	card.position = Vector2(80*get_child_count(), 0)
+	add_child(card, true)
+
+func shuffleDeck():
+	discard.shuffle()
+	deckCards.append_array(discard)
+	discard.clear()
+
 func _on_button_pressed():
 	if !get_parent().currentPhase == Global.Phases.PLAY_CARD:
 		return
@@ -66,5 +111,5 @@ func _on_button_pressed():
 	var cards = get_children()
 	for card in cards:
 		remove_child(card)
-		get_parent().discard.append(card)
-	get_parent().dealCards()
+		discard.append(card)
+	dealCards(handSize-1)

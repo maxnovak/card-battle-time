@@ -1,7 +1,5 @@
 extends Node2D
 
-var cardScene = preload("res://Card.tscn")
-
 signal PhaseChange(phase: Global.Phases)
 signal combat_end
 
@@ -35,25 +33,11 @@ const enemy_positions = [
 	},
 ]
 
-var deckCards: Array[Card] = []
-var discard: Array[Card] = []
 var playedCard: Card
 var currentPhase: Global.Phases: set = set_phase
 
 func _ready():
-	for huntressCard in Global.HuntressDeck:
-		var card = cardScene.instantiate()
-		card.effect = huntressCard.effect
-		card.amount = huntressCard.amount
-		card.abilityRange = huntressCard.abilityRange
-		card.cardName = huntressCard.cardName
-		card.direction = huntressCard.direction
-		card.flippedCard = huntressCard.flippedCard
-		card.card_clicked.connect($Hand._on_card_clicked.bind(card))
-		deckCards.append(card)
-	deckCards.shuffle()
-	dealCards()
-
+	$Hand.constructDeck(Global.HuntressDeck)
 	$Enemy.init(EnemyClass.new({
 		name = "Evil Wizard",
 		sprite = "",
@@ -96,28 +80,6 @@ func applyCardEffect(card):
 		if card.direction == Global.Direction.BACKWARDS:
 			hero_position -= 1
 
-func dealCards():
-	if deckCards.size() >= 3:
-		for i in range(3):
-			var card = deckCards.pop_front()
-			card.position = Vector2(80*i, 0)
-			$Hand.add_child(card, true)
-		return
-
-	discard.shuffle()
-	deckCards.append_array(discard)
-	discard.clear()
-
-	for i in range(3):
-		var card = deckCards.pop_front()
-		card.position = Vector2(80*i, 0)
-		$Hand.add_child(card, true)
-
-func shuffleDeck():
-	discard.shuffle()
-	deckCards.append_array(discard)
-	discard.clear()
-
 func enemyAttack():
 	$Enemy.changeState("attack")
 	if !hero_position in $Enemy.chosenAction.abilityRange:
@@ -146,15 +108,10 @@ func _on_phase_change(phase):
 		await $AttackTimer.timeout
 
 	if phase == Global.Phases.DRAW:
-		if deckCards.size() == 0:
-			shuffleDeck()
-		var card = deckCards.pop_front()
-		card.position = Vector2(80*$Hand.get_child_count(), 0)
-		$Hand.add_child(card, true)
+		$Hand.draw()
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.PLAY_CARD:
-		$GUI/Button.disabled = false
 		pass
 
 	if phase == Global.Phases.PLAYER_COMBAT:
@@ -178,7 +135,6 @@ func _on_phase_change(phase):
 		for target in $Enemy.chosenAction.abilityRange:
 			$"GUI/Battle Grid".targetSpace(target)
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
-		pass
 
 	if phase == Global.Phases.ENEMY_CLEANUP:
 		if $Enemy.damage_over_time > 0:

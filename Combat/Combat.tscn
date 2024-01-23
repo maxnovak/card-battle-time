@@ -30,11 +30,11 @@ offset_right = 549.0
 offset_bottom = 228.0
 
 [node name="Button" type="Button" parent="GUI"]
-offset_left = 915.0
-offset_top = 556.0
-offset_right = 1009.0
-offset_bottom = 587.0
-text = "Cycle Hand"
+offset_left = 890.0
+offset_top = 580.0
+offset_right = 1003.0
+offset_bottom = 611.0
+text = "Redraw Hand"
 script = ExtResource("5_0oa4f")
 
 [node name="Hero" parent="." instance=ExtResource("6_6yq6n")]
