@@ -7,18 +7,24 @@ const aquireCardScene = preload("res://Events/AquireCard.tscn")
 var mapHolder = $Map
 
 func _on_map_change_scene(type):
+	$AnimationPlayer.play("fade_out")
+	await $AnimationPlayer.animation_finished
 	if type == LocationClass.Types.BATTLE:
-		remove_child(mapHolder)
 		var combat = combatScene.instantiate()
 		combat.combat_end.connect(_event_ended.bind(combat))
 		add_child(combat)
-	if type == LocationClass.Types.CARD:
 		remove_child(mapHolder)
+	if type == LocationClass.Types.CARD:
 		var aquireCard = aquireCardScene.instantiate()
 		aquireCard.event_end.connect(_event_ended.bind(aquireCard))
 		add_child(aquireCard)
+		remove_child(mapHolder)
+	$AnimationPlayer.play("fade_in")
 
 func _event_ended(event):
+	$AnimationPlayer.play("fade_out")
+	await $AnimationPlayer.animation_finished
+	add_child(mapHolder)
 	remove_child(event)
 	event.queue_free()
-	add_child(mapHolder)
+	$AnimationPlayer.play("fade_in")
