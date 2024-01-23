@@ -11,24 +11,40 @@ const LocationTypes = [
 ]
 var rng = RandomNumberGenerator.new()
 
+const NumberOfLocations = 8
+const LocationStepDistance = 100
+const LocationMinHeight = 270
+const LocationMaxHeight = 320
+const MountainMinSize = 0.5
+const MountainMaxSize = 1.0
+const MountainMinX = 25
+const MountainMaxX = 990
+const MountainTopMinY = 45
+const MountainTopMaxY = 200
+const MountainBottomMinY = 400
+const MountainBottomMaxY = 575
+
 func _ready():
 	populateLandscape()
 	createLocations()
 
 func createLocations():
 	var previousLocation: Node2D
-	for i in range(8):
+	for i in range(NumberOfLocations):
 		var spot = location.instantiate()
 		spot.type = LocationTypes[rng.randi_range(0, LocationTypes.size()-1)]
 		spot.parent = previousLocation
-		spot.position = Vector2(i*100+100, 300)
+		spot.position = Vector2(
+			i*LocationStepDistance+LocationStepDistance,
+			rng.randi_range(LocationMinHeight, LocationMaxHeight)
+		)
 		spot.location_event.connect(_on_location_event)
 		add_child(spot, true)
 		previousLocation = spot
 	var spot = location.instantiate()
 	spot.type = LocationClass.Types.BOSS
 	spot.parent = previousLocation
-	spot.position = Vector2(8*100+100, 300)
+	spot.position = Vector2(NumberOfLocations*LocationStepDistance+LocationStepDistance, 300)
 	spot.location_event.connect(_on_location_event)
 	add_child(spot, true)
 
@@ -37,8 +53,11 @@ func populateLandscape():
 	for i in range(randi_range(1, 3)):
 		var mountain = Sprite2D.new()
 		mountain.texture = load("res://assets/map/mountain.png")
-		mountain.position = Vector2(rng.randi_range(25, 990),rng.randi_range(45, 200)) #45
-		var scale = randf_range(0.5, 1.0)
+		mountain.position = Vector2(
+			rng.randi_range(MountainMinX, MountainMaxX),
+			rng.randi_range(MountainTopMinY, MountainTopMaxY)
+		)
+		var scale = randf_range(MountainMinSize, MountainMaxSize)
 		mountain.scale = Vector2(scale, scale)
 		add_child(mountain)
 
@@ -46,8 +65,11 @@ func populateLandscape():
 	for i in range(randi_range(1, 3)):
 		var mountain = Sprite2D.new()
 		mountain.texture = load("res://assets/map/mountain.png")
-		mountain.position = Vector2(rng.randi_range(25, 990),rng.randi_range(400, 575)) #45
-		var scale = randf_range(0.5, 1.0)
+		mountain.position = Vector2(
+			rng.randi_range(MountainMinX, MountainMaxX),
+			rng.randi_range(MountainBottomMinY, MountainBottomMaxY)
+		)
+		var scale = randf_range(MountainMinSize, MountainMaxSize)
 		mountain.scale = Vector2(scale, scale)
 		add_child(mountain)
 
