@@ -12,6 +12,9 @@ const LocationTypes = [
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	createLocations()
+
+func createLocations():
 	var previousLocation: Node2D
 	for i in range(8):
 		var spot = location.instantiate()
