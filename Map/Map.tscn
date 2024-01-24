@@ -11,4 +11,4 @@ show_behind_parent = true
 position = Vector2(512, 300)
 texture = ExtResource("2_i24gq")
 
-[node name="Locations" type="Node" parent="."]
+[node name="Locations" type="Node2D" parent="."]
