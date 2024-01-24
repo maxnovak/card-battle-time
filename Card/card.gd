@@ -25,9 +25,11 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 
 func _on_area_2d_mouse_entered():
 	position.y = position.y - 30
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
 func _on_area_2d_mouse_exited():
 	position.y = position.y + 30
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _process(_delta):
 	$DamageContainer/DamageAmount.text = str(amount)

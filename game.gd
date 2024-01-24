@@ -7,6 +7,7 @@ const aquireCardScene = preload("res://Events/AquireCard/AquireCard.tscn")
 var mapHolder = $Scenes/Map
 
 func _on_map_change_scene(type):
+	Input.set_default_cursor_shape(Input.CURSOR_WAIT)
 	var image = get_viewport().get_texture().get_image()
 	var texture = ImageTexture.create_from_image(image)
 	$Sprite2D.texture = texture
@@ -21,8 +22,10 @@ func _on_map_change_scene(type):
 		$Scenes.add_child(aquireCard)
 	$AnimationPlayer.play("side-wipe")
 	await $AnimationPlayer.animation_finished
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _event_ended(event):
+	Input.set_default_cursor_shape(Input.CURSOR_WAIT)
 	var image = get_viewport().get_texture().get_image()
 	var texture = ImageTexture.create_from_image(image)
 	$Sprite2D.texture = texture
@@ -31,3 +34,4 @@ func _event_ended(event):
 	$AnimationPlayer.play("side-wipe")
 	await $AnimationPlayer.animation_finished
 	event.queue_free()
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

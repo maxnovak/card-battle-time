@@ -18,7 +18,6 @@ scale = Vector2(1.65161, 1.66667)
 texture = ExtResource("2_e8glv")
 
 [node name="GUI" type="Node2D" parent="."]
-position = Vector2(0, -50)
 script = ExtResource("3_vhbpe")
 
 [node name="Battle Grid" parent="GUI" instance=ExtResource("4_kfi7k")]
@@ -31,9 +30,9 @@ offset_bottom = 228.0
 
 [node name="Button" type="Button" parent="GUI"]
 offset_left = 890.0
-offset_top = 580.0
+offset_top = 500.0
 offset_right = 1003.0
-offset_bottom = 611.0
+offset_bottom = 531.0
 text = "Redraw Hand"
 script = ExtResource("5_0oa4f")
 
