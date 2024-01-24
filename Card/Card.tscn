@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://3b256apu812h"]
+[gd_scene load_steps=5 format=3 uid="uid://3b256apu812h"]
 
 [ext_resource type="Script" path="res://Card/card.gd" id="1_l743w"]
 [ext_resource type="Texture2D" uid="uid://b075ohu6vlxh3" path="res://assets/cards/Clubs_card_01.png" id="2_tvyjl"]
+[ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/Asset 84@2x.png" id="3_cvh7y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e81o0"]
 size = Vector2(82, 103)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_l743w")
-cardName = "Foobar"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -73,15 +73,12 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Direction" type="Label" parent="."]
-offset_left = -19.0
-offset_top = -32.0
-offset_right = 21.0
-offset_bottom = -9.0
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-horizontal_alignment = 1
+[node name="Direction" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+position = Vector2(13, 1)
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("3_cvh7y")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
