@@ -1,6 +1,6 @@
 extends Node2D
 
-var cardScene = preload("res://Card.tscn")
+var cardScene = preload("res://Card/Card.tscn")
 
 signal DisplayError(message: String)
 

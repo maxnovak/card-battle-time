@@ -1,7 +1,7 @@
 extends Node2D
 
-const combatScene = preload("res://Combat/Combat.tscn")
-const aquireCardScene = preload("res://Events/AquireCard.tscn")
+const combatScene = preload("res://Events/Combat/Combat.tscn")
+const aquireCardScene = preload("res://Events/AquireCard/AquireCard.tscn")
 
 @onready
 var mapHolder = $Map

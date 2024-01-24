@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjp0x2360ywfq"]
 
-[ext_resource type="Script" path="res://Combat/combat.gd" id="1_ybk62"]
+[ext_resource type="Script" path="res://Events/Combat/combat.gd" id="1_ybk62"]
 [ext_resource type="Texture2D" uid="uid://b85uxjtquc3e6" path="res://assets/Image.png" id="2_e8glv"]
-[ext_resource type="Script" path="res://Combat/GUI/gui.gd" id="3_vhbpe"]
-[ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://Combat/GUI/BattleGrid.tscn" id="4_kfi7k"]
-[ext_resource type="Script" path="res://Combat/button.gd" id="5_0oa4f"]
-[ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Hero/Hero.tscn" id="6_6yq6n"]
-[ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Enemies/Enemy/Enemy.tscn" id="7_sojmv"]
-[ext_resource type="Script" path="res://Combat/hand.gd" id="8_6x210"]
+[ext_resource type="Script" path="res://Events/Combat/GUI/gui.gd" id="3_vhbpe"]
+[ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://Events/Combat/GUI/BattleGrid.tscn" id="4_kfi7k"]
+[ext_resource type="Script" path="res://Events/Combat/button.gd" id="5_0oa4f"]
+[ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Events/Combat/Hero/Hero.tscn" id="6_6yq6n"]
+[ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Events/Combat/Enemies/Enemy/Enemy.tscn" id="7_sojmv"]
+[ext_resource type="Script" path="res://Events/Combat/hand.gd" id="8_6x210"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_ybk62")

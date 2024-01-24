@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cncc8a5j6c6vh"]
 
 [ext_resource type="Texture2D" uid="uid://dfyvomeg4ksu3" path="res://assets/movement-space.png" id="1_hpnag"]
-[ext_resource type="Script" path="res://Combat/GUI/battle_grid.gd" id="1_ln7jc"]
+[ext_resource type="Script" path="res://Events/Combat/GUI/battle_grid.gd" id="1_ln7jc"]
 
 [node name="Battle Grid" type="Node2D"]
 position = Vector2(150, -50)
