@@ -63,7 +63,7 @@ func populateLandscape():
 		)
 		var mountainScale = randf_range(MountainMinSize, MountainMaxSize)
 		mountain.scale = Vector2(mountainScale, mountainScale)
-		add_child(mountain)
+		$Mountains.add_child(mountain)
 
 	#Bottom Range
 	for i in range(randi_range(1, 3)):
@@ -75,10 +75,13 @@ func populateLandscape():
 		)
 		var mountainScale = randf_range(MountainMinSize, MountainMaxSize)
 		mountain.scale = Vector2(mountainScale, mountainScale)
-		add_child(mountain)
+		$Mountains.add_child(mountain)
 
 func _process(_delta):
 	$Locations.get_children()[activeLocation].active = true
+	if $DelayStart.is_stopped() && $CloudTimer.is_stopped() && $Clouds.get_child_count() < 3:
+		$CloudTimer.start()
+		add_cloud()
 
 func _draw():
 	for spot in $Locations.get_children():
@@ -88,3 +91,15 @@ func _draw():
 func _on_location_event(type):
 	change_scene.emit(type)
 	activeLocation += 1
+
+func add_cloud():
+	var tween = create_tween()
+	var cloud = Sprite2D.new()
+	cloud.texture = load("res://assets/map/cloud.png")
+	var y = rng.randi_range(MountainTopMinY, MountainTopMaxY)
+	var size = rng.randf_range(0.75, 1.0)
+	cloud.position = Vector2(1088, y)
+	cloud.scale = Vector2(size, size)
+	$Clouds.add_child(cloud)
+	tween.tween_property(cloud, "global_position", Vector2(-100, y), 35.0)
+	tween.set_loops()
