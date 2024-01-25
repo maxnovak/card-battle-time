@@ -21,12 +21,16 @@ func _on_area_2d_mouse_entered():
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
 	$Icon.scale = Vector2(2.0, 2.0)
+	$Marker.scale = Vector2(2.0, 2.0)
+	$Marker.position.y = -26
 	$Area2D/CollisionShape2D.scale = Vector2(2.0, 2.0)
 	$Tooltip.text = LocationClass.TooltipMap.get(type, "")
 
 func _on_area_2d_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	$Icon.scale = Vector2(1.0, 1.0)
+	$Marker.scale = Vector2(1.0, 1.0)
+	$Marker.position.y = -14
 	$Area2D/CollisionShape2D.scale = Vector2(1.0, 1.0)
 	$Tooltip.text = ""
 
@@ -51,3 +55,4 @@ func _process(_delta):
 		$Icon.modulate = Color.html("#969696")
 	else:
 		$Icon.modulate = Color.html("#ffffff")
+		$Marker.visible = true
