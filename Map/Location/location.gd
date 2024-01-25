@@ -7,14 +7,19 @@ signal location_event(type: LocationClass.Types)
 var type: LocationClass.Types
 
 @export
-var parent: Location
+var parent: Array[Location]
+
+@export
+var child: Array[Location]
 
 var active: bool
+var available: bool
 
 func _ready():
 	var path = LocationClass.TypeTextureMap[type]
 	var locationSprite = load(path)
 	$Icon.texture = locationSprite
+	$Marker.play("idle")
 
 func _on_area_2d_mouse_entered():
 	if active:
@@ -35,7 +40,7 @@ func _on_area_2d_mouse_exited():
 	$Tooltip.text = ""
 
 func _on_area_2d_input_event(_viewport, event, _shape_idx):
-	if !active:
+	if !available:
 		return
 
 	if event.is_pressed() && event.button_index == MOUSE_BUTTON_LEFT:
@@ -45,14 +50,19 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 		var locationSprite = load(path)
 		$Icon.texture = locationSprite
 		$Icon.scale = Vector2(1.0, 1.0)
+		$Marker.scale = Vector2(1.0, 1.0)
+		$Marker.position.y = -14
 		$Area2D/CollisionShape2D.scale = Vector2(1.0, 1.0)
 		$Tooltip.text = ""
 		$Area2D.disconnect("mouse_entered", _on_area_2d_mouse_entered)
 		$Area2D.disconnect("input_event", _on_area_2d_input_event)
 
 func _process(_delta):
-	if !active:
+	if !available:
 		$Icon.modulate = Color.html("#969696")
 	else:
 		$Icon.modulate = Color.html("#ffffff")
+	if active:
 		$Marker.visible = true
+	else:
+		$Marker.visible = false
