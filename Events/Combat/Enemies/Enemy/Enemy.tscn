@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cmvw1gkyaj1ku"]
+[gd_scene load_steps=38 format=3 uid="uid://cmvw1gkyaj1ku"]
 
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/enemy.gd" id="1_vdyxb"]
 [ext_resource type="Texture2D" uid="uid://de4tne3ubgmyr" path="res://assets/evilwizard/Attack.png" id="2_gvhby"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/attack.gd" id="8_5yfpk"]
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/hit.gd" id="9_rfm78"]
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/death.gd" id="10_helqy"]
+[ext_resource type="PackedScene" uid="uid://3b256apu812h" path="res://Card/Card.tscn" id="11_kxhfk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akc1p"]
 atlas = ExtResource("2_gvhby")
@@ -266,5 +267,9 @@ theme_override_colors/font_color = Color(0, 0.454902, 0.278431, 1)
 theme_override_font_sizes/font_size = 100
 text = "poison"
 horizontal_alignment = 1
+
+[node name="Card" parent="." instance=ExtResource("11_kxhfk")]
+position = Vector2(2, -60)
+scale = Vector2(0.35, 0.35)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine" method="_on_animation_finished"]
