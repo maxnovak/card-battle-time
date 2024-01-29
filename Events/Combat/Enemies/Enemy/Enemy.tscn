@@ -269,7 +269,11 @@ text = "poison"
 horizontal_alignment = 1
 
 [node name="Card" parent="." instance=ExtResource("11_kxhfk")]
-position = Vector2(2, -60)
+offset_left = 2.0
+offset_top = -60.0
+offset_right = 2.0
+offset_bottom = -60.0
 scale = Vector2(0.35, 0.35)
+mouse_filter = 2
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine" method="_on_animation_finished"]

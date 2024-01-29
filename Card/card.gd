@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name Card
 
 signal card_clicked(MouseButton)
@@ -7,45 +7,37 @@ signal card_clicked(MouseButton)
 var effect: Global.EffectTypes
 
 @export
-var amount: int: set = setAmount
+var amount: int
 
 @export
 var direction: Global.Direction
 
 @export
-var cardName: String: set = setName
+var cardName: String
 
 @export
 var abilityRange: Array
+
 var flippedCard: CardClass
-
-func setAmount(value):
-	amount = value
-	$DamageContainer/DamageAmount.text = str(amount)
-
-func setName(value):
-	cardName = value
-	$NameContainer/CardName.text = cardName
-
-func _on_area_2d_input_event(_viewport, event, _shape_idx):
-	if event.is_pressed():
-		card_clicked.emit(event.button_index)
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			if direction != Global.Direction.UNDEFINED:
-				$Direction.position.x = -$Direction.position.x
-				$Direction.rotate(deg_to_rad(180))
-
-func _on_area_2d_mouse_entered():
-	position.y = position.y - 30
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-
-func _on_area_2d_mouse_exited():
-	position.y = position.y + 30
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _ready():
 	if direction != Global.Direction.UNDEFINED:
-		$Direction.visible = true
+		$Sprite/Direction.visible = true
 		if direction == Global.Direction.BACKWARDS:
-			$Direction.position.x = -$Direction.position.x
-			$Direction.rotate(deg_to_rad(180))
+			$Sprite/Direction.position.x = 40
+			$Sprite/Direction.flip_h = false
+
+func _process(_delta):
+	$Sprite/DamageContainer/DamageAmount.text = str(amount)
+	$Sprite/NameContainer/CardName.text = str(cardName)
+
+func _on_gui_input(event):
+	if event.is_pressed():
+		card_clicked.emit(event.button_index)
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if direction == Global.Direction.FORWARD:
+				$Sprite/Direction.position.x = 20
+				$Sprite/Direction.flip_h = true
+			if direction == Global.Direction.BACKWARDS:
+				$Sprite/Direction.position.x = 60
+				$Sprite/Direction.flip_h = false

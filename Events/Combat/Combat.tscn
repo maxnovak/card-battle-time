@@ -46,8 +46,13 @@ position = Vector2(757, 380)
 scale = Vector2(3, 3)
 health = 50
 
-[node name="Hand" type="Node2D" parent="."]
-position = Vector2(512, 564)
+[node name="Hand" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 512.0
+offset_top = 564.0
+offset_right = 512.0
+offset_bottom = 564.0
 script = ExtResource("8_6x210")
 
 [node name="AttackTimer" type="Timer" parent="."]

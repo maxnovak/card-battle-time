@@ -20,21 +20,33 @@ mouse_filter = 1
 color = Color(0.262745, 0.670588, 0.611765, 1)
 
 [node name="Card" parent="." instance=ExtResource("2_j1c8l")]
-position = Vector2(340, 302)
+offset_left = 340.0
+offset_top = 302.0
+offset_right = 340.0
+offset_bottom = 302.0
+mouse_force_pass_scroll_events = false
 effect = 2
 amount = 50
 cardName = "BIG STAB"
 abilityRange = [0, 1, 2]
 
 [node name="Card2" parent="." instance=ExtResource("2_j1c8l")]
-position = Vector2(659, 295)
+offset_left = 659.0
+offset_top = 295.0
+offset_right = 659.0
+offset_bottom = 295.0
+mouse_force_pass_scroll_events = false
 effect = 1
-amount = 20
+amount = 50
 cardName = "Big Block"
 
 [node name="Card3" parent="." instance=ExtResource("2_j1c8l")]
-position = Vector2(498, 300)
+offset_left = 498.0
+offset_top = 300.0
+offset_right = 498.0
+offset_bottom = 300.0
+mouse_force_pass_scroll_events = false
 effect = 3
-amount = 20
+amount = 10
 cardName = "Big DoT"
 abilityRange = [0, 1, 2]

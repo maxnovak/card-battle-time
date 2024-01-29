@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var cardScene = preload("res://Card/Card.tscn")
 
@@ -16,7 +16,7 @@ var discard: Array[Card] = []
 func _notification(what):
 	if what == NOTIFICATION_CHILD_ORDER_CHANGED:
 		for card in get_children():
-			card.position = Vector2(cardWidthMove*(card.get_index()-get_child_count()/2.0), 0)
+			card.position = Vector2(cardWidthMove*(card.get_index()-get_child_count()/2.0), -50)
 
 func _on_card_clicked(mouseButton, card):
 	DisplayError.emit("")
@@ -89,14 +89,12 @@ func dealCards(numberOfCards: int):
 
 	for i in range(numberOfCards):
 		var card = deckCards.pop_front()
-		card.position = Vector2(80*i, 0)
 		add_child(card, true)
 
 func draw():
 	if deckCards.size() == 0:
 		shuffleDeck()
 	var card = deckCards.pop_front()
-	card.position = Vector2(80*get_child_count(), 0)
 	add_child(card, true)
 
 func shuffleDeck():
