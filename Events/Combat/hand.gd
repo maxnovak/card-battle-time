@@ -18,55 +18,25 @@ func _notification(what):
 		for card in get_children():
 			card.position = Vector2(cardWidthMove*(card.get_index()-get_child_count()/2.0), -50)
 
-func _on_card_clicked(mouseButton, card):
+func _on_card_clicked(_mouseButton, card):
 	DisplayError.emit("")
+	var cardResource = card.card
 	if get_parent().currentPhase != Global.Phases.PLAY_CARD:
 		return
 
-	if card.flippedCard == null && mouseButton == MOUSE_BUTTON_RIGHT:
-		return
-
-	if card.flippedCard != null && mouseButton == MOUSE_BUTTON_RIGHT:
-		var newFlip = CardClass.new({
-			cardName = card.flippedCard.cardName,
-			amount = card.flippedCard.amount,
-			effect = card.flippedCard.effect,
-			direction = card.flippedCard.direction,
-			flippedCard = CardClass.new({
-				cardName = card.cardName,
-				amount = card.amount,
-				effect = card.effect,
-				direction = card.direction,
-			}),
-		})
-		card.effect = newFlip.effect
-		card.amount = newFlip.amount
-		card.cardName = newFlip.cardName
-		card.direction = newFlip.direction
-		card.flippedCard = newFlip.flippedCard
-		return
-
-	var reason = is_unplayable(card)
+	var reason = is_unplayable(cardResource)
 	if reason != null:
 		DisplayError.emit(reason)
 		return
 
 	remove_child(card)
-	discard.append(card)
-	get_parent().playedCard = card
+	discard.append(cardResource)
+	get_parent().playedCard = cardResource
 	get_parent().currentPhase = Global.TurnOrder[Global.TurnOrder.find(get_parent().currentPhase) + 1]
 
-func constructDeck(deck: Array[CardClass]):
+func constructDeck(deck: Array[Card]):
 	for heroCard in deck:
-		var card = cardScene.instantiate()
-		card.effect = heroCard.effect
-		card.amount = heroCard.amount
-		card.abilityRange = heroCard.abilityRange
-		card.cardName = heroCard.cardName
-		card.direction = heroCard.direction
-		card.flippedCard = heroCard.flippedCard
-		card.card_clicked.connect(_on_card_clicked.bind(card))
-		deckCards.append(card)
+		deckCards.append(heroCard)
 	deckCards.shuffle()
 	dealCards(handSize)
 
@@ -88,13 +58,19 @@ func dealCards(numberOfCards: int):
 		discard.clear()
 
 	for i in range(numberOfCards):
-		var card = deckCards.pop_front()
+		var drawnCard = deckCards.pop_front()
+		var card = cardScene.instantiate()
+		card.card = drawnCard
+		card.card_clicked.connect(_on_card_clicked.bind(card))
 		add_child(card, true)
 
 func draw():
 	if deckCards.size() == 0:
 		shuffleDeck()
-	var card = deckCards.pop_front()
+	var drawnCard = deckCards.pop_front()
+	var card = cardScene.instantiate()
+	card.card = drawnCard
+	card.card_clicked.connect(_on_card_clicked.bind(card))
 	add_child(card, true)
 
 func shuffleDeck():
@@ -109,5 +85,5 @@ func _on_button_pressed():
 	var cards = get_children()
 	for card in cards:
 		remove_child(card)
-		discard.append(card)
+		discard.append(card.card)
 	dealCards(handSize-1)

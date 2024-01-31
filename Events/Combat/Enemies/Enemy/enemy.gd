@@ -45,8 +45,8 @@ func chooseAction():
 		deck.append_array(discard)
 		discard.clear()
 	chosenAction = deck.pop_front()
-	$Card.amount = chosenAction.amount
-	$Card.cardName = chosenAction.cardName
+	$Card.card.amount = chosenAction.amount
+	$Card.card.cardName = chosenAction.cardName
 
 func playCard():
 	discard.append(chosenAction)

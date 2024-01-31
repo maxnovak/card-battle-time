@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bb2ait3moyjqp"]
+
+[ext_resource type="Script" path="res://Card/card_class.gd" id="1_til0b"]
+
+[resource]
+script = ExtResource("1_til0b")
+cardName = "Big Poison"
+amount = 10
+effect = 3
+direction = 0
+abilityRange = Array[int]([0, 1, 2])

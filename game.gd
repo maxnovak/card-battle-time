@@ -6,8 +6,12 @@ const aquireCardScene = preload("res://Events/AquireCard/AquireCard.tscn")
 @onready
 var mapHolder = $Scenes/Map
 
+@export
+var huntressDeck: Array[Card]
+
 func _ready():
 	DisplayServer.window_set_min_size(Vector2(1024,600))
+	Global.playerDeck += huntressDeck
 
 func _on_map_change_scene(type):
 	Input.set_default_cursor_shape(Input.CURSOR_WAIT)

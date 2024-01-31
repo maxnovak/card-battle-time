@@ -9,6 +9,9 @@ var block: int
 @export
 var damage_over_time: int
 
+@export
+var startingDeck: Array[Card]
+
 func changeState(new_state):
 	$StateMachine._change_state(new_state)
 

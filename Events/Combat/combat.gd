@@ -37,7 +37,7 @@ var playedCard: Card
 var currentPhase: Global.Phases: set = set_phase
 
 func _ready():
-	$Hand.constructDeck(Global.HuntressDeck)
+	$Hand.constructDeck(Global.playerDeck)
 	$Enemy.init(EnemyClass.new({
 		name = "Evil Wizard",
 		sprite = "",

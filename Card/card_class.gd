@@ -1,16 +1,15 @@
-class_name CardClass
+extends Resource
+class_name Card
 
+@export
 var cardName: String
+@export
 var amount: int
+@export
 var effect: Global.EffectTypes
+@export
 var direction: Global.Direction
-var flippedCard: CardClass
-var abilityRange: Array
-
-func _init(card: Dictionary):
-	cardName = card.cardName
-	amount = card.amount
-	effect = card.effect
-	direction = card.get("direction", Global.Direction.UNDEFINED)
-	flippedCard = card.get("flippedCard")
-	abilityRange = card.get("abilityRange", [])
+@export
+var flippedCard: Card
+@export
+var abilityRange: Array[int]

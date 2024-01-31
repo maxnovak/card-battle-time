@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4fsjt8yofso0"]
+[gd_scene load_steps=5 format=3 uid="uid://d4fsjt8yofso0"]
 
 [ext_resource type="Script" path="res://Events/AquireCard/aquire_card.gd" id="1_rl5y8"]
-[ext_resource type="PackedScene" uid="uid://3b256apu812h" path="res://Card/Card.tscn" id="2_j1c8l"]
+[ext_resource type="Resource" uid="uid://c6cagwonxdq0l" path="res://Card/CardTypes/bigBlock.tres" id="2_xk3in"]
+[ext_resource type="Resource" uid="uid://7qrcexhbn20i" path="res://Card/CardTypes/bigStab.tres" id="3_bhawh"]
+[ext_resource type="Resource" uid="uid://bb2ait3moyjqp" path="res://Card/CardTypes/BigDOT.tres" id="4_7c0p6"]
 
 [node name="AquireCard" type="Control"]
 layout_mode = 3
@@ -11,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rl5y8")
+cards = Array[Resource("res://Card/card_class.gd")]([ExtResource("2_xk3in"), ExtResource("3_bhawh"), ExtResource("4_7c0p6")])
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -35,26 +38,3 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 60
 columns = 3
-
-[node name="Card2" parent="GridContainer" instance=ExtResource("2_j1c8l")]
-layout_mode = 2
-mouse_force_pass_scroll_events = false
-effect = 1
-amount = 50
-cardName = "Big Block"
-
-[node name="Card3" parent="GridContainer" instance=ExtResource("2_j1c8l")]
-layout_mode = 2
-mouse_force_pass_scroll_events = false
-effect = 3
-amount = 10
-cardName = "Big DoT"
-abilityRange = [0, 1, 2]
-
-[node name="Card" parent="GridContainer" instance=ExtResource("2_j1c8l")]
-layout_mode = 2
-mouse_force_pass_scroll_events = false
-effect = 2
-amount = 50
-cardName = "BIG STAB"
-abilityRange = [0, 1, 2]

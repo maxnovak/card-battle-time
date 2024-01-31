@@ -1,43 +1,41 @@
 extends Control
-class_name Card
 
 signal card_clicked(MouseButton)
 
 @export
-var effect: Global.EffectTypes
-
-@export
-var amount: int
-
-@export
-var direction: Global.Direction
-
-@export
-var cardName: String
-
-@export
-var abilityRange: Array
-
-var flippedCard: CardClass
+var card: Card
 
 func _ready():
-	if direction != Global.Direction.UNDEFINED:
+	if card.direction != Global.Direction.UNDEFINED:
 		$Sprite/Direction.visible = true
-		if direction == Global.Direction.BACKWARDS:
+		if card.direction == Global.Direction.BACKWARDS:
 			$Sprite/Direction.position.x = 40
 			$Sprite/Direction.flip_h = false
 
 func _process(_delta):
-	$Sprite/DamageContainer/DamageAmount.text = str(amount)
-	$Sprite/NameContainer/CardName.text = str(cardName)
+	$Sprite/DamageContainer/DamageAmount.text = str(card.amount)
+	$Sprite/NameContainer/CardName.text = str(card.cardName)
 
 func _on_gui_input(event):
 	if event.is_pressed():
-		card_clicked.emit(event.button_index)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			card_clicked.emit(event.button_index)
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-			if direction == Global.Direction.FORWARD:
-				$Sprite/Direction.position.x = 20
-				$Sprite/Direction.flip_h = true
-			if direction == Global.Direction.BACKWARDS:
-				$Sprite/Direction.position.x = 60
-				$Sprite/Direction.flip_h = false
+			if card.flippedCard != null:
+				var newFlip = Card.new()
+				newFlip.effect = card.flippedCard.effect
+				newFlip.amount = card.flippedCard.amount
+				newFlip.cardName = card.flippedCard.cardName
+				newFlip.direction = card.flippedCard.direction
+				newFlip.flippedCard = card
+				if newFlip.direction == Global.Direction.FORWARD:
+					$Sprite/Direction.visible = true
+					$Sprite/Direction.position.x = 60
+					$Sprite/Direction.flip_h = false
+				if newFlip.direction == Global.Direction.BACKWARDS:
+					$Sprite/Direction.visible = true
+					$Sprite/Direction.position.x = 20
+					$Sprite/Direction.flip_h = true
+				if newFlip.direction == Global.Direction.UNDEFINED:
+					$Sprite/Direction.visible = false
+				card = newFlip
