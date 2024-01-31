@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 const combatScene = preload("res://Events/Combat/Combat.tscn")
 const aquireCardScene = preload("res://Events/AquireCard/AquireCard.tscn")
@@ -6,11 +6,14 @@ const aquireCardScene = preload("res://Events/AquireCard/AquireCard.tscn")
 @onready
 var mapHolder = $Scenes/Map
 
+func _ready():
+	DisplayServer.window_set_min_size(Vector2(1024,600))
+
 func _on_map_change_scene(type):
 	Input.set_default_cursor_shape(Input.CURSOR_WAIT)
 	var image = get_viewport().get_texture().get_image()
 	var texture = ImageTexture.create_from_image(image)
-	$Sprite2D.texture = texture
+	$TransitionImageHolder.texture = texture
 	$Scenes.remove_child(mapHolder)
 	if type == LocationClass.Types.BATTLE:
 		var combat = combatScene.instantiate()
@@ -28,7 +31,7 @@ func _event_ended(event):
 	Input.set_default_cursor_shape(Input.CURSOR_WAIT)
 	var image = get_viewport().get_texture().get_image()
 	var texture = ImageTexture.create_from_image(image)
-	$Sprite2D.texture = texture
+	$TransitionImageHolder.texture = texture
 	$Scenes.remove_child(event)
 	$Scenes.add_child(mapHolder)
 	$AnimationPlayer.play("side-wipe")

@@ -10,7 +10,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("TransitionImageHolder:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:material:shader_parameter/dissolve_state")
+tracks/1/path = NodePath("TransitionImageHolder:material:shader_parameter/dissolve_state")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -37,7 +37,7 @@ resource_name = "side-wipe"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("TransitionImageHolder:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,7 +49,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:material:shader_parameter/dissolve_state")
+tracks/1/path = NodePath("TransitionImageHolder:material:shader_parameter/dissolve_state")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -70,10 +70,24 @@ shader = ExtResource("3_q2pca")
 shader_parameter/dissolve_state = 0.0
 shader_parameter/dissolve_pattern = ExtResource("4_awvpf")
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_47x6f")
 
-[node name="Scenes" type="Node2D" parent="."]
+[node name="Scenes" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Map" parent="Scenes" instance=ExtResource("2_nc35d")]
 
@@ -82,7 +96,7 @@ libraries = {
 "": SubResource("AnimationLibrary_jeaws")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="TransitionImageHolder" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_pmjjw")
 offset = Vector2(512, 300)
 
