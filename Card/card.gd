@@ -6,15 +6,27 @@ signal card_clicked(MouseButton)
 var card: Card
 
 func _ready():
-	if card.direction != Global.Direction.UNDEFINED:
-		$Sprite/Direction.visible = true
-		if card.direction == Global.Direction.BACKWARDS:
-			$Sprite/Direction.position.x = 40
-			$Sprite/Direction.flip_h = false
+	$Sprite/NameContainer/CardName.text = str(card.cardName)
+	for action in card.actions:
+		if action.effect == Global.EffectTypes.MOVE_FORWARD:
+			if action.amount >= 1:
+				$Sprite/Forward1.visible = true
+			if action.amount >= 2:
+				$Sprite/Forward2.visible = true
+		if action.effect == Global.EffectTypes.MOVE_BACKWARD:
+			if action.amount >= 1:
+				$Sprite/Backward1.visible = true
+			if action.amount >= 2:
+				$Sprite/Backward2.visible = true
+		if action.effect == Global.EffectTypes.DAMAGE || action.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
+			$Sprite/DamageContainer/DamageAmount.text = str(action.amount)
 
 func _process(_delta):
-	$Sprite/DamageContainer/DamageAmount.text = str(card.amount)
+	for action in card.actions:
+		if action.effect == Global.EffectTypes.DAMAGE || action.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
+			$Sprite/DamageContainer/DamageAmount.text = str(action.amount)
 	$Sprite/NameContainer/CardName.text = str(card.cardName)
+
 
 func _on_gui_input(event):
 	if event.is_pressed():

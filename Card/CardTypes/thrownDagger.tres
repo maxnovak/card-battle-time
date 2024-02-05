@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://bq287bjuy2836"]
+
+[ext_resource type="Script" path="res://Card/card_actions.gd" id="1_6iu3i"]
+[ext_resource type="Script" path="res://Card/card_class.gd" id="2_bbn4e"]
+
+[sub_resource type="Resource" id="Resource_yua4f"]
+script = ExtResource("1_6iu3i")
+amount = 3
+effect = 2
+abilityRange = Array[int]([1, 2])
+
+[resource]
+script = ExtResource("2_bbn4e")
+cardName = "Throw Dagger"
+actions = Array[ExtResource("1_6iu3i")]([SubResource("Resource_yua4f")])
+flippedActions = Array[ExtResource("1_6iu3i")]([])

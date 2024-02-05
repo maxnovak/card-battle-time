@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://game.gd" id="1_47x6f"]
 [ext_resource type="PackedScene" uid="uid://cu8fywtevu02m" path="res://Map/Map.tscn" id="2_nc35d"]
-[ext_resource type="Resource" uid="uid://o8kej1pstw8s" path="res://Card/CardTypes/dash.tres" id="2_t2cj2"]
-[ext_resource type="Resource" uid="uid://djjfupmpb80od" path="res://Card/CardTypes/spear.tres" id="3_nberl"]
+[ext_resource type="Resource" uid="uid://25dwlxhdnnvt" path="res://Card/CardTypes/hook.tres" id="3_dg8tu"]
+[ext_resource type="Resource" uid="uid://dcjiby66idbwn" path="res://Card/CardTypes/backstep.tres" id="3_nberl"]
 [ext_resource type="Shader" path="res://assets/shaders/transition.gdshader" id="3_q2pca"]
 [ext_resource type="Texture2D" uid="uid://cjlvbp0ckkiiq" path="res://assets/shaders/transition-pattern.png" id="4_awvpf"]
-[ext_resource type="Resource" uid="uid://byibxa3eekve2" path="res://Card/CardTypes/poison.tres" id="4_os4fx"]
-[ext_resource type="Resource" uid="uid://bs2btft2gmalo" path="res://Card/CardTypes/block.tres" id="5_orh3p"]
+[ext_resource type="Resource" uid="uid://p8nysukxg7mg" path="res://Card/CardTypes/poison.tres" id="4_os4fx"]
+[ext_resource type="Resource" uid="uid://0g6txsq4syq5" path="res://Card/CardTypes/jab.tres" id="4_y0sci"]
 
 [sub_resource type="Animation" id="Animation_1rrvo"]
 length = 0.001
@@ -83,7 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_47x6f")
-huntressDeck = Array[Resource("res://Card/card_class.gd")]([ExtResource("4_os4fx"), ExtResource("2_t2cj2"), ExtResource("2_t2cj2"), ExtResource("5_orh3p"), ExtResource("5_orh3p"), ExtResource("5_orh3p"), ExtResource("3_nberl"), ExtResource("3_nberl"), ExtResource("3_nberl")])
+huntressDeck = Array[Resource("res://Card/card_class.gd")]([ExtResource("4_os4fx"), ExtResource("3_dg8tu"), ExtResource("3_dg8tu"), ExtResource("3_dg8tu"), ExtResource("4_y0sci"), ExtResource("4_y0sci"), ExtResource("4_y0sci"), ExtResource("3_nberl"), ExtResource("3_nberl")])
 
 [node name="Scenes" type="Control" parent="."]
 layout_mode = 1

@@ -5,19 +5,15 @@ enum EffectTypes {
 	BLOCK,
 	DAMAGE,
 	DAMAGE_OVER_TIME,
-	MOVEMENT,
+	MOVE_FORWARD,
+	MOVE_BACKWARD,
+	PULL_ENEMY,
 }
 
 enum Actor {
 	UNDEFINED,
 	ENEMY,
 	PLAYER,
-}
-
-enum Direction {
-	UNDEFINED,
-	FORWARD,
-	BACKWARDS,
 }
 
 enum Phases {

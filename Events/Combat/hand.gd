@@ -24,11 +24,6 @@ func _on_card_clicked(_mouseButton, card):
 	if get_parent().currentPhase != Global.Phases.PLAY_CARD:
 		return
 
-	var reason = is_unplayable(cardResource)
-	if reason != null:
-		DisplayError.emit(reason)
-		return
-
 	remove_child(card)
 	discard.append(cardResource)
 	get_parent().playedCard = cardResource
@@ -39,17 +34,6 @@ func constructDeck(deck: Array[Card]):
 		deckCards.append(heroCard)
 	deckCards.shuffle()
 	dealCards(handSize)
-
-func is_unplayable(card):
-	if card.effect == Global.EffectTypes.MOVEMENT \
-		&& card.direction == Global.Direction.FORWARD \
-		&& get_parent().hero_position == 2:
-		return "Cannot move forward anymore"
-	if card.effect == Global.EffectTypes.MOVEMENT \
-		&& card.direction == Global.Direction.BACKWARDS \
-		&& get_parent().hero_position == 0:
-		return "Cannot move back anymore"
-	return null
 
 func dealCards(numberOfCards: int):
 	if deckCards.size() < numberOfCards:

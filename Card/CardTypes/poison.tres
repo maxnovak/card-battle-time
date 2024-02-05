@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://byibxa3eekve2"]
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://p8nysukxg7mg"]
 
-[ext_resource type="Script" path="res://Card/card_class.gd" id="1_bq11j"]
+[ext_resource type="Script" path="res://Card/card_actions.gd" id="1_eprsx"]
+[ext_resource type="Script" path="res://Card/card_class.gd" id="1_l6ghr"]
 
-[resource]
-script = ExtResource("1_bq11j")
-cardName = "Poison"
+[sub_resource type="Resource" id="Resource_qymgp"]
+script = ExtResource("1_eprsx")
 amount = 5
 effect = 3
-direction = 0
 abilityRange = Array[int]([0, 1, 2])
+
+[resource]
+script = ExtResource("1_l6ghr")
+cardName = "Poison"
+actions = Array[ExtResource("1_eprsx")]([SubResource("Resource_qymgp")])
+flippedActions = Array[ExtResource("1_eprsx")]([])

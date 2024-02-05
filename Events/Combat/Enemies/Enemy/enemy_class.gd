@@ -9,6 +9,5 @@ var block: int
 func _init(enemy: Dictionary):
 	name = enemy.name
 	sprite = enemy.sprite
-	deck = enemy.deck
 	health = enemy.health
 	block = enemy.block

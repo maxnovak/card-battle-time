@@ -15,6 +15,7 @@ var sprite: String
 @export
 var enemy_name: String
 
+@export
 var deck: Array[EnemyCardClass]
 var discard: Array[EnemyCardClass]
 var chosenAction: EnemyCardClass
@@ -22,7 +23,6 @@ var chosenAction: EnemyCardClass
 func init(enemy: EnemyClass):
 	enemy_name = enemy.name
 	sprite = enemy.sprite
-	deck = enemy.deck
 	health = enemy.health
 	block = enemy.block
 
@@ -45,7 +45,11 @@ func chooseAction():
 		deck.append_array(discard)
 		discard.clear()
 	chosenAction = deck.pop_front()
-	$Card.card.amount = chosenAction.amount
+	var action = CardActions.new()
+	action.effect = chosenAction.effect
+	action.abilityRange = chosenAction.abilityRange
+	action.amount = chosenAction.amount
+	$Card.card.actions.append(action)
 	$Card.card.cardName = chosenAction.cardName
 
 func playCard():

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://0g6txsq4syq5"]
+
+[ext_resource type="Script" path="res://Card/card_actions.gd" id="1_12tbx"]
+[ext_resource type="Script" path="res://Card/card_class.gd" id="1_kmmnd"]
+
+[sub_resource type="Resource" id="Resource_b4qm0"]
+script = ExtResource("1_12tbx")
+amount = 1
+effect = 4
+abilityRange = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_rvyyl"]
+script = ExtResource("1_12tbx")
+amount = 7
+effect = 2
+abilityRange = Array[int]([1, 2])
+
+[resource]
+script = ExtResource("1_kmmnd")
+cardName = "Jab"
+actions = Array[ExtResource("1_12tbx")]([SubResource("Resource_b4qm0"), SubResource("Resource_rvyyl")])
+flippedActions = Array[ExtResource("1_12tbx")]([])

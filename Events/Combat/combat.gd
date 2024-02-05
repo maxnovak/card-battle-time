@@ -41,7 +41,6 @@ func _ready():
 	$Enemy.init(EnemyClass.new({
 		name = "Evil Wizard",
 		sprite = "",
-		deck = EnemyDecks.new().EvilWizardDeck,
 		health = 50,
 		block = 0,
 	}))
@@ -57,7 +56,7 @@ func set_phase(value):
 		currentPhase = value
 		PhaseChange.emit(value)
 
-func applyCardEffect(card):
+func applyCardEffect(card: CardActions):
 	if card.effect == Global.EffectTypes.DAMAGE:
 		$Hero.changeState("attack")
 		if !enemy_position in card.abilityRange:
@@ -74,11 +73,10 @@ func applyCardEffect(card):
 	if card.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
 		$Hero.changeState("poison")
 		$Enemy.damage_over_time = card.amount
-	if card.effect == Global.EffectTypes.MOVEMENT:
-		if card.direction == Global.Direction.FORWARD:
-			hero_position += 1
-		if card.direction == Global.Direction.BACKWARDS:
-			hero_position -= 1
+	if card.effect == Global.EffectTypes.MOVE_FORWARD && hero_position < 2:
+		hero_position += 1
+	if card.effect == Global.EffectTypes.MOVE_BACKWARD && hero_position > 0:
+		hero_position -= 1
 
 func enemyAttack():
 	$Enemy.changeState("attack")
@@ -116,7 +114,8 @@ func _on_phase_change(phase):
 
 	if phase == Global.Phases.PLAYER_COMBAT:
 		$AttackTimer.start()
-		applyCardEffect(playedCard)
+		for action in playedCard.actions:
+			applyCardEffect(action)
 		playedCard = null
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 

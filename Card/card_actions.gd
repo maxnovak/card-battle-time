@@ -1,8 +1,6 @@
 extends Resource
-class_name EnemyCardClass
+class_name CardActions
 
-@export
-var cardName: String
 @export
 var amount: int
 @export
