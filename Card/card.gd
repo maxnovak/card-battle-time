@@ -1,6 +1,7 @@
 extends Control
 
 signal card_clicked(MouseButton)
+signal show_range(range: Array[int])
 
 @export
 var card: Card
@@ -51,3 +52,9 @@ func _on_gui_input(event):
 				if newFlip.direction == Global.Direction.UNDEFINED:
 					$Sprite/Direction.visible = false
 				card = newFlip
+
+
+func _on_mouse_entered():
+	for action in card.actions:
+		if action.effect == Global.EffectTypes.DAMAGE || Global.EffectTypes.DAMAGE_OVER_TIME:
+			show_range.emit(action.abilityRange)

@@ -62,4 +62,5 @@ one_shot = true
 [connection signal="pressed" from="GUI/Button" to="GUI/Button" method="_on_pressed"]
 [connection signal="pressed" from="GUI/Button" to="Hand" method="_on_button_pressed"]
 [connection signal="DisplayError" from="Hand" to="GUI" method="_on_hand_display_error"]
+[connection signal="show_range" from="Hand" to="GUI/Battle Grid" method="_on_hand_show_range"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

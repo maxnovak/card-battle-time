@@ -6,26 +6,26 @@
 [node name="Battle Grid" type="Node2D"]
 script = ExtResource("1_ln7jc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["PlayerNodes"]]
 position = Vector2(150, 455)
 texture = ExtResource("1_hpnag")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." groups=["PlayerNodes"]]
 position = Vector2(300, 455)
 texture = ExtResource("1_hpnag")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="Sprite2D3" type="Sprite2D" parent="." groups=["PlayerNodes"]]
 position = Vector2(450, 455)
 texture = ExtResource("1_hpnag")
 
-[node name="Sprite2D4" type="Sprite2D" parent="."]
+[node name="Sprite2D4" type="Sprite2D" parent="." groups=["EnemyNodes"]]
 position = Vector2(600, 455)
 texture = ExtResource("1_hpnag")
 
-[node name="Sprite2D5" type="Sprite2D" parent="."]
+[node name="Sprite2D5" type="Sprite2D" parent="." groups=["EnemyNodes"]]
 position = Vector2(750, 455)
 texture = ExtResource("1_hpnag")
 
-[node name="Sprite2D6" type="Sprite2D" parent="."]
+[node name="Sprite2D6" type="Sprite2D" parent="." groups=["EnemyNodes"]]
 position = Vector2(900, 455)
 texture = ExtResource("1_hpnag")

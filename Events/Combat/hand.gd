@@ -3,6 +3,7 @@ extends Control
 var cardScene = preload("res://Card/Card.tscn")
 
 signal DisplayError(message: String)
+signal show_range(range: Array[int])
 
 @export
 var handSize = 5
@@ -29,6 +30,9 @@ func _on_card_clicked(_mouseButton, card):
 	get_parent().playedCard = cardResource
 	get_parent().currentPhase = Global.TurnOrder[Global.TurnOrder.find(get_parent().currentPhase) + 1]
 
+func _show_range(range: Array[int]):
+	show_range.emit(range)
+
 func constructDeck(deck: Array[Card]):
 	for heroCard in deck:
 		deckCards.append(heroCard)
@@ -46,6 +50,7 @@ func dealCards(numberOfCards: int):
 		var card = cardScene.instantiate()
 		card.card = drawnCard
 		card.card_clicked.connect(_on_card_clicked.bind(card))
+		card.show_range.connect(_show_range)
 		add_child(card, true)
 
 func draw():
@@ -55,6 +60,7 @@ func draw():
 	var card = cardScene.instantiate()
 	card.card = drawnCard
 	card.card_clicked.connect(_on_card_clicked.bind(card))
+	card.show_range.connect(_show_range)
 	add_child(card, true)
 
 func shuffleDeck():
