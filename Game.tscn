@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game.gd" id="1_47x6f"]
 [ext_resource type="PackedScene" uid="uid://cu8fywtevu02m" path="res://Map/Map.tscn" id="2_nc35d"]
 [ext_resource type="Resource" uid="uid://25dwlxhdnnvt" path="res://Card/CardTypes/hook.tres" id="3_dg8tu"]
-[ext_resource type="Resource" uid="uid://dcjiby66idbwn" path="res://Card/CardTypes/backstep.tres" id="3_nberl"]
+[ext_resource type="Resource" uid="uid://dcjiby66idbwn" path="res://Card/CardTypes/flurry.tres" id="3_nberl"]
 [ext_resource type="Shader" path="res://assets/shaders/transition.gdshader" id="3_q2pca"]
 [ext_resource type="Texture2D" uid="uid://cjlvbp0ckkiiq" path="res://assets/shaders/transition-pattern.png" id="4_awvpf"]
 [ext_resource type="Resource" uid="uid://p8nysukxg7mg" path="res://Card/CardTypes/poison.tres" id="4_os4fx"]

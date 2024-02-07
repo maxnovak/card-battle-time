@@ -10,8 +10,7 @@
 [sub_resource type="Resource" id="Resource_bn2wl"]
 script = ExtResource("2_1rhoa")
 cardName = ""
-actions = Array[Resource("res://Card/card_actions.gd")]([])
-flippedActions = Array[Resource("res://Card/card_actions.gd")]([])
+flippedName = ""
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cfupg"]
 

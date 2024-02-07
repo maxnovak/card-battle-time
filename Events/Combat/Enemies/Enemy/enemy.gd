@@ -47,9 +47,9 @@ func chooseAction():
 	chosenAction = deck.pop_front()
 	var action = CardActions.new()
 	action.effect = chosenAction.effect
-	action.abilityRange = chosenAction.abilityRange
-	action.amount = chosenAction.amount
-	$Card.card.actions.append(action)
+	action.effectRange = chosenAction.abilityRange
+	action.effectAmount = chosenAction.amount
+	$Card.card.actions = action
 	$Card.card.cardName = chosenAction.cardName
 
 func playCard():

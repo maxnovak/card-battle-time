@@ -2,8 +2,16 @@ extends Resource
 class_name CardActions
 
 @export
-var amount: int
-@export
 var effect: Global.EffectTypes
 @export
-var abilityRange: Array[int]
+var effectAmount: int
+@export
+var effectRange: Array[int]
+
+@export
+var movement: Global.MovementTypes
+@export
+var movementAmount: int
+
+@export
+var validLocations: Array[int]

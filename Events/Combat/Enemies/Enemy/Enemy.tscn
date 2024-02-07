@@ -18,7 +18,7 @@ script = ExtResource("2_qfdpm")
 cardName = "Fireblast"
 amount = 5
 effect = 2
-abilityRange = [1, 2]
+abilityRange = Array[int]([1, 2])
 
 [sub_resource type="Resource" id="Resource_y277c"]
 script = ExtResource("2_qfdpm")

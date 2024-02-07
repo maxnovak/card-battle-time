@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://d4fsjt8yofso0"]
 
 [ext_resource type="Script" path="res://Events/AquireCard/aquire_card.gd" id="1_rl5y8"]
-[ext_resource type="Resource" uid="uid://dcjiby66idbwn" path="res://Card/CardTypes/backstep.tres" id="2_eidc8"]
+[ext_resource type="Resource" uid="uid://dcjiby66idbwn" path="res://Card/CardTypes/flurry.tres" id="2_28bhx"]
 [ext_resource type="Resource" uid="uid://0g6txsq4syq5" path="res://Card/CardTypes/jab.tres" id="3_iuwrs"]
-[ext_resource type="Resource" uid="uid://bq287bjuy2836" path="res://Card/CardTypes/thrownDagger.tres" id="4_1sbnd"]
+[ext_resource type="Resource" uid="uid://bq287bjuy2836" path="res://Card/CardTypes/stab.tres" id="4_1sbnd"]
 
 [node name="AquireCard" type="Control"]
 layout_mode = 3
@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rl5y8")
-cards = Array[Resource("res://Card/card_class.gd")]([ExtResource("2_eidc8"), ExtResource("3_iuwrs"), ExtResource("4_1sbnd")])
+cards = Array[Resource("res://Card/card_class.gd")]([ExtResource("2_28bhx"), ExtResource("3_iuwrs"), ExtResource("4_1sbnd")])
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

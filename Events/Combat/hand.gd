@@ -21,6 +21,7 @@ func _notification(what):
 
 func _on_card_clicked(_mouseButton, card):
 	DisplayError.emit("")
+	print(get_parent().currentPhase)
 	var cardResource = card.card
 	if get_parent().currentPhase != Global.Phases.PLAY_CARD:
 		return
@@ -30,8 +31,8 @@ func _on_card_clicked(_mouseButton, card):
 	get_parent().playedCard = cardResource
 	get_parent().currentPhase = Global.TurnOrder[Global.TurnOrder.find(get_parent().currentPhase) + 1]
 
-func _show_range(range: Array[int]):
-	show_range.emit(range)
+func _show_range(effect_range: Array[int]):
+	show_range.emit(effect_range)
 
 func constructDeck(deck: Array[Card]):
 	for heroCard in deck:

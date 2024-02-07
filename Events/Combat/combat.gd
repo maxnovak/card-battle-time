@@ -52,6 +52,7 @@ func _process(_delta):
 	$Enemy.position = Vector2(enemy_positions[enemy_position].x, $Enemy.position.y)
 
 func set_phase(value):
+	print(value)
 	if currentPhase != value:
 		currentPhase = value
 		PhaseChange.emit(value)
@@ -59,9 +60,9 @@ func set_phase(value):
 func applyCardEffect(card: CardActions):
 	if card.effect == Global.EffectTypes.DAMAGE:
 		$Hero.changeState("attack")
-		if !enemy_position in card.abilityRange:
+		if !enemy_position in card.effectRange:
 			return
-		dealDamage($Enemy, card.amount)
+		dealDamage($Enemy, card.effectAmount)
 		if $Enemy.health <= 0:
 			## Fix these state changes later
 			$Enemy.changeState("hit")
@@ -72,10 +73,11 @@ func applyCardEffect(card: CardActions):
 		$Hero.block += card.amount
 	if card.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
 		$Hero.changeState("poison")
-		$Enemy.damage_over_time = card.amount
-	if card.effect == Global.EffectTypes.MOVE_FORWARD && hero_position < 2:
+		$Enemy.damage_over_time = card.effectAmount
+	## Movement needs to actually use the amounts 
+	if card.movement == Global.MovementTypes.MOVE_FORWARD && hero_position < 2:
 		hero_position += 1
-	if card.effect == Global.EffectTypes.MOVE_BACKWARD && hero_position > 0:
+	if card.movement == Global.MovementTypes.MOVE_BACKWARD && hero_position > 0:
 		hero_position -= 1
 
 func enemyAttack():
@@ -114,8 +116,7 @@ func _on_phase_change(phase):
 
 	if phase == Global.Phases.PLAYER_COMBAT:
 		$AttackTimer.start()
-		for action in playedCard.actions:
-			applyCardEffect(action)
+		applyCardEffect(playedCard.actions)
 		playedCard = null
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 

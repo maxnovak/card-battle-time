@@ -5,9 +5,15 @@ enum EffectTypes {
 	BLOCK,
 	DAMAGE,
 	DAMAGE_OVER_TIME,
+	COPY_DAMAGE,
+}
+
+enum MovementTypes {
+	UNDEFINED,
 	MOVE_FORWARD,
 	MOVE_BACKWARD,
 	PULL_ENEMY,
+	PUSH_ENEMY,
 }
 
 enum Actor {

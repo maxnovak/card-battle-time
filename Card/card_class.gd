@@ -4,6 +4,10 @@ class_name Card
 @export
 var cardName: String
 @export
-var actions: Array[CardActions]
+var actions: CardActions
+
 @export
-var flippedActions: Array[CardActions]
+var flippedName: String
+@export
+var flippedActions: CardActions
+

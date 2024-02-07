@@ -1,22 +1,18 @@
-[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://25dwlxhdnnvt"]
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://25dwlxhdnnvt"]
 
 [ext_resource type="Script" path="res://Card/card_actions.gd" id="1_af8rk"]
 [ext_resource type="Script" path="res://Card/card_class.gd" id="1_cd44k"]
 
-[sub_resource type="Resource" id="Resource_xfa0g"]
+[sub_resource type="Resource" id="Resource_ssl13"]
 script = ExtResource("1_af8rk")
-amount = 3
 effect = 2
-abilityRange = Array[int]([0, 1, 2])
-
-[sub_resource type="Resource" id="Resource_2iiy7"]
-script = ExtResource("1_af8rk")
-amount = 3
-effect = 6
-abilityRange = Array[int]([1, 2])
+effectAmount = 3
+effectRange = Array[int]([1, 2])
+movement = 3
+movementAmount = 2
+validLocations = Array[int]([])
 
 [resource]
 script = ExtResource("1_cd44k")
 cardName = "Hook"
-actions = Array[ExtResource("1_af8rk")]([SubResource("Resource_xfa0g"), SubResource("Resource_2iiy7")])
-flippedActions = Array[ExtResource("1_af8rk")]([])
+actions = SubResource("Resource_ssl13")
