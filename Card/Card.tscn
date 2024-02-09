@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://3b256apu812h"]
+[gd_scene load_steps=10 format=3 uid="uid://3b256apu812h"]
 
 [ext_resource type="Script" path="res://Card/card.gd" id="1_l743w"]
+[ext_resource type="Script" path="res://Card/card_class.gd" id="2_1rhoa"]
 [ext_resource type="Texture2D" uid="uid://b075ohu6vlxh3" path="res://assets/cards/Clubs_card_01.png" id="2_tvyjl"]
 [ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/Asset 84@2x.png" id="3_cvh7y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk5xo"]
+
+[sub_resource type="Resource" id="Resource_suhl7"]
+script = ExtResource("2_1rhoa")
+cardName = ""
+flippedName = ""
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cfupg"]
 
@@ -16,6 +22,7 @@
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jk5xo")
 script = ExtResource("1_l743w")
+card = SubResource("Resource_suhl7")
 
 [node name="Sprite" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(80, 100)
@@ -98,6 +105,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Forward1" type="TextureRect" parent="Sprite"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 offset_left = 59.0
@@ -108,6 +116,7 @@ scale = Vector2(0.01, 0.01)
 texture = ExtResource("3_cvh7y")
 
 [node name="Forward2" type="TextureRect" parent="Sprite"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 offset_left = 65.0
@@ -118,6 +127,7 @@ scale = Vector2(0.01, 0.01)
 texture = ExtResource("3_cvh7y")
 
 [node name="Backward1" type="TextureRect" parent="Sprite"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 6.0
@@ -129,6 +139,7 @@ texture = ExtResource("3_cvh7y")
 flip_h = true
 
 [node name="Backward2" type="TextureRect" parent="Sprite"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 12.0

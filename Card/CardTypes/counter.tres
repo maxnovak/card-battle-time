@@ -7,7 +7,7 @@
 script = ExtResource("1_dk2m1")
 effect = 4
 effectAmount = 0
-effectRange = Array[int]([0])
+effectRange = Array[int]([1])
 movement = 0
 movementAmount = 0
 validLocations = Array[int]([])

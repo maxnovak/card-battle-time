@@ -21,7 +21,6 @@ func _notification(what):
 
 func _on_card_clicked(_mouseButton, card):
 	DisplayError.emit("")
-	print(get_parent().currentPhase)
 	var cardResource = card.card
 	if get_parent().currentPhase != Global.Phases.PLAY_CARD:
 		return

@@ -6,7 +6,7 @@ func targetSpace(space: int):
 	sprite.scale = Vector2(0.01, 0.01)
 	sprite.rotate(deg_to_rad(90))
 	sprite.position.y = -150
-	get_tree().get_nodes_in_group("PlayerNodes")[space].add_child(sprite)
+	get_tree().get_nodes_in_group("PlayerNodes")[space-1].add_child(sprite)
 
 func clearTargets():
 	for child in get_children():
@@ -23,4 +23,4 @@ func _on_hand_show_range(effect_range):
 		sprite.scale = Vector2(0.01, 0.01)
 		sprite.rotate(deg_to_rad(90))
 		sprite.position.y = -150
-		get_tree().get_nodes_in_group("EnemyNodes")[space].add_child(sprite)
+		get_tree().get_nodes_in_group("EnemyNodes")[space-1].add_child(sprite)

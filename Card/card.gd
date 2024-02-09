@@ -6,9 +6,6 @@ signal show_range(range: Array[int])
 @export
 var card: Card
 
-func _ready():
-	$Sprite/NameContainer/CardName.text = str(card.cardName)
-
 func _process(_delta):
 	if card.actions == null:
 		return
