@@ -16,3 +16,4 @@ validLocations = Array[int]([])
 script = ExtResource("1_cd44k")
 cardName = "Hook"
 actions = SubResource("Resource_ssl13")
+flippedName = ""

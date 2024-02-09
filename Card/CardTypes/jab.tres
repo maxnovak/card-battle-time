@@ -16,3 +16,4 @@ validLocations = Array[int]([])
 script = ExtResource("1_kmmnd")
 cardName = "Jab"
 actions = SubResource("Resource_i8sws")
+flippedName = ""

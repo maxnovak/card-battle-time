@@ -1,16 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://3b256apu812h"]
+[gd_scene load_steps=8 format=3 uid="uid://3b256apu812h"]
 
 [ext_resource type="Script" path="res://Card/card.gd" id="1_l743w"]
-[ext_resource type="Script" path="res://Card/card_class.gd" id="2_1rhoa"]
 [ext_resource type="Texture2D" uid="uid://b075ohu6vlxh3" path="res://assets/cards/Clubs_card_01.png" id="2_tvyjl"]
 [ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/Asset 84@2x.png" id="3_cvh7y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk5xo"]
-
-[sub_resource type="Resource" id="Resource_bn2wl"]
-script = ExtResource("2_1rhoa")
-cardName = ""
-flippedName = ""
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cfupg"]
 
@@ -22,7 +16,6 @@ flippedName = ""
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jk5xo")
 script = ExtResource("1_l743w")
-card = SubResource("Resource_bn2wl")
 
 [node name="Sprite" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(80, 100)
@@ -30,30 +23,12 @@ layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_tvyjl")
 
-[node name="DamageContainer" type="CenterContainer" parent="Sprite"]
-layout_mode = 2
-offset_right = 80.0
-offset_bottom = 100.0
-mouse_filter = 2
-mouse_default_cursor_shape = 2
-
-[node name="DamageAmount" type="RichTextLabel" parent="Sprite/DamageContainer"]
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-mouse_default_cursor_shape = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 16
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
 [node name="NameContainer" type="PanelContainer" parent="Sprite"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.29
+offset_bottom = 1.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -76,51 +51,115 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
+[node name="DamageContainer" type="CenterContainer" parent="Sprite"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.29
+anchor_right = 1.0
+anchor_bottom = 0.57
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+
+[node name="DamageAmount" type="RichTextLabel" parent="Sprite/DamageContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="MoveContainer" type="CenterContainer" parent="Sprite"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.7
+offset_left = 1.0
+offset_right = -1.0
+
+[node name="MovementType" type="RichTextLabel" parent="Sprite/MoveContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
 [node name="Forward1" type="TextureRect" parent="Sprite"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
-offset_left = 60.0
-offset_top = 46.0
-offset_right = 796.0
-offset_bottom = 1066.0
+offset_left = 59.0
+offset_top = 56.0
+offset_right = 795.0
+offset_bottom = 1076.0
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("3_cvh7y")
 
 [node name="Forward2" type="TextureRect" parent="Sprite"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
-offset_left = 66.0
-offset_top = 46.0
-offset_right = 802.0
-offset_bottom = 1066.0
+offset_left = 65.0
+offset_top = 56.0
+offset_right = 801.0
+offset_bottom = 1076.0
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("3_cvh7y")
 
 [node name="Backward1" type="TextureRect" parent="Sprite"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 7.0
-offset_top = 46.0
-offset_right = 743.0
-offset_bottom = 1066.0
+offset_left = 6.0
+offset_top = 56.0
+offset_right = 742.0
+offset_bottom = 1076.0
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("3_cvh7y")
 flip_h = true
 
 [node name="Backward2" type="TextureRect" parent="Sprite"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 13.0
-offset_top = 46.0
-offset_right = 749.0
-offset_bottom = 1066.0
+offset_left = 12.0
+offset_top = 56.0
+offset_right = 748.0
+offset_bottom = 1076.0
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("3_cvh7y")
 flip_h = true
+
+[node name="RangeContainer" type="CenterContainer" parent="Sprite"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.739
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_left = 1.0
+offset_top = -0.900002
+offset_right = -1.0
+
+[node name="RangeText" type="RichTextLabel" parent="Sprite/RangeContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

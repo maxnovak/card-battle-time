@@ -12,22 +12,46 @@ func _ready():
 func _process(_delta):
 	if card.actions == null:
 		return
-	if card.actions.effect == Global.EffectTypes.DAMAGE || card.actions.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
-		$Sprite/DamageContainer/DamageAmount.text = str(card.actions.effectAmount)
 	$Sprite/NameContainer/CardName.text = str(card.cardName)
-	if card.actions.movement != Global.MovementTypes.UNDEFINED:
+	if card.actions.effect == Global.EffectTypes.UNDEFINED:
+		$Sprite/DamageContainer/DamageAmount.text = ""
+	else:
+		if card.actions.effect == Global.EffectTypes.DAMAGE:
+			$Sprite/DamageContainer/DamageAmount.text = "[color=red]" + str(card.actions.effectAmount) + " Damage [/color]"
+		if card.actions.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
+			$Sprite/DamageContainer/DamageAmount.text = "[center][color=green]Apply " + str(card.actions.effectAmount) + " Poison[/color][/center]"
+	if card.actions.movement == Global.MovementTypes.UNDEFINED:
+		$Sprite/MoveContainer/MovementType.text = ""
+	else:
 		if card.actions.movement == Global.MovementTypes.MOVE_FORWARD:
+			$Sprite/MoveContainer/MovementType.text = "Move"
 			if card.actions.movementAmount >= 1:
 				$Sprite/Forward1.visible = true
 			if card.actions.movementAmount >= 2:
 				$Sprite/Forward2.visible = true
 		if card.actions.movement == Global.MovementTypes.MOVE_BACKWARD:
+			$Sprite/MoveContainer/MovementType.text = "Move"
 			if card.actions.movementAmount >= 1:
 				$Sprite/Backward1.visible = true
 			if card.actions.movementAmount >= 2:
 				$Sprite/Backward2.visible = true
-		if  card.actions.effect == Global.EffectTypes.DAMAGE ||  card.actions.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
-			$Sprite/DamageContainer/DamageAmount.text = str( card.actions.effectAmount)
+		if card.actions.movement == Global.MovementTypes.PULL_ENEMY:
+			$Sprite/MoveContainer/MovementType.text = "Pull"
+			if card.actions.movementAmount >= 1:
+				$Sprite/Backward1.visible = true
+			if card.actions.movementAmount >= 2:
+				$Sprite/Backward2.visible = true
+		if card.actions.movement == Global.MovementTypes.PUSH_ENEMY:
+			$Sprite/MoveContainer/MovementType.text = "Push"
+			if card.actions.movementAmount >= 1:
+				$Sprite/Forward1.visible = true
+			if card.actions.movementAmount >= 2:
+				$Sprite/Forward2.visible = true
+	if card.actions.effectRange.size() == 0:
+		$Sprite/RangeContainer/RangeText.text = ""
+	else:
+		$Sprite/RangeContainer/RangeText.text = "Range: "
+		$Sprite/RangeContainer/RangeText.text += ",".join(card.actions.effectRange)
 
 func _on_gui_input(event):
 	if event.is_pressed():
