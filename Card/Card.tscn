@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://3b256apu812h"]
+[gd_scene load_steps=11 format=3 uid="uid://3b256apu812h"]
 
 [ext_resource type="Script" path="res://Card/card.gd" id="1_l743w"]
 [ext_resource type="Script" path="res://Card/card_class.gd" id="2_1rhoa"]
 [ext_resource type="Texture2D" uid="uid://b075ohu6vlxh3" path="res://assets/cards/Clubs_card_01.png" id="2_tvyjl"]
 [ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/Asset 84@2x.png" id="3_cvh7y"]
+[ext_resource type="FontFile" uid="uid://c2c3q6dxgre1w" path="res://assets/fonts/Refax1.3.ttf" id="4_mgkef"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk5xo"]
 
@@ -33,9 +34,11 @@ texture = ExtResource("2_tvyjl")
 [node name="NameContainer" type="PanelContainer" parent="Sprite"]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 0.056
 anchor_right = 1.0
 anchor_bottom = 0.29
-offset_bottom = 1.0
+offset_top = 0.4
+offset_bottom = 7.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -51,7 +54,8 @@ size_flags_vertical = 4
 mouse_filter = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
+theme_override_fonts/normal_font = ExtResource("4_mgkef")
+theme_override_font_sizes/normal_font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0td0p")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t5xys")
 fit_content = true
