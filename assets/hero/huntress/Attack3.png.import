@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3jfanofjpmq4"
-path="res://.godot/imported/Take hit.png-39e262c7fdf847ac48423d129431362d.ctex"
+uid="uid://cuq555fsqnh2j"
+path="res://.godot/imported/Attack3.png-2e20828d2544b006ff433e02b91f2777.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hero/Take hit.png"
-dest_files=["res://.godot/imported/Take hit.png-39e262c7fdf847ac48423d129431362d.ctex"]
+source_file="res://assets/hero/huntress/Attack3.png"
+dest_files=["res://.godot/imported/Attack3.png-2e20828d2544b006ff433e02b91f2777.ctex"]
 
 [params]
 

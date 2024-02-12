@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl4cam6mlhqns"
-path="res://.godot/imported/Idle.png-88d9d944182b0eaba1b9191e916f2db5.ctex"
+uid="uid://d2bmc6s77ja08"
+path="res://.godot/imported/Idle.png-572a7a65ce63a158f468bb28bae81b48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/evilwizard/Idle.png"
-dest_files=["res://.godot/imported/Idle.png-88d9d944182b0eaba1b9191e916f2db5.ctex"]
+source_file="res://assets/hero/huntress/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-572a7a65ce63a158f468bb28bae81b48.ctex"]
 
 [params]
 

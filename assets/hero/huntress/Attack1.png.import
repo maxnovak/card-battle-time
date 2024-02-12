@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuq555fsqnh2j"
-path="res://.godot/imported/Attack3.png-2cab2df2787fa3e3738ce51def0ebd82.ctex"
+uid="uid://kwhp2x6a3ocg"
+path="res://.godot/imported/Attack1.png-402764839ad2c44947a469acbfdc6429.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hero/Attack3.png"
-dest_files=["res://.godot/imported/Attack3.png-2cab2df2787fa3e3738ce51def0ebd82.ctex"]
+source_file="res://assets/hero/huntress/Attack1.png"
+dest_files=["res://.godot/imported/Attack1.png-402764839ad2c44947a469acbfdc6429.ctex"]
 
 [params]
 

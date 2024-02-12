@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmaf1s3bb66kx"
-path="res://.godot/imported/Take Hit.png-b1d0273a4ae76626dc6b36b10ce2b210.ctex"
+uid="uid://de4tne3ubgmyr"
+path="res://.godot/imported/Attack.png-9292efd15773cc66fd433f6355e768d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/evilwizard/Take Hit.png"
-dest_files=["res://.godot/imported/Take Hit.png-b1d0273a4ae76626dc6b36b10ce2b210.ctex"]
+source_file="res://assets/enemies/evilwizard/Attack.png"
+dest_files=["res://.godot/imported/Attack.png-9292efd15773cc66fd433f6355e768d7.ctex"]
 
 [params]
 
