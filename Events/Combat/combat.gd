@@ -38,11 +38,16 @@ var currentPhase: Global.Phases: set = set_phase
 
 func _ready():
 	$Hand.constructDeck(Global.playerDeck)
+	var cards: Array[EnemyCardClass]
+	var files = DirAccess.get_files_at("res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/Cards/")
+	for card in files:
+		cards.append(load("res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/Cards/" + card))
 	$Enemy.init(EnemyClass.new({
 		name = "Evil Wizard",
-		sprite = load("res://Events/Combat/Enemies/Enemy/EnemyResources/fire_wizard.tres"),
+		sprite = load("res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/animations.tres"),
 		health = 50,
 		block = 0,
+		deck = cards,
 	}))
 
 	currentPhase = Global.TurnOrder[0] as Global.Phases

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmvw1gkyaj1ku"]
+[gd_scene load_steps=11 format=3 uid="uid://cmvw1gkyaj1ku"]
 
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/enemy.gd" id="1_vdyxb"]
-[ext_resource type="Script" path="res://Events/Combat/Enemies/enemy_card_class.gd" id="2_qfdpm"]
-[ext_resource type="SpriteFrames" uid="uid://b8ux7lh8otolc" path="res://Events/Combat/Enemies/Enemy/EnemyResources/fire_wizard.tres" id="3_h07nt"]
+[ext_resource type="Resource" uid="uid://c8yav0uls0hld" path="res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/Cards/Fireblast.tres" id="2_yl2s7"]
+[ext_resource type="Resource" uid="uid://bilhwv6wt4o53" path="res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/Cards/Fireball.tres" id="3_6o5i8"]
+[ext_resource type="SpriteFrames" uid="uid://b8ux7lh8otolc" path="res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/animations.tres" id="4_m1qmw"]
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/enemy_state_machine.gd" id="6_e36d3"]
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/idle.gd" id="7_0ira3"]
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/attack.gd" id="8_5yfpk"]
@@ -10,30 +11,16 @@
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/death.gd" id="10_helqy"]
 [ext_resource type="PackedScene" uid="uid://3b256apu812h" path="res://Card/Card.tscn" id="11_kxhfk"]
 
-[sub_resource type="Resource" id="Resource_ju831"]
-script = ExtResource("2_qfdpm")
-cardName = "Fireblast"
-amount = 5
-effect = 2
-abilityRange = Array[int]([1, 2])
-
-[sub_resource type="Resource" id="Resource_y277c"]
-script = ExtResource("2_qfdpm")
-cardName = "Fireball"
-amount = 15
-effect = 2
-abilityRange = Array[int]([0])
-
 [node name="Enemy" type="Node2D"]
 position = Vector2(200, 200)
 scale = Vector2(2, 2)
 script = ExtResource("1_vdyxb")
 health = 100
-deck = Array[ExtResource("2_qfdpm")]([SubResource("Resource_ju831"), SubResource("Resource_y277c")])
+deck = Array[Resource("res://Events/Combat/Enemies/enemy_card_class.gd")]([ExtResource("2_yl2s7"), ExtResource("3_6o5i8")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(-1, 1)
-sprite_frames = ExtResource("3_h07nt")
+sprite_frames = ExtResource("4_m1qmw")
 animation = &"idle"
 
 [node name="StateMachine" type="Node" parent="."]

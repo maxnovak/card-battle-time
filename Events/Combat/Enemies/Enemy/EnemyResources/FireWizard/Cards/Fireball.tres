@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyCardClass" load_steps=2 format=3 uid="uid://bilhwv6wt4o53"]
+
+[ext_resource type="Script" path="res://Events/Combat/Enemies/enemy_card_class.gd" id="1_nudu6"]
+
+[resource]
+script = ExtResource("1_nudu6")
+cardName = "Fireball"
+amount = 15
+effect = 2
+abilityRange = Array[int]([0])
