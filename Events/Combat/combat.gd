@@ -4,6 +4,9 @@ signal PhaseChange(phase: Global.Phases)
 signal combat_end
 
 @export
+var enemy: String : set = set_enemy
+
+@export
 var hero_position = 2 #1-3 for allowed locations
 
 const hero_positions = [
@@ -38,19 +41,7 @@ var currentPhase: Global.Phases: set = set_phase
 
 func _ready():
 	$Hand.constructDeck(Global.playerDeck)
-	var cards: Array[EnemyCardClass]
-	var files = DirAccess.get_files_at("res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/Cards/")
-	for card in files:
-		cards.append(load("res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/Cards/" + card))
-	$Enemy.init(EnemyClass.new({
-		name = "Evil Wizard",
-		sprite = load("res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/animations.tres"),
-		health = 50,
-		block = 0,
-		deck = cards,
-	}))
-
-	currentPhase = Global.TurnOrder[0] as Global.Phases
+	currentPhase = Global.TurnOrder[1] as Global.Phases
 
 func _process(_delta):
 	$Hero.position = Vector2(hero_positions[hero_position-1].x, $Hero.position.y)
@@ -60,6 +51,21 @@ func set_phase(value):
 	if currentPhase != value:
 		currentPhase = value
 		PhaseChange.emit(value)
+
+func set_enemy(value):
+	enemy = value
+	var cards: Array[EnemyCardClass] = []
+	var resourceFolder = "res://Events/Combat/Enemies/Enemy/EnemyResources/" + enemy + "/"
+	var files = DirAccess.get_files_at(resourceFolder + "Cards/")
+	for card in files:
+		cards.append(load(resourceFolder + "Cards/" + card))
+	$Enemy.init(EnemyClass.new({
+		name = "Evil Wizard",
+		sprite = load(resourceFolder + "animations.tres"),
+		health = 50,
+		block = 0,
+		deck = cards,
+	}))
 
 func applyCardEffect(action: CardActions):
 	if action.effect == Global.EffectTypes.DAMAGE:

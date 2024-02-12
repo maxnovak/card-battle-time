@@ -44,7 +44,6 @@ health = 20
 [node name="Enemy" parent="." instance=ExtResource("7_sojmv")]
 position = Vector2(757, 380)
 scale = Vector2(3, 3)
-health = 50
 
 [node name="Hand" type="Control" parent="."]
 layout_mode = 3

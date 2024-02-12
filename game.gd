@@ -21,6 +21,7 @@ func _on_map_change_scene(type):
 	$Scenes.remove_child(mapHolder)
 	if type == LocationClass.Types.BATTLE:
 		var combat = combatScene.instantiate()
+		combat.enemy = "FireWizard"
 		combat.combat_end.connect(_event_ended.bind(combat))
 		$Scenes.add_child(combat)
 	if type == LocationClass.Types.CARD:

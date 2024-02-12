@@ -26,6 +26,8 @@ func init(enemy: EnemyClass):
 	$AnimatedSprite2D.play("idle")
 	health = enemy.health
 	block = enemy.block
+	deck = enemy.deck
+	chooseAction()
 
 func changeState(new_state):
 	$StateMachine._change_state(new_state)

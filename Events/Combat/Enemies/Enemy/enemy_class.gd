@@ -11,3 +11,4 @@ func _init(enemy: Dictionary):
 	sprite = enemy.sprite
 	health = enemy.health
 	block = enemy.block
+	deck = enemy.deck

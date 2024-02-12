@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmvw1gkyaj1ku"]
+[gd_scene load_steps=9 format=3 uid="uid://cmvw1gkyaj1ku"]
 
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/enemy.gd" id="1_vdyxb"]
-[ext_resource type="Resource" uid="uid://c8yav0uls0hld" path="res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/Cards/Fireblast.tres" id="2_yl2s7"]
-[ext_resource type="Resource" uid="uid://bilhwv6wt4o53" path="res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/Cards/Fireball.tres" id="3_6o5i8"]
 [ext_resource type="SpriteFrames" uid="uid://b8ux7lh8otolc" path="res://Events/Combat/Enemies/Enemy/EnemyResources/FireWizard/animations.tres" id="4_m1qmw"]
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/enemy_state_machine.gd" id="6_e36d3"]
 [ext_resource type="Script" path="res://Events/Combat/Enemies/Enemy/idle.gd" id="7_0ira3"]
@@ -16,7 +14,6 @@ position = Vector2(200, 200)
 scale = Vector2(2, 2)
 script = ExtResource("1_vdyxb")
 health = 100
-deck = Array[Resource("res://Events/Combat/Enemies/enemy_card_class.gd")]([ExtResource("2_yl2s7"), ExtResource("3_6o5i8")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(-1, 1)
