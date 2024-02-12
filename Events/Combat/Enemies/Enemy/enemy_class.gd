@@ -1,7 +1,7 @@
 class_name EnemyClass
 
 var name: String
-var sprite: String
+var sprite: Resource
 var deck: Array[EnemyCardClass]
 var health: int
 var block: int

@@ -40,7 +40,7 @@ func _ready():
 	$Hand.constructDeck(Global.playerDeck)
 	$Enemy.init(EnemyClass.new({
 		name = "Evil Wizard",
-		sprite = "",
+		sprite = load("res://Events/Combat/Enemies/Enemy/EnemyResources/fire_wizard.tres"),
 		health = 50,
 		block = 0,
 	}))

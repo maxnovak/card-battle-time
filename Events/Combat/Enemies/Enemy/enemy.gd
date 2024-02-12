@@ -10,7 +10,7 @@ var block: int
 var damage_over_time: int
 
 @export
-var sprite: String
+var sprite: Resource
 
 @export
 var enemy_name: String
@@ -22,7 +22,8 @@ var chosenAction: EnemyCardClass
 
 func init(enemy: EnemyClass):
 	enemy_name = enemy.name
-	sprite = enemy.sprite
+	$AnimatedSprite2D.sprite_frames = enemy.sprite
+	$AnimatedSprite2D.play("idle")
 	health = enemy.health
 	block = enemy.block
 
