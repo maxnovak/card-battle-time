@@ -9,46 +9,46 @@ var card: Card
 func _process(_delta):
 	if card.actions == null:
 		return
-	$Sprite/NameContainer/CardName.text = str(card.cardName)
+	$Top/NameContainer/CardName.text = str(card.cardName)
 	if card.actions.effect == Global.EffectTypes.UNDEFINED:
-		$Sprite/DamageContainer/DamageAmount.text = ""
+		$Center/DamageContainer/DamageAmount.text = ""
 	else:
 		if card.actions.effect == Global.EffectTypes.DAMAGE:
-			$Sprite/DamageContainer/DamageAmount.text = "[color=red]" + str(card.actions.effectAmount) + " Damage [/color]"
+			$Center/DamageContainer/DamageAmount.text = "[center][color=red]" + str(card.actions.effectAmount) + " Damage [/color][/center]"
 		if card.actions.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
-			$Sprite/DamageContainer/DamageAmount.text = "[center][color=green]Apply " + str(card.actions.effectAmount) + " Poison[/color][/center]"
+			$Center/DamageContainer/DamageAmount.text = "[center][color=green]Apply " + str(card.actions.effectAmount) + " Poison[/color][/center]"
 	if card.actions.movement == Global.MovementTypes.UNDEFINED:
-		$Sprite/MoveContainer/MovementType.text = ""
+		$Center/HBoxContainer/MoveContainer/MovementType.text = ""
 	else:
 		if card.actions.movement == Global.MovementTypes.MOVE_FORWARD:
-			$Sprite/MoveContainer/MovementType.text = "Move"
+			$Center/HBoxContainer/MoveContainer/MovementType.text = "Move"
 			if card.actions.movementAmount >= 1:
-				$Sprite/Forward1.visible = true
+				$Center/HBoxContainer/Forward1.visible = true
 			if card.actions.movementAmount >= 2:
-				$Sprite/Forward2.visible = true
+				$Center/HBoxContainer/Forward2.visible = true
 		if card.actions.movement == Global.MovementTypes.MOVE_BACKWARD:
-			$Sprite/MoveContainer/MovementType.text = "Move"
+			$Center/HBoxContainer/MoveContainer/MovementType.text = "Move"
 			if card.actions.movementAmount >= 1:
-				$Sprite/Backward1.visible = true
+				$Center/HBoxContainer/Backward1.visible = true
 			if card.actions.movementAmount >= 2:
-				$Sprite/Backward2.visible = true
+				$Center/HBoxContainer/Backward2.visible = true
 		if card.actions.movement == Global.MovementTypes.PULL_ENEMY:
-			$Sprite/MoveContainer/MovementType.text = "Pull"
+			$Center/HBoxContainer/MoveContainer/MovementType.text = "Pull"
 			if card.actions.movementAmount >= 1:
-				$Sprite/Backward1.visible = true
+				$Center/HBoxContainer/Backward1.visible = true
 			if card.actions.movementAmount >= 2:
-				$Sprite/Backward2.visible = true
+				$Center/HBoxContainer/Backward2.visible = true
 		if card.actions.movement == Global.MovementTypes.PUSH_ENEMY:
-			$Sprite/MoveContainer/MovementType.text = "Push"
+			$Center/HBoxContainer/MoveContainer/MovementType.text = "Push"
 			if card.actions.movementAmount >= 1:
-				$Sprite/Forward1.visible = true
+				$Center/HBoxContainer/Forward1.visible = true
 			if card.actions.movementAmount >= 2:
-				$Sprite/Forward2.visible = true
+				$Center/HBoxContainer/Forward2.visible = true
 	if card.actions.effectRange.size() == 0:
-		$Sprite/RangeContainer/RangeText.text = ""
+		$Bottom/RangeContainer/RangeText.text = ""
 	else:
-		$Sprite/RangeContainer/RangeText.text = "Range: "
-		$Sprite/RangeContainer/RangeText.text += ",".join(card.actions.effectRange)
+		$Bottom/RangeContainer/RangeText.text = "Range: "
+		$Bottom/RangeContainer/RangeText.text += ",".join(card.actions.effectRange)
 
 func _on_gui_input(event):
 	if event.is_pressed():

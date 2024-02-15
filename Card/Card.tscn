@@ -2,176 +2,166 @@
 
 [ext_resource type="Script" path="res://Card/card.gd" id="1_l743w"]
 [ext_resource type="Script" path="res://Card/card_class.gd" id="2_1rhoa"]
-[ext_resource type="Texture2D" uid="uid://b075ohu6vlxh3" path="res://assets/cards/Clubs_card_01.png" id="2_tvyjl"]
+[ext_resource type="Script" path="res://Card/card_actions.gd" id="2_gp431"]
 [ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/Asset 84@2x.png" id="3_cvh7y"]
+[ext_resource type="Texture2D" uid="uid://wntsfcgs84ym" path="res://assets/cards/card-blank.png" id="4_2uke4"]
 [ext_resource type="FontFile" uid="uid://c2c3q6dxgre1w" path="res://assets/fonts/Refax1.3.ttf" id="4_mgkef"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk5xo"]
 
-[sub_resource type="Resource" id="Resource_suhl7"]
+[sub_resource type="Resource" id="Resource_f7rfu"]
+script = ExtResource("2_gp431")
+effect = 2
+effectAmount = 10
+effectRange = Array[int]([0])
+movement = 1
+movementAmount = 1
+validLocations = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_hd8ii"]
 script = ExtResource("2_1rhoa")
-cardName = ""
+cardName = "Fobbar"
+actions = SubResource("Resource_f7rfu")
 flippedName = ""
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cfupg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0td0p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t5xys"]
 
 [node name="Card" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.146
+anchor_bottom = 0.309
+offset_right = -149.504
+offset_bottom = -200.232
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jk5xo")
 script = ExtResource("1_l743w")
-card = SubResource("Resource_suhl7")
+card = SubResource("Resource_hd8ii")
 
 [node name="Sprite" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(80, 100)
+custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_tvyjl")
+texture = ExtResource("4_2uke4")
 
-[node name="NameContainer" type="PanelContainer" parent="Sprite"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.056
-anchor_right = 1.0
-anchor_bottom = 0.29
-offset_top = 0.4
-offset_bottom = 7.0
-grow_horizontal = 2
+[node name="Top" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="NameContainer" type="MarginContainer" parent="Top"]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_cfupg")
+theme_override_constants/margin_top = 5
 
-[node name="CardName" type="RichTextLabel" parent="Sprite/NameContainer"]
+[node name="CardName" type="Label" parent="Top/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_mgkef")
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t5xys")
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="Center" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="DamageContainer" type="MarginContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="DamageAmount" type="RichTextLabel" parent="Center/DamageContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 mouse_filter = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_mgkef")
-theme_override_font_sizes/normal_font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0td0p")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_t5xys")
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="DamageContainer" type="CenterContainer" parent="Sprite"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.29
-anchor_right = 1.0
-anchor_bottom = 0.57
-offset_right = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-mouse_default_cursor_shape = 2
-
-[node name="DamageAmount" type="RichTextLabel" parent="Sprite/DamageContainer"]
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-mouse_default_cursor_shape = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
-autowrap_mode = 2
+autowrap_mode = 0
 
-[node name="MoveContainer" type="CenterContainer" parent="Sprite"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.7
-offset_left = 1.0
-offset_right = -1.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Center"]
+layout_mode = 2
+alignment = 1
 
-[node name="MovementType" type="RichTextLabel" parent="Sprite/MoveContainer"]
+[node name="Backward1" type="TextureRect" parent="Center/HBoxContainer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_cvh7y")
+expand_mode = 1
+flip_h = true
+
+[node name="Backward2" type="TextureRect" parent="Center/HBoxContainer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(15, 20)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_cvh7y")
+expand_mode = 1
+flip_h = true
+
+[node name="MoveContainer" type="CenterContainer" parent="Center/HBoxContainer"]
+layout_mode = 2
+
+[node name="MovementType" type="RichTextLabel" parent="Center/HBoxContainer/MoveContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 16
+theme_override_fonts/normal_font = ExtResource("4_mgkef")
+theme_override_font_sizes/normal_font_size = 35
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Forward1" type="TextureRect" parent="Sprite"]
+[node name="Forward1" type="TextureRect" parent="Center/HBoxContainer"]
 visible = false
 modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(15, 20)
 layout_mode = 2
-offset_left = 59.0
-offset_top = 56.0
-offset_right = 795.0
-offset_bottom = 1076.0
-scale = Vector2(0.01, 0.01)
+size_flags_vertical = 4
 texture = ExtResource("3_cvh7y")
+expand_mode = 1
 
-[node name="Forward2" type="TextureRect" parent="Sprite"]
+[node name="Forward2" type="TextureRect" parent="Center/HBoxContainer"]
 visible = false
 modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(15, 20)
 layout_mode = 2
-offset_left = 65.0
-offset_top = 56.0
-offset_right = 801.0
-offset_bottom = 1076.0
-scale = Vector2(0.01, 0.01)
+size_flags_vertical = 4
 texture = ExtResource("3_cvh7y")
+expand_mode = 1
 
-[node name="Backward1" type="TextureRect" parent="Sprite"]
-visible = false
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 6.0
-offset_top = 56.0
-offset_right = 742.0
-offset_bottom = 1076.0
-scale = Vector2(0.01, 0.01)
-texture = ExtResource("3_cvh7y")
-flip_h = true
+[node name="Bottom" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
 
-[node name="Backward2" type="TextureRect" parent="Sprite"]
-visible = false
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 12.0
-offset_top = 56.0
-offset_right = 748.0
-offset_bottom = 1076.0
-scale = Vector2(0.01, 0.01)
-texture = ExtResource("3_cvh7y")
-flip_h = true
+[node name="RangeContainer" type="CenterContainer" parent="Bottom"]
+layout_mode = 2
 
-[node name="RangeContainer" type="CenterContainer" parent="Sprite"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.739
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_left = 1.0
-offset_top = -0.900002
-offset_right = -1.0
-
-[node name="RangeText" type="RichTextLabel" parent="Sprite/RangeContainer"]
+[node name="RangeText" type="RichTextLabel" parent="Bottom/RangeContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 13
+theme_override_fonts/normal_font = ExtResource("4_mgkef")
+theme_override_font_sizes/normal_font_size = 20
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
