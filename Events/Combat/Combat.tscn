@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjp0x2360ywfq"]
 
 [ext_resource type="Script" path="res://Events/Combat/combat.gd" id="1_ybk62"]
-[ext_resource type="Texture2D" uid="uid://b85uxjtquc3e6" path="res://assets/Image.png" id="2_e8glv"]
+[ext_resource type="Texture2D" uid="uid://b85uxjtquc3e6" path="res://assets/background/Image.png" id="2_h257f"]
 [ext_resource type="Script" path="res://Events/Combat/GUI/gui.gd" id="3_vhbpe"]
 [ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://Events/Combat/GUI/BattleGrid.tscn" id="4_kfi7k"]
 [ext_resource type="Script" path="res://Events/Combat/button.gd" id="5_0oa4f"]
