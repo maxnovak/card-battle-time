@@ -3,12 +3,20 @@
 [ext_resource type="Script" path="res://Map/map.gd" id="1_a6vfx"]
 [ext_resource type="Texture2D" uid="uid://drqlq3g7gs5dl" path="res://assets/map/background.png" id="2_i24gq"]
 
-[node name="Map" type="Node2D"]
+[node name="Map" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_a6vfx")
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(512, 300)
+position = Vector2(576, 324)
+scale = Vector2(1.125, 1.08)
 texture = ExtResource("2_i24gq")
 
 [node name="Locations" type="Node2D" parent="."]

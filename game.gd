@@ -10,7 +10,7 @@ var mapHolder = $Scenes/Map
 var huntressDeck: Array[Card]
 
 func _ready():
-	DisplayServer.window_set_min_size(Vector2(1024,600))
+	DisplayServer.window_set_min_size(Vector2(1152,648))
 	Global.playerDeck += huntressDeck
 
 func _on_map_change_scene(type):

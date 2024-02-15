@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name Map
 
 const location = preload("res://Map/Location/Location.tscn")

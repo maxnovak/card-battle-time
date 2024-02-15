@@ -95,6 +95,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Map" parent="Scenes" instance=ExtResource("2_nc35d")]
+layout_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -103,6 +104,6 @@ libraries = {
 
 [node name="TransitionImageHolder" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_pmjjw")
-offset = Vector2(512, 300)
+centered = false
 
 [connection signal="change_scene" from="Scenes/Map" to="." method="_on_map_change_scene"]
