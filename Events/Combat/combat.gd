@@ -11,13 +11,13 @@ var hero_position = 2 #1-3 for allowed locations
 
 const hero_positions = [
 	{
-		x = 150,
+		x = 215,
 	},
 	{
-		x = 300,
+		x = 365,
 	},
 	{
-		x = 450,
+		x = 515,
 	},
 ]
 
@@ -26,13 +26,13 @@ var enemy_position = 2 #1-3 for allowed locations
 
 const enemy_positions = [
 	{
-		x = 600,
+		x = 665,
 	},
 	{
-		x = 750,
+		x = 815,
 	},
 	{
-		x = 900,
+		x = 965,
 	},
 ]
 
@@ -42,6 +42,8 @@ var currentPhase: Global.Phases: set = set_phase
 func _ready():
 	$Hand.constructDeck(Global.playerDeck)
 	currentPhase = Global.TurnOrder[1] as Global.Phases
+	if enemy == null:
+		enemy = "FireWizard"
 
 func _process(_delta):
 	$Hero.position = Vector2(hero_positions[hero_position-1].x, $Hero.position.y)
@@ -54,18 +56,19 @@ func set_phase(value):
 
 func set_enemy(value):
 	enemy = value
-	var cards: Array[EnemyCardClass] = []
-	var resourceFolder = "res://Events/Combat/Enemies/Enemy/EnemyResources/" + enemy + "/"
-	var files = DirAccess.get_files_at(resourceFolder + "Cards/")
-	for card in files:
-		cards.append(load(resourceFolder + "Cards/" + card))
-	$Enemy.init(EnemyClass.new({
-		name = "Evil Wizard",
-		sprite = load(resourceFolder + "animations.tres"),
-		health = 50,
-		block = 0,
-		deck = cards,
-	}))
+	if value != null:
+		var cards: Array[EnemyCardClass] = []
+		var resourceFolder = "res://Events/Combat/Enemies/Enemy/EnemyResources/" + enemy + "/"
+		var files = DirAccess.get_files_at(resourceFolder + "Cards/")
+		for card in files:
+			cards.append(load(resourceFolder + "Cards/" + card))
+		$Enemy.init(EnemyClass.new({
+			name = "Evil Wizard",
+			sprite = load(resourceFolder + "animations.tres"),
+			health = 50,
+			block = 0,
+			deck = cards,
+		}))
 
 func applyCardEffect(action: CardActions):
 	if action.effect == Global.EffectTypes.DAMAGE:

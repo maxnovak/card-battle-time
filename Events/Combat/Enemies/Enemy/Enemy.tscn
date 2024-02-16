@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://3b256apu812h" path="res://Card/Card.tscn" id="11_kxhfk"]
 
 [node name="Enemy" type="Node2D"]
-position = Vector2(200, 200)
 scale = Vector2(2, 2)
 script = ExtResource("1_vdyxb")
 health = 100
@@ -68,10 +67,13 @@ text = "poison"
 horizontal_alignment = 1
 
 [node name="Card" parent="." instance=ExtResource("11_kxhfk")]
-offset_left = 2.0
-offset_top = -60.0
-offset_right = 2.0
-offset_bottom = -60.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_top = -96.0
+offset_right = 121.0
+offset_bottom = 60.0
 scale = Vector2(0.35, 0.35)
 mouse_filter = 2
 

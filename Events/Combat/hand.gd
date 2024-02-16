@@ -8,7 +8,7 @@ signal show_range(range: Array[int])
 @export
 var handSize = 5
 
-const cardWidthMove = 80
+const cardWidthMove = 150
 
 var deckCards: Array[Card] = []
 var discard: Array[Card] = []
