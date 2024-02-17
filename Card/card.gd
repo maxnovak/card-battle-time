@@ -3,6 +3,10 @@ extends Control
 signal card_clicked(MouseButton)
 signal show_range(range: Array[int])
 
+const shield = preload("res://assets/cards/Shield Blue.png")
+const sword = preload("res://assets/cards/Sword Red.png")
+const poison = preload("res://assets/cards/Poison Green.png")
+
 @export
 var card: Card
 
@@ -14,9 +18,14 @@ func _process(_delta):
 		$Center/DamageContainer/DamageAmount.text = ""
 	else:
 		if card.actions.effect == Global.EffectTypes.DAMAGE:
-			$Center/DamageContainer/DamageAmount.text = "[center][color=red]" + str(card.actions.effectAmount) + " Damage [/color][/center]"
+			$Center/DamageContainer/DamageAmount.text = "[center][color=red]" + str(card.actions.effectAmount) + "[/color][/center]"
+			$Center/DamageContainer/MarginContainer/TextureRect.texture = sword
 		if card.actions.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
-			$Center/DamageContainer/DamageAmount.text = "[center][color=green]Apply " + str(card.actions.effectAmount) + " Poison[/color][/center]"
+			$Center/DamageContainer/DamageAmount.text = "[center][color=green]" + str(card.actions.effectAmount) + "[/color][/center]"
+			$Center/DamageContainer/MarginContainer/TextureRect.texture = poison
+		if card.actions.effect == Global.EffectTypes.BLOCK:
+			$Center/DamageContainer/DamageAmount.text = "[center][color=blue]" + str(card.actions.effectAmount) + "[/color][/center]"
+			$Center/DamageContainer/MarginContainer/TextureRect.texture = shield
 	if card.actions.movement == Global.MovementTypes.UNDEFINED:
 		$Center/HBoxContainer/MoveContainer/MovementType.text = ""
 	else:

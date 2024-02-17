@@ -1,17 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://3b256apu812h"]
+[gd_scene load_steps=12 format=3 uid="uid://3b256apu812h"]
 
 [ext_resource type="Script" path="res://Card/card.gd" id="1_l743w"]
 [ext_resource type="Script" path="res://Card/card_class.gd" id="2_1rhoa"]
 [ext_resource type="Script" path="res://Card/card_actions.gd" id="2_gp431"]
-[ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/cards/Asset 84@2x.png" id="3_cvh7y"]
 [ext_resource type="Texture2D" uid="uid://dqn1gxq0kl8gd" path="res://assets/cards/card-blank-black-border.png" id="4_3wi3b"]
 [ext_resource type="FontFile" uid="uid://c2c3q6dxgre1w" path="res://assets/fonts/Refax1.3.ttf" id="4_mgkef"]
+[ext_resource type="Texture2D" uid="uid://cs3v2y7uhsp4f" path="res://assets/cards/Sword Red.png" id="6_ykppy"]
+[ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/cards/Asset 84@2x.png" id="7_m4nrw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk5xo"]
 
 [sub_resource type="Resource" id="Resource_f7rfu"]
 script = ExtResource("2_gp431")
-effect = 2
+effect = 1
 effectAmount = 10
 effectRange = Array[int]([0])
 movement = 1
@@ -70,23 +71,35 @@ vertical_alignment = 3
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="DamageContainer" type="MarginContainer" parent="Center"]
+[node name="DamageContainer" type="HBoxContainer" parent="Center"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 15
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="DamageAmount" type="RichTextLabel" parent="Center/DamageContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_mgkef")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
+text = "10"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Center/DamageContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="Center/DamageContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_ykppy")
+expand_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Center"]
 layout_mode = 2
@@ -98,7 +111,7 @@ modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(15, 20)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_cvh7y")
+texture = ExtResource("7_m4nrw")
 expand_mode = 1
 flip_h = true
 
@@ -108,7 +121,7 @@ modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(15, 20)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_cvh7y")
+texture = ExtResource("7_m4nrw")
 expand_mode = 1
 flip_h = true
 
@@ -134,7 +147,7 @@ modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(15, 20)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_cvh7y")
+texture = ExtResource("7_m4nrw")
 expand_mode = 1
 
 [node name="Forward2" type="TextureRect" parent="Center/HBoxContainer"]
@@ -143,7 +156,7 @@ modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(15, 20)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_cvh7y")
+texture = ExtResource("7_m4nrw")
 expand_mode = 1
 
 [node name="Bottom" type="VBoxContainer" parent="."]
