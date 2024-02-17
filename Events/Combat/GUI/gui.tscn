@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqujqqi1dyhv5"]
+
+[ext_resource type="Script" path="res://Events/Combat/GUI/gui.gd" id="1_l4gxm"]
+[ext_resource type="Script" path="res://Events/Combat/hand.gd" id="2_b1gkq"]
+[ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://Events/Combat/GUI/BattleGrid.tscn" id="3_5dc5e"]
+[ext_resource type="Script" path="res://Events/Combat/button.gd" id="4_lr2ll"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_l4gxm")
+
+[node name="Battle Grid" parent="." instance=ExtResource("3_5dc5e")]
+
+[node name="Hand" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21
+anchor_top = 0.812
+anchor_right = 0.828
+anchor_bottom = 1.09
+offset_left = 0.0799866
+offset_top = -0.176025
+offset_right = 0.143921
+offset_bottom = -0.320007
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_b1gkq")
+
+[node name="Error" type="Label" parent="."]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 189.0
+offset_right = 549.0
+offset_bottom = 228.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1020.0
+offset_top = 514.0
+offset_right = 1133.0
+offset_bottom = 545.0
+text = "Redraw Hand"
+script = ExtResource("4_lr2ll")
+
+[connection signal="DisplayError" from="Hand" to="." method="_on_hand_display_error"]
+[connection signal="show_range" from="Hand" to="Battle Grid" method="_on_hand_show_range"]
+[connection signal="pressed" from="Button" to="Hand" method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 signal PhaseChange(phase: Global.Phases)
 signal combat_end
@@ -40,7 +40,7 @@ var playedCard: Card
 var currentPhase: Global.Phases: set = set_phase
 
 func _ready():
-	$Hand.constructDeck(Global.playerDeck)
+	$GUI/Hand.constructDeck(Global.playerDeck)
 	currentPhase = Global.TurnOrder[1] as Global.Phases
 	if enemy == null:
 		enemy = "FireWizard"
@@ -128,7 +128,7 @@ func _on_phase_change(phase):
 		await $AttackTimer.timeout
 
 	if phase == Global.Phases.DRAW:
-		$Hand.draw()
+		$GUI/Hand.draw()
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.PLAY_CARD:

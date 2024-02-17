@@ -7,7 +7,7 @@ signal show_range(range: Array[int])
 var card: Card
 
 func _process(_delta):
-	if card.actions == null:
+	if card == null:
 		return
 	$Top/NameContainer/CardName.text = str(card.cardName)
 	if card.actions.effect == Global.EffectTypes.UNDEFINED:

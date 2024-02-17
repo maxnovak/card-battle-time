@@ -1,66 +1,48 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjp0x2360ywfq"]
+[gd_scene load_steps=6 format=3 uid="uid://doffv70n3gtg"]
 
 [ext_resource type="Script" path="res://Events/Combat/combat.gd" id="1_ybk62"]
 [ext_resource type="Texture2D" uid="uid://b85uxjtquc3e6" path="res://assets/background/Image.png" id="2_h257f"]
-[ext_resource type="Script" path="res://Events/Combat/GUI/gui.gd" id="3_vhbpe"]
-[ext_resource type="PackedScene" uid="uid://cncc8a5j6c6vh" path="res://Events/Combat/GUI/BattleGrid.tscn" id="4_kfi7k"]
-[ext_resource type="Script" path="res://Events/Combat/button.gd" id="5_0oa4f"]
+[ext_resource type="PackedScene" uid="uid://bqujqqi1dyhv5" path="res://Events/Combat/GUI/gui.tscn" id="3_nt121"]
 [ext_resource type="PackedScene" uid="uid://vb70ep72ce87" path="res://Events/Combat/Hero/Hero.tscn" id="6_6yq6n"]
 [ext_resource type="PackedScene" uid="uid://cmvw1gkyaj1ku" path="res://Events/Combat/Enemies/Enemy/Enemy.tscn" id="7_sojmv"]
-[ext_resource type="Script" path="res://Events/Combat/hand.gd" id="8_6x210"]
 
-[node name="Combat" type="Node2D"]
+[node name="Combat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ybk62")
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(1.85806, 1.8)
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00392157, 0.0901961, 0.109804, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 548.0
 texture = ExtResource("2_h257f")
 
-[node name="GUI" type="Node2D" parent="."]
-script = ExtResource("3_vhbpe")
-
-[node name="Battle Grid" parent="GUI" instance=ExtResource("4_kfi7k")]
-
-[node name="Error" type="Label" parent="GUI"]
-offset_left = 439.0
-offset_top = 189.0
-offset_right = 549.0
-offset_bottom = 228.0
-
-[node name="Button" type="Button" parent="GUI"]
-offset_left = 890.0
-offset_top = 500.0
-offset_right = 1003.0
-offset_bottom = 531.0
-text = "Redraw Hand"
-script = ExtResource("5_0oa4f")
+[node name="GUI" parent="." instance=ExtResource("3_nt121")]
+layout_mode = 1
 
 [node name="Hero" parent="." instance=ExtResource("6_6yq6n")]
-position = Vector2(367, 424)
+position = Vector2(367, 353)
 scale = Vector2(3, 3)
 health = 20
 
 [node name="Enemy" parent="." instance=ExtResource("7_sojmv")]
-position = Vector2(810, 424)
+position = Vector2(813, 351)
 scale = Vector2(3, 3)
-
-[node name="Hand" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("8_6x210")
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="PhaseChange" from="." to="." method="_on_phase_change"]
-[connection signal="pressed" from="GUI/Button" to="GUI/Button" method="_on_pressed"]
-[connection signal="pressed" from="GUI/Button" to="Hand" method="_on_button_pressed"]
-[connection signal="DisplayError" from="Hand" to="GUI" method="_on_hand_display_error"]
-[connection signal="show_range" from="Hand" to="GUI/Battle Grid" method="_on_hand_show_range"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
