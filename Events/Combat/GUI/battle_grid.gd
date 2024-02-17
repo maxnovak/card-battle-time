@@ -19,7 +19,7 @@ func _on_hand_show_range(effect_range):
 			child.queue_free()
 	for space in effect_range:
 		var sprite = Sprite2D.new()
-		sprite.texture = load("res://assets/Asset 84@2x.png")
+		sprite.texture = load("res://assets/cards/Asset 84@2x.png")
 		sprite.scale = Vector2(0.01, 0.01)
 		sprite.rotate(deg_to_rad(90))
 		sprite.position.y = -150

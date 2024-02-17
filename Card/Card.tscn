@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Card/card.gd" id="1_l743w"]
 [ext_resource type="Script" path="res://Card/card_class.gd" id="2_1rhoa"]
 [ext_resource type="Script" path="res://Card/card_actions.gd" id="2_gp431"]
-[ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/Asset 84@2x.png" id="3_cvh7y"]
-[ext_resource type="Texture2D" uid="uid://wntsfcgs84ym" path="res://assets/cards/card-blank.png" id="4_2uke4"]
+[ext_resource type="Texture2D" uid="uid://6t8qbyrpusoo" path="res://assets/cards/Asset 84@2x.png" id="3_cvh7y"]
+[ext_resource type="Texture2D" uid="uid://dqn1gxq0kl8gd" path="res://assets/cards/card-blank-black-border.png" id="4_3wi3b"]
 [ext_resource type="FontFile" uid="uid://c2c3q6dxgre1w" path="res://assets/fonts/Refax1.3.ttf" id="4_mgkef"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk5xo"]
@@ -41,7 +41,7 @@ card = SubResource("Resource_hd8ii")
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("4_2uke4")
+texture = ExtResource("4_3wi3b")
 
 [node name="Top" type="VBoxContainer" parent="."]
 layout_mode = 2

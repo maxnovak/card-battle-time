@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6t8qbyrpusoo"
-path="res://.godot/imported/Asset 84@2x.png-a2bb0a043d50f52d0b77decdb903e126.ctex"
+uid="uid://cs3v2y7uhsp4f"
+path="res://.godot/imported/Sword Red.png-b741aa67ef1b8462000ccaf2f1f3f910.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Asset 84@2x.png"
-dest_files=["res://.godot/imported/Asset 84@2x.png-a2bb0a043d50f52d0b77decdb903e126.ctex"]
+source_file="res://assets/cards/Sword Red.png"
+dest_files=["res://.godot/imported/Sword Red.png-b741aa67ef1b8462000ccaf2f1f3f910.ctex"]
 
 [params]
 
