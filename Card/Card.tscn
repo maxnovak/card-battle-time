@@ -29,9 +29,9 @@ flippedName = ""
 
 [node name="Card" type="PanelContainer"]
 anchors_preset = -1
-anchor_right = 0.146
+anchor_right = 0.13
 anchor_bottom = 0.309
-offset_right = -149.504
+offset_right = -131.072
 offset_bottom = -200.232
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jk5xo")
@@ -163,10 +163,14 @@ expand_mode = 1
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="RangeContainer" type="CenterContainer" parent="Bottom"]
+[node name="RangeContainer" type="MarginContainer" parent="Bottom"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="CenterContainer" type="CenterContainer" parent="Bottom/RangeContainer"]
 layout_mode = 2
 
-[node name="RangeText" type="RichTextLabel" parent="Bottom/RangeContainer"]
+[node name="RangeText" type="RichTextLabel" parent="Bottom/RangeContainer/CenterContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -181,3 +185,4 @@ autowrap_mode = 0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
