@@ -24,18 +24,15 @@ func _ready():
 func _on_area_2d_mouse_entered():
 	if active:
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-
-	$Icon.scale = Vector2(2.0, 2.0)
-	$Marker.scale = Vector2(2.0, 2.0)
-	$Marker.position.y = -26
+	var tween = create_tween()
+	tween.tween_property($Icon, "scale", Vector2(2,2), 0.1)
 	$Area2D/CollisionShape2D.scale = Vector2(2.0, 2.0)
 	$Tooltip.text = LocationClass.TooltipMap.get(type, "")
 
 func _on_area_2d_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	$Icon.scale = Vector2(1.0, 1.0)
-	$Marker.scale = Vector2(1.0, 1.0)
-	$Marker.position.y = -14
+	var tween = create_tween()
+	tween.tween_property($Icon, "scale", Vector2(1,1), 0.1)
 	$Area2D/CollisionShape2D.scale = Vector2(1.0, 1.0)
 	$Tooltip.text = ""
 
@@ -50,8 +47,6 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 		var locationSprite = load(path)
 		$Icon.texture = locationSprite
 		$Icon.scale = Vector2(1.0, 1.0)
-		$Marker.scale = Vector2(1.0, 1.0)
-		$Marker.position.y = -14
 		$Area2D/CollisionShape2D.scale = Vector2(1.0, 1.0)
 		$Tooltip.text = ""
 		$Area2D.disconnect("mouse_entered", _on_area_2d_mouse_entered)
