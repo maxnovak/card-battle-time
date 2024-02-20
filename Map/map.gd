@@ -82,8 +82,6 @@ func createLocations():
 			boss.parent.append(previousLocation)
 			previousLocation.child.append(boss)
 
-
-
 func populateLandscape():
 	#Top Range
 	for i in range(randi_range(1, 3)):
@@ -133,7 +131,7 @@ func add_cloud():
 	cloud.texture = load("res://assets/map/cloud.png")
 	var y = rng.randi_range(MountainTopMinY, MountainTopMaxY)
 	var size = rng.randf_range(0.75, 1.0)
-	cloud.position = Vector2(1088, y)
+	cloud.position = Vector2(1200, y)
 	cloud.scale = Vector2(size, size)
 	$Clouds.add_child(cloud)
 	tween.tween_property(cloud, "global_position", Vector2(-100, y), 35.0)

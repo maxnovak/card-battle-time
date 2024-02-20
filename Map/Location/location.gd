@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name Location
 
 signal location_event(type: LocationClass.Types)
@@ -21,22 +21,19 @@ func _ready():
 	$Icon.texture = locationSprite
 	$Marker.play("idle")
 
-func _on_area_2d_mouse_entered():
-	if active:
-		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+func _on_mouse_entered():
+	if !available:
+		return
 	var tween = create_tween()
-	tween.tween_property($Icon, "scale", Vector2(2,2), 0.1)
-	$Area2D/CollisionShape2D.scale = Vector2(2.0, 2.0)
+	tween.tween_property(self, "scale", Vector2(2,2), 0.1)
 	$Tooltip.text = LocationClass.TooltipMap.get(type, "")
 
-func _on_area_2d_mouse_exited():
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+func _on_mouse_exited():
 	var tween = create_tween()
-	tween.tween_property($Icon, "scale", Vector2(1,1), 0.1)
-	$Area2D/CollisionShape2D.scale = Vector2(1.0, 1.0)
+	tween.tween_property(self, "scale", Vector2(1,1), 0.1)
 	$Tooltip.text = ""
 
-func _on_area_2d_input_event(_viewport, event, _shape_idx):
+func _on_gui_input(event):
 	if !available:
 		return
 
@@ -46,11 +43,10 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 		var path = LocationClass.TypeTextureMap[type]
 		var locationSprite = load(path)
 		$Icon.texture = locationSprite
-		$Icon.scale = Vector2(1.0, 1.0)
-		$Area2D/CollisionShape2D.scale = Vector2(1.0, 1.0)
+		self.scale = Vector2(1.0, 1.0)
 		$Tooltip.text = ""
-		$Area2D.disconnect("mouse_entered", _on_area_2d_mouse_entered)
-		$Area2D.disconnect("input_event", _on_area_2d_input_event)
+		disconnect("mouse_entered", _on_mouse_entered)
+		disconnect("gui_input", _on_gui_input)
 
 func _process(_delta):
 	if !available:

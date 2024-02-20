@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://j0hsqd8f1llk"]
+[gd_scene load_steps=7 format=3 uid="uid://j0hsqd8f1llk"]
 
 [ext_resource type="Script" path="res://Map/Location/location.gd" id="1_uh5dl"]
 [ext_resource type="Texture2D" uid="uid://cemfl2bx0rbby" path="res://assets/map/visted.png" id="2_t7c5d"]
 [ext_resource type="Texture2D" uid="uid://bcxhk0n27nhsk" path="res://assets/map/Player.png" id="3_usgu1"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_a8svm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swc1c"]
 atlas = ExtResource("3_usgu1")
@@ -28,24 +26,40 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Location" type="Node2D"]
+[node name="Location" type="Control"]
+layout_mode = 3
+anchor_left = -0.011
+anchor_top = -0.018
+anchor_right = 0.009
+anchor_bottom = 0.015
+offset_left = 12.672
+offset_top = 11.664
+offset_right = -10.368
+offset_bottom = -9.72
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 script = ExtResource("1_uh5dl")
 type = 2
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Icon" type="TextureRect" parent="."]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
 texture = ExtResource("2_t7c5d")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_a8svm")
-
 [node name="Tooltip" type="Label" parent="."]
+visible = false
+layout_mode = 0
 offset_left = -67.0
 offset_top = 23.0
 offset_right = 67.0
 offset_bottom = 55.0
+theme_override_font_sizes/font_size = 12
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -56,6 +70,6 @@ sprite_frames = SubResource("SpriteFrames_moqw4")
 animation = &"idle"
 speed_scale = 0.25
 
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

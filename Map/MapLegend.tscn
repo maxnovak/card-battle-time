@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://da246dyg2h1lw"]
+
+[ext_resource type="Texture2D" uid="uid://cddkj20imlokn" path="res://assets/map/unvisted-card.png" id="1_6lvyn"]
+[ext_resource type="FontFile" uid="uid://c2c3q6dxgre1w" path="res://assets/fonts/Refax1.3.ttf" id="2_ptfq3"]
+[ext_resource type="Texture2D" uid="uid://chfqoiflbr3gx" path="res://assets/map/unvisted-battle.png" id="3_5srtc"]
+[ext_resource type="Texture2D" uid="uid://dksgvt4gbg7vd" path="res://assets/map/unvisted-boss.png" id="4_yik3i"]
+
+[node name="ColorRect" type="ColorRect"]
+offset_left = 1000.0
+offset_top = 467.0
+offset_right = 1138.0
+offset_bottom = 642.0
+color = Color(0.529412, 0.521569, 0.478431, 1)
+
+[node name="MapLegend" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 97.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ptfq3")
+theme_override_font_sizes/font_size = 25
+text = "Map Legend"
+
+[node name="GetCardIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 38.0
+offset_right = 27.0
+offset_bottom = 58.0
+texture = ExtResource("1_6lvyn")
+
+[node name="GetCardText" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 38.0
+offset_right = 126.0
+offset_bottom = 63.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ptfq3")
+theme_override_font_sizes/font_size = 25
+text = "Get Card"
+
+[node name="BattleIcon" type="TextureRect" parent="."]
+offset_left = 6.0
+offset_top = 70.0
+offset_right = 26.0
+offset_bottom = 90.0
+texture = ExtResource("3_5srtc")
+
+[node name="BattleText" type="Label" parent="."]
+offset_left = 33.0
+offset_top = 69.0
+offset_right = 136.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ptfq3")
+theme_override_font_sizes/font_size = 25
+text = "Fight Enemy"
+
+[node name="BossIcon" type="TextureRect" parent="."]
+offset_left = 6.0
+offset_top = 101.0
+offset_right = 26.0
+offset_bottom = 121.0
+texture = ExtResource("4_yik3i")
+
+[node name="BossText" type="Label" parent="."]
+offset_left = 33.0
+offset_top = 100.0
+offset_right = 136.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ptfq3")
+theme_override_font_sizes/font_size = 25
+text = "Boss
+"

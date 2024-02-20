@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu8fywtevu02m"]
 
 [ext_resource type="Script" path="res://Map/map.gd" id="1_a6vfx"]
-[ext_resource type="Texture2D" uid="uid://drqlq3g7gs5dl" path="res://assets/map/background.png" id="2_i24gq"]
+[ext_resource type="PackedScene" uid="uid://da246dyg2h1lw" path="res://Map/MapLegend.tscn" id="2_nbcw7"]
 
 [node name="Map" type="Control"]
 layout_mode = 3
@@ -10,16 +10,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource("1_a6vfx")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
-position = Vector2(576, 324)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.125, 1.08)
-texture = ExtResource("2_i24gq")
+color = Color(0.835294, 0.796078, 0.607843, 1)
 
-[node name="Locations" type="Node2D" parent="."]
+[node name="Locations" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 1
 
 [node name="DelayStart" type="Timer" parent="."]
 wait_time = 3.0
@@ -33,3 +40,10 @@ one_shot = true
 [node name="Mountains" type="Node2D" parent="."]
 
 [node name="Clouds" type="Node2D" parent="."]
+
+[node name="MapLegend" parent="." instance=ExtResource("2_nbcw7")]
+layout_mode = 0
+offset_left = 996.0
+offset_top = 457.0
+offset_right = 1134.0
+offset_bottom = 632.0
