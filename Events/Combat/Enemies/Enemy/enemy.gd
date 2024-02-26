@@ -25,7 +25,7 @@ func init(enemy: EnemyClass):
 	var resourceFolder = "res://Events/Combat/Enemies/Enemy/EnemyResources/" + enemy.resourceName + "/"
 	var files = DirAccess.get_files_at(resourceFolder + "Cards/")
 	for card in files:
-		deck.append(load(resourceFolder + "Cards/" + card))
+		deck.append(load(resourceFolder + "Cards/" + card.replace(".remap", "")))
 	enemy_name = enemy.name
 	$AnimatedSprite2D.sprite_frames = load(resourceFolder + "animations.tres")
 	$AnimatedSprite2D.play("idle")
