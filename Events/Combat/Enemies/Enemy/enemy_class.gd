@@ -1,14 +1,12 @@
 class_name EnemyClass
 
 var name: String
-var sprite: Resource
-var deck: Array[EnemyCardClass]
+var resourceName: String
 var health: int
 var block: int
 
 func _init(enemy: Dictionary):
 	name = enemy.name
-	sprite = enemy.sprite
+	resourceName = enemy.resourceName
 	health = enemy.health
 	block = enemy.block
-	deck = enemy.deck

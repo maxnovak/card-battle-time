@@ -1,10 +1,19 @@
-[gd_resource type="Resource" script_class="EnemyCardClass" load_steps=2 format=3 uid="uid://bilhwv6wt4o53"]
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://ddxs0p8lh6lcd"]
 
-[ext_resource type="Script" path="res://Events/Combat/Enemies/enemy_card_class.gd" id="1_nudu6"]
+[ext_resource type="Script" path="res://Card/card_class.gd" id="1_2aixk"]
+[ext_resource type="Script" path="res://Card/card_actions.gd" id="1_nuyrg"]
+
+[sub_resource type="Resource" id="Resource_2biqa"]
+script = ExtResource("1_nuyrg")
+effect = 2
+effectAmount = 15
+effectRange = Array[int]([1])
+movement = 0
+movementAmount = 0
+validLocations = Array[int]([3])
 
 [resource]
-script = ExtResource("1_nudu6")
+script = ExtResource("1_2aixk")
 cardName = "Fireball"
-amount = 15
-effect = 2
-abilityRange = Array[int]([0])
+actions = SubResource("Resource_2biqa")
+flippedName = ""

@@ -22,7 +22,7 @@ const hero_positions = [
 ]
 
 @export
-var enemy_position = 2 #1-3 for allowed locations
+var enemy_position = 3 #1-3 for allowed locations
 
 const enemy_positions = [
 	{
@@ -41,7 +41,7 @@ var currentPhase: Global.Phases: set = set_phase
 
 func _ready():
 	$GUI/Hand.constructDeck(Global.playerDeck)
-	currentPhase = Global.TurnOrder[1] as Global.Phases
+	currentPhase = Global.TurnOrder[0] as Global.Phases
 	if enemy == null:
 		enemy = "FireWizard"
 
@@ -57,17 +57,11 @@ func set_phase(value):
 func set_enemy(value):
 	enemy = value
 	if value != null:
-		var cards: Array[EnemyCardClass] = []
-		var resourceFolder = "res://Events/Combat/Enemies/Enemy/EnemyResources/" + enemy + "/"
-		var files = DirAccess.get_files_at(resourceFolder + "Cards/")
-		for card in files:
-			cards.append(load(resourceFolder + "Cards/" + card))
 		$Enemy.init(EnemyClass.new({
 			name = "Evil Wizard",
-			sprite = load(resourceFolder + "animations.tres"),
+			resourceName = enemy,
 			health = 50,
 			block = 0,
-			deck = cards,
 		}))
 
 func applyCardEffect(action: CardActions):
@@ -102,10 +96,16 @@ func applyCardMovement(action: CardActions):
 
 func enemyAttack():
 	$Enemy.changeState("attack")
-	if !hero_position in $Enemy.chosenAction.abilityRange:
+	if !$Enemy.chosenAction.actions.effectRange.has(hero_position):
 		return
 	$Hero.changeState("hit")
-	dealDamage($Hero, $Enemy.chosenAction.amount)
+	dealDamage($Hero, $Enemy.chosenAction.actions.effectAmount)
+
+func enemyMove(action: CardActions):
+	if action.movement == Global.MovementTypes.MOVE_FORWARD && enemy_position < 3:
+		enemy_position = clamp(enemy_position + action.movementAmount, 1, 3)
+	if action.movement == Global.MovementTypes.MOVE_BACKWARD && enemy_position > 1:
+		enemy_position = clamp(enemy_position - action.movementAmount, 1, 3)
 
 func dealDamage(target, amount):
 	if target.block >= amount:
@@ -146,15 +146,21 @@ func _on_phase_change(phase):
 
 	if phase == Global.Phases.ENEMY_ACTION:
 		$AttackTimer.start()
-		$Enemy.playCard()
-		enemyAttack()
+		if $Enemy.chosenAction.actions.effect == Global.EffectTypes.DAMAGE:
+			$Enemy.playCard()
+			enemyAttack()
+		if $Enemy.chosenAction.actions.movement != Global.MovementTypes.UNDEFINED:
+			enemyMove($Enemy.chosenAction.actions)
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.ENEMY_CHOOSES_NEXT_ACTION:
 		$Enemy.chooseAction()
 		$"GUI/Battle Grid".clearTargets()
-		for target in $Enemy.chosenAction.abilityRange:
-			$"GUI/Battle Grid".targetSpace(target)
+		if $Enemy.chosenAction.actions.validLocations.has(enemy_position):
+			for target in $Enemy.chosenAction.actions.effectRange:
+				$"GUI/Battle Grid".targetSpace(target)
+		else:
+			$Enemy.reposition()
 		currentPhase = Global.TurnOrder[Global.TurnOrder.find(currentPhase) + 1]
 
 	if phase == Global.Phases.ENEMY_CLEANUP:
