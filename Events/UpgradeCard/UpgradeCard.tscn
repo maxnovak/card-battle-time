@@ -1,0 +1,230 @@
+[gd_scene load_steps=27 format=3 uid="uid://bul5r76cp6i2m"]
+
+[ext_resource type="Texture2D" uid="uid://7uqqso2qaj5v" path="res://assets/npcs/blacksmith.png" id="1_p842c"]
+[ext_resource type="Script" path="res://Events/UpgradeCard/UpgradeCard.gd" id="1_pp82e"]
+[ext_resource type="Script" path="res://Card/card_class.gd" id="2_0sitd"]
+[ext_resource type="Texture2D" uid="uid://fo77ix1kug8e" path="res://assets/background/ore.png" id="2_mkbgo"]
+[ext_resource type="Script" path="res://Card/card_actions.gd" id="2_t81i2"]
+[ext_resource type="FontFile" uid="uid://c2c3q6dxgre1w" path="res://assets/fonts/Refax1.3.ttf" id="3_1nrr1"]
+
+[sub_resource type="Resource" id="Resource_w05yj"]
+script = ExtResource("2_t81i2")
+effect = 0
+effectAmount = 0
+effectRange = Array[int]([])
+movement = 0
+movementAmount = 0
+validLocations = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_rnmp8"]
+script = ExtResource("2_0sitd")
+cardName = ""
+actions = SubResource("Resource_w05yj")
+flippedName = ""
+
+[sub_resource type="Resource" id="Resource_05r3r"]
+script = ExtResource("2_t81i2")
+effect = 0
+effectAmount = 0
+effectRange = Array[int]([])
+movement = 0
+movementAmount = 0
+validLocations = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_87jrt"]
+script = ExtResource("2_0sitd")
+cardName = ""
+actions = SubResource("Resource_05r3r")
+flippedName = ""
+
+[sub_resource type="Resource" id="Resource_b05do"]
+script = ExtResource("2_t81i2")
+effect = 0
+effectAmount = 0
+effectRange = Array[int]([])
+movement = 0
+movementAmount = 0
+validLocations = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_4sd7o"]
+script = ExtResource("2_0sitd")
+cardName = ""
+actions = SubResource("Resource_b05do")
+flippedName = ""
+
+[sub_resource type="Resource" id="Resource_7u1pv"]
+script = ExtResource("2_t81i2")
+effect = 0
+effectAmount = 0
+effectRange = Array[int]([])
+movement = 0
+movementAmount = 0
+validLocations = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_cwwe1"]
+script = ExtResource("2_0sitd")
+cardName = ""
+actions = SubResource("Resource_7u1pv")
+flippedName = ""
+
+[sub_resource type="Resource" id="Resource_08br6"]
+script = ExtResource("2_t81i2")
+effect = 0
+effectAmount = 0
+effectRange = Array[int]([])
+movement = 0
+movementAmount = 0
+validLocations = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_2voaj"]
+script = ExtResource("2_0sitd")
+cardName = ""
+actions = SubResource("Resource_08br6")
+flippedName = ""
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmll6"]
+atlas = ExtResource("1_p842c")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k86e0"]
+atlas = ExtResource("1_p842c")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hrot"]
+atlas = ExtResource("1_p842c")
+region = Rect2(68, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxkno"]
+atlas = ExtResource("1_p842c")
+region = Rect2(102, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp3xm"]
+atlas = ExtResource("1_p842c")
+region = Rect2(136, 0, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qevby"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmll6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k86e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hrot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxkno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp3xm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwifs"]
+atlas = ExtResource("2_mkbgo")
+region = Rect2(64, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_752wv"]
+atlas = ExtResource("2_mkbgo")
+region = Rect2(128, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdg6a"]
+atlas = ExtResource("2_mkbgo")
+region = Rect2(192, 0, 64, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjrug"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwifs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_752wv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdg6a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="UpgradeCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pp82e")
+cards = Array[ExtResource("2_0sitd")]([SubResource("Resource_rnmp8"), SubResource("Resource_87jrt"), SubResource("Resource_4sd7o"), SubResource("Resource_cwwe1"), SubResource("Resource_2voaj")])
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+color = Color(0.709804, 0.584314, 0.34902, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, 376)
+scale = Vector2(8.5, 8.5)
+sprite_frames = SubResource("SpriteFrames_qevby")
+animation = &"idle"
+autoplay = "idle"
+speed_scale = 0.75
+centered = false
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(992, 408)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_tjrug")
+animation = &"idle"
+autoplay = "idle"
+speed_scale = 0.5
+
+[node name="Label" type="Label" parent="."]
+offset_left = 58.0
+offset_top = 48.0
+offset_right = 799.0
+offset_bottom = 219.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_1nrr1")
+theme_override_font_sizes/font_size = 75
+text = "Choose a card to add 1 
+power to:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+offset_left = 241.0
+offset_top = 210.0
+offset_right = 804.0
+offset_bottom = 644.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+columns = 3

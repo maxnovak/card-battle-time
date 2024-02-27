@@ -4,29 +4,29 @@
 [ext_resource type="Resource" uid="uid://dcjiby66idbwn" path="res://Card/CardTypes/flurry.tres" id="2_28bhx"]
 [ext_resource type="Resource" uid="uid://0g6txsq4syq5" path="res://Card/CardTypes/jab.tres" id="3_iuwrs"]
 [ext_resource type="Resource" uid="uid://bq287bjuy2836" path="res://Card/CardTypes/stab.tres" id="4_1sbnd"]
-[ext_resource type="Texture2D" uid="uid://7uqqso2qaj5v" path="res://assets/npcs/blacksmith.png" id="5_hrggd"]
+[ext_resource type="Texture2D" uid="uid://bdwndi4fhfouy" path="res://assets/npcs/merchant.png" id="5_golpo"]
 [ext_resource type="Texture2D" uid="uid://bayj4xbldd2vq" path="res://assets/background/table.png" id="6_t4605"]
 [ext_resource type="FontFile" uid="uid://c2c3q6dxgre1w" path="res://assets/fonts/Refax1.3.ttf" id="7_ebphr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fmll6"]
-atlas = ExtResource("5_hrggd")
-region = Rect2(0, 0, 34, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_siv83"]
+atlas = ExtResource("5_golpo")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k86e0"]
-atlas = ExtResource("5_hrggd")
-region = Rect2(34, 0, 34, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqcec"]
+atlas = ExtResource("5_golpo")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7hrot"]
-atlas = ExtResource("5_hrggd")
-region = Rect2(68, 0, 34, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_otwta"]
+atlas = ExtResource("5_golpo")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gxkno"]
-atlas = ExtResource("5_hrggd")
-region = Rect2(102, 0, 34, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdhdm"]
+atlas = ExtResource("5_golpo")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fp3xm"]
-atlas = ExtResource("5_hrggd")
-region = Rect2(136, 0, 34, 34)
+[sub_resource type="AtlasTexture" id="AtlasTexture_udte8"]
+atlas = ExtResource("5_golpo")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yp6e4"]
 animations = [{
@@ -37,19 +37,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fmll6")
+"texture": SubResource("AtlasTexture_siv83")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k86e0")
+"texture": SubResource("AtlasTexture_yqcec")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7hrot")
+"texture": SubResource("AtlasTexture_otwta")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gxkno")
+"texture": SubResource("AtlasTexture_gdhdm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fp3xm")
+"texture": SubResource("AtlasTexture_udte8")
 }],
 "loop": true,
 "name": &"idle",
@@ -81,48 +81,48 @@ color = Color(0.709804, 0.584314, 0.34902, 1)
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.325
-anchor_top = 0.424
-anchor_right = 0.886
-anchor_bottom = 0.733
-offset_left = 0.199982
-offset_top = 0.247986
-offset_right = -0.264038
-offset_bottom = 0.0159607
+anchor_left = 0.378
+anchor_top = 0.5
+anchor_right = 0.929
+anchor_bottom = 0.505
+offset_left = -0.456024
+offset_right = -0.208008
+offset_bottom = -0.23999
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 60
 columns = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-4, 378)
+position = Vector2(-3, 385)
 scale = Vector2(8.5, 8.5)
 sprite_frames = SubResource("SpriteFrames_yp6e4")
 animation = &"idle"
 autoplay = "idle"
+frame = 1
+frame_progress = 0.893327
+speed_scale = 0.75
 centered = false
 
 [node name="Table" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.278
-anchor_top = 0.711
-anchor_right = 0.912
+layout_mode = 2
+anchor_left = 0.287
+anchor_top = 0.619
+anchor_right = 0.975
 anchor_bottom = 1.0
-offset_left = 0.743958
-offset_top = 0.271973
-offset_right = -583.624
-offset_bottom = -140.0
-scale = Vector2(5, 4)
+offset_left = 0.376007
+offset_top = -0.112
+offset_right = -0.200073
+offset_bottom = -5.0
 texture = ExtResource("6_t4605")
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 99.0
-offset_right = 891.0
-offset_bottom = 270.0
+layout_mode = 2
+offset_left = 43.0
+offset_top = 45.0
+offset_right = 1195.0
+offset_bottom = 120.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_ebphr")
 theme_override_font_sizes/font_size = 75
-text = "Aquire a card:"
+text = "Acquire a card:"

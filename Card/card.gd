@@ -87,7 +87,7 @@ func _on_gui_input(event):
 func _on_mouse_entered():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.1,1.1), 0.1)
-	tween.parallel().tween_property(self, "position", Vector2(position.x, -30), 0.1)
+	tween.parallel().tween_property(self, "position", Vector2(position.x, position.y-30), 0.1)
 	if card.actions.effect == Global.EffectTypes.DAMAGE || card.actions.effect == Global.EffectTypes.DAMAGE_OVER_TIME:
 		show_range.emit(card.actions.effectRange)
 
@@ -95,4 +95,4 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1,1), 0.1)
-	tween.parallel().tween_property(self, "position", Vector2(position.x, 0), 0.1)
+	tween.parallel().tween_property(self, "position", Vector2(position.x, position.y+30), 0.1)

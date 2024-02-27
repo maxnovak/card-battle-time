@@ -2,6 +2,7 @@ extends Control
 
 const combatScene = preload("res://Events/Combat/Combat.tscn")
 const aquireCardScene = preload("res://Events/AquireCard/AquireCard.tscn")
+const upgradeCardScene = preload("res://Events/UpgradeCard/UpgradeCard.tscn")
 
 @onready
 var mapHolder = $Scenes/Map
@@ -28,6 +29,10 @@ func _on_map_change_scene(type):
 		var aquireCard = aquireCardScene.instantiate()
 		aquireCard.event_end.connect(_event_ended.bind(aquireCard))
 		$Scenes.add_child(aquireCard)
+	if type == LocationClass.Types.UPGRADE_POWER:
+		var upgradeCard = upgradeCardScene.instantiate()
+		#upgradeCard.event_end.connect(_event_ended.bind(upgradeCard))
+		$Scenes.add_child(upgradeCard)
 	$AnimationPlayer.play("side-wipe")
 	await $AnimationPlayer.animation_finished
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

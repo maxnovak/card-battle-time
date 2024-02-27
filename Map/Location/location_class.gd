@@ -8,6 +8,8 @@ enum Types {
 	VISITED_BOSS,
 	VISITED_BATTLE,
 	VISITED_CARD,
+	UPGRADE_POWER,
+	VISITED_UPGRADE_POWER,
 }
 
 const TypeTextureMap = {
@@ -18,16 +20,20 @@ const TypeTextureMap = {
 	Types.VISITED_BATTLE : "res://assets/map/visted.png",
 	Types.VISITED_BOSS : "res://assets/map/visted.png",
 	Types.VISITED_CARD : "res://assets/map/visted.png",
+	Types.UPGRADE_POWER : "res://assets/map/unvisted-card.png",
+	Types.VISITED_UPGRADE_POWER : "res://assets/map/visted.png",
 }
 
 const VisitedLocationMap = {
 	Types.BATTLE : Types.VISITED_BATTLE,
 	Types.BOSS : Types.VISITED_BOSS,
 	Types.CARD : Types.VISITED_CARD,
+	Types.UPGRADE_POWER : Types.VISITED_UPGRADE_POWER,
 }
 
 const TooltipMap = {
 	Types.BATTLE : "Fight some enemies",
 	Types.BOSS : "Final Fight",
 	Types.CARD : "Pick up a new card",
+	Types.UPGRADE_POWER : "Upgrade a cards power"
 }
