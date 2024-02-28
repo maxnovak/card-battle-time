@@ -5,10 +5,19 @@ const location = preload("res://Map/Location/Location.tscn")
 
 signal change_scene(type: LocationClass.Types)
 
-const LocationTypes = [
-	LocationClass.Types.BATTLE,
-	LocationClass.Types.CARD,
-	LocationClass.Types.UPGRADE_POWER,
+var LocationTypes = [
+	{
+		location = LocationClass.Types.BATTLE,
+		weight = 50,
+	},
+	{
+		location = LocationClass.Types.CARD,
+		weight = 35,
+	},
+	{
+		location = LocationClass.Types.UPGRADE_POWER,
+		weight = 15,
+	},
 ]
 var rng = RandomNumberGenerator.new()
 
@@ -33,7 +42,7 @@ func _ready():
 
 func createLocations():
 	var firstLocation = location.instantiate()
-	firstLocation.type = LocationTypes[rng.randi_range(0, LocationTypes.size()-1)]
+	firstLocation.type = LocationClass.Types.BATTLE
 	firstLocation.position = Vector2(LocationStepDistance,290)
 	firstLocation.location_event.connect(_on_location_event.bind(firstLocation))
 	firstLocation.available = true
@@ -46,12 +55,21 @@ func createLocations():
 	boss.location_event.connect(_on_location_event.bind(boss))
 	boss.scale = Vector2(1.5, 1.5)
 	$Locations.add_child(boss, true)
-	
+
+	var total_weight = 0
+	for l in LocationTypes:
+		total_weight += l.weight
+
 	#top row
 	var previousLocation = firstLocation
 	for i in range(NumberOfLocations):
 		var spot = location.instantiate()
-		spot.type = LocationTypes[rng.randi_range(0, LocationTypes.size()-1)]
+		var randType = randi() % total_weight
+		for l in LocationTypes:
+			if randType <= l.weight:
+				spot.type = l.location
+				break
+			randType -= l.weight
 		spot.parent.append(previousLocation)
 		spot.position = Vector2(
 			i*LocationStepDistance+LocationStepDistance*2,
@@ -69,7 +87,12 @@ func createLocations():
 	previousLocation = firstLocation
 	for i in range(NumberOfLocations):
 		var spot = location.instantiate()
-		spot.type = LocationTypes[rng.randi_range(0, LocationTypes.size()-1)]
+		var randType = randi() % total_weight
+		for l in LocationTypes:
+			if randType <= l.weight:
+				spot.type = l.location
+				break
+			randType -= l.weight
 		spot.parent.append(previousLocation)
 		spot.position = Vector2(
 			i*LocationStepDistance+LocationStepDistance*2,
