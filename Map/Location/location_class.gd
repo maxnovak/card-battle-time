@@ -20,7 +20,7 @@ const TypeTextureMap = {
 	Types.VISITED_BATTLE : "res://assets/map/visted.png",
 	Types.VISITED_BOSS : "res://assets/map/visted.png",
 	Types.VISITED_CARD : "res://assets/map/visted.png",
-	Types.UPGRADE_POWER : "res://assets/map/unvisted-card.png",
+	Types.UPGRADE_POWER : "res://assets/map/unvisted-upgrade.png",
 	Types.VISITED_UPGRADE_POWER : "res://assets/map/visted.png",
 }
 

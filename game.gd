@@ -31,7 +31,7 @@ func _on_map_change_scene(type):
 		$Scenes.add_child(aquireCard)
 	if type == LocationClass.Types.UPGRADE_POWER:
 		var upgradeCard = upgradeCardScene.instantiate()
-		#upgradeCard.event_end.connect(_event_ended.bind(upgradeCard))
+		upgradeCard.event_end.connect(_event_ended.bind(upgradeCard))
 		$Scenes.add_child(upgradeCard)
 	$AnimationPlayer.play("side-wipe")
 	await $AnimationPlayer.animation_finished

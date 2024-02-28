@@ -8,6 +8,7 @@ signal change_scene(type: LocationClass.Types)
 const LocationTypes = [
 	LocationClass.Types.BATTLE,
 	LocationClass.Types.CARD,
+	LocationClass.Types.UPGRADE_POWER,
 ]
 var rng = RandomNumberGenerator.new()
 
