@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://c878ftbo3ofce"]
+
+[ext_resource type="Script" path="res://MainMenu/MainMenu.gd" id="1_712se"]
+[ext_resource type="FontFile" uid="uid://c2c3q6dxgre1w" path="res://assets/fonts/Refax1.3.ttf" id="1_ke21r"]
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("1_712se")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ke21r")
+theme_override_font_sizes/font_size = 100
+text = "Card Battle Time"
+
+[node name="MenuOptions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Continue" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("1_ke21r")
+theme_override_font_sizes/font_size = 50
+text = "Continue"
+
+[node name="NewGame" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("1_ke21r")
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+
+[node name="Exit" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("1_ke21r")
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[connection signal="gui_input" from="HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_mouse_exited"]
+[connection signal="gui_input" from="HBoxContainer/VBoxContainer/MenuOptions/Exit" to="." method="_on_exit_gui_input"]
