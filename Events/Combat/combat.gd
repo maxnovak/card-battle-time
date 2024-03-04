@@ -1,4 +1,5 @@
 extends Control
+class_name Combat
 
 signal PhaseChange(phase: Global.Phases)
 signal combat_end
@@ -22,6 +23,9 @@ const hero_positions = [
 
 @export
 var enemy_position = 3 #1-3 for allowed locations
+
+@export
+var is_boss_fight = false
 
 const enemy_positions = [
 	{
