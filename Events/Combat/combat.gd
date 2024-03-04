@@ -3,8 +3,7 @@ extends Control
 signal PhaseChange(phase: Global.Phases)
 signal combat_end
 
-@export
-var enemy: String : set = set_enemy
+var enemy: EnemyClass : set = set_enemy
 
 @export
 var hero_position = 2 #1-3 for allowed locations
@@ -43,7 +42,7 @@ func _ready():
 	$GUI/Hand.constructDeck(Global.playerDeck)
 	currentPhase = Global.TurnOrder[0] as Global.Phases
 	if enemy == null:
-		enemy = "FireWizard"
+		enemy = Global.enemies[0]
 
 func _process(_delta):
 	$Hero.position = Vector2(hero_positions[hero_position-1].x, $Hero.position.y)
@@ -57,12 +56,7 @@ func set_phase(value):
 func set_enemy(value):
 	enemy = value
 	if value != null:
-		$Enemy.init(EnemyClass.new({
-			name = "Evil Wizard",
-			resourceName = enemy,
-			health = 50,
-			block = 0,
-		}))
+		$Enemy.init(enemy)
 
 func applyCardEffect(action: CardActions):
 	if action.effect == Global.EffectTypes.DAMAGE:

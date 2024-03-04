@@ -45,3 +45,21 @@ const TurnOrder = [
 ]
 
 var playerDeck: Array[Card] = []
+
+var enemies: Array[EnemyClass] = [
+	EnemyClass.new({
+		name = "Goblin",
+		resourceName = "Goblin",
+		health = 12,
+		block = 0,
+	}),
+]
+
+var bosses: Array[EnemyClass] = [
+	EnemyClass.new({
+		name = "Fire Wizard",
+		resourceName = "FireWizard",
+		health = 50,
+		block = 0,
+	}),
+]

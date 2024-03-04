@@ -21,8 +21,9 @@ func _on_map_change_scene(type):
 	$TransitionImageHolder.texture = texture
 	$Scenes.remove_child(mapHolder)
 	if type == LocationClass.Types.BATTLE:
+		var enemyId = randi_range(0, Global.enemies.size()-1)
 		var combat = combatScene.instantiate()
-		combat.enemy = "FireWizard"
+		combat.enemy = Global.enemies[enemyId]
 		combat.combat_end.connect(_event_ended.bind(combat))
 		$Scenes.add_child(combat)
 	if type == LocationClass.Types.CARD:
@@ -33,6 +34,12 @@ func _on_map_change_scene(type):
 		var upgradeCard = upgradeCardScene.instantiate()
 		upgradeCard.event_end.connect(_event_ended.bind(upgradeCard))
 		$Scenes.add_child(upgradeCard)
+	if type == LocationClass.Types.BOSS:
+		var enemyId = randi_range(0, Global.bosses.size()-1)
+		var combat = combatScene.instantiate()
+		combat.enemy = Global.bosses[enemyId]
+		combat.combat_end.connect(_event_ended.bind(combat))
+		$Scenes.add_child(combat)
 	$AnimationPlayer.play("side-wipe")
 	await $AnimationPlayer.animation_finished
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

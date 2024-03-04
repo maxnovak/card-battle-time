@@ -10,9 +10,6 @@ var block: int
 var damage_over_time: int
 
 @export
-var sprite: Resource
-
-@export
 var enemy_name: String
 
 @export
