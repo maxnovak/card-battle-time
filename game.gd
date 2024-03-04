@@ -1,18 +1,18 @@
 extends Control
 
+const mapScene = preload("res://Map/Map.tscn")
 const combatScene = preload("res://Events/Combat/Combat.tscn")
 const aquireCardScene = preload("res://Events/AquireCard/AquireCard.tscn")
 const upgradeCardScene = preload("res://Events/UpgradeCard/UpgradeCard.tscn")
 
-@onready
-var mapHolder = $Scenes/Map
+var mapHolder: Map
 
 @export
 var huntressDeck: Array[Card]
 
 func _ready():
 	DisplayServer.window_set_min_size(Vector2(1152,648))
-	Global.playerDeck += huntressDeck
+	Global.playerDeck = huntressDeck
 
 func _on_map_change_scene(type):
 	Input.set_default_cursor_shape(Input.CURSOR_WAIT)
@@ -48,3 +48,8 @@ func _event_ended(event):
 	await $AnimationPlayer.animation_finished
 	event.queue_free()
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+func _on_main_menu_new_game():
+	mapHolder = mapScene.instantiate()
+	mapHolder.change_scene.connect(_on_map_change_scene)
+	$Scenes.add_child(mapHolder)

@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://cyipio86y58c4"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_47x6f"]
-[ext_resource type="PackedScene" uid="uid://cu8fywtevu02m" path="res://Map/Map.tscn" id="2_nc35d"]
 [ext_resource type="Resource" uid="uid://25dwlxhdnnvt" path="res://Card/CardTypes/hook.tres" id="3_dg8tu"]
 [ext_resource type="Resource" uid="uid://dcjiby66idbwn" path="res://Card/CardTypes/flurry.tres" id="3_nberl"]
 [ext_resource type="Shader" path="res://assets/shaders/transition.gdshader" id="3_q2pca"]
 [ext_resource type="Texture2D" uid="uid://cjlvbp0ckkiiq" path="res://assets/shaders/transition-pattern.png" id="4_awvpf"]
 [ext_resource type="Resource" uid="uid://p8nysukxg7mg" path="res://Card/CardTypes/poison.tres" id="4_os4fx"]
 [ext_resource type="Resource" uid="uid://0g6txsq4syq5" path="res://Card/CardTypes/jab.tres" id="4_y0sci"]
+[ext_resource type="PackedScene" uid="uid://c878ftbo3ofce" path="res://MainMenu/MainMenu.tscn" id="6_vmnfv"]
 
 [sub_resource type="Animation" id="Animation_1rrvo"]
 length = 0.001
@@ -94,7 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Map" parent="Scenes" instance=ExtResource("2_nc35d")]
+[node name="MainMenu" parent="Scenes" instance=ExtResource("6_vmnfv")]
 layout_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -106,4 +106,4 @@ libraries = {
 material = SubResource("ShaderMaterial_pmjjw")
 centered = false
 
-[connection signal="change_scene" from="Scenes/Map" to="." method="_on_map_change_scene"]
+[connection signal="new_game" from="Scenes/MainMenu" to="." method="_on_main_menu_new_game"]
