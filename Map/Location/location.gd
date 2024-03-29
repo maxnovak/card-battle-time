@@ -38,6 +38,8 @@ func _on_gui_input(event):
 		return
 
 	if event.is_pressed() && event.button_index == MOUSE_BUTTON_LEFT:
+		set_default_cursor_shape(Control.CURSOR_ARROW)
+		$Icon.set_default_cursor_shape(Control.CURSOR_ARROW)
 		location_event.emit(type)
 		type = LocationClass.VisitedLocationMap[type]
 		var path = LocationClass.TypeTextureMap[type]

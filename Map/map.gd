@@ -146,6 +146,9 @@ func _on_location_event(type, source):
 	change_scene.emit(type)
 	for spot in source.parent:
 		spot.active = false
+		for parentChild in spot.child:
+			if parentChild != source:
+				parentChild.available = false
 	for spot in source.child:
 		spot.available = true
 
